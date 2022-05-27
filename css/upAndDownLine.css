@@ -1,0 +1,26 @@
+.vertical-line-top, .vertical-line-bottom {
+    background-color: #f6d5c400;
+}
+
+.char {
+    background-color: rgb(255 247 255 / 0%);
+}
+
+
+
+span .char {
+    color: #f1e8e8;
+}
+
+#say {
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+}
+
+#page, #archive, #tag, #category {
+    background-color: #ffffff36;
+}
+
+.link-url {
+    border: 1px solid #fdfdfd00;
+}
