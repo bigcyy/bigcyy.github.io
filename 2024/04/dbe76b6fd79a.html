@@ -9,7 +9,7 @@
     
     <title>
         
-            蓝桥杯-子串分值和 |
+            基于Mirai的健康系统催签到以及信息推送机器人 |
         
         CYY&#39;s Blog
     </title>
@@ -208,7 +208,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        蓝桥杯-子串分值和
+                        基于Mirai的健康系统催签到以及信息推送机器人
                     </div>
                 
 
@@ -234,12 +234,12 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2024-04-13 03:13:43</span>
+                <span class="datetime">2024-04-13 04:21:17</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Sat Apr 13 2024 03:13:43 GMT+0000">2024-04-13 03:13:43</span>
+                <span class="datetime" data-updated="Sat Apr 13 2024 04:21:17 GMT+0000">2024-04-13 04:21:17</span>
             </span>
         
 
@@ -247,10 +247,7 @@
             <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
                 <ul class="post-category-ul">
                     
-                            <li class="category-item"><a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li>
-                        
-                    
-                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a></li>
+                            <li class="category-item"><a href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a></li>
                         
                     
                 </ul>
@@ -261,10 +258,10 @@
             <span class="post-tag meta-info-item border-box">
                 <ul class="post-tag-ul">
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/mirai/">mirai</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%89%93%E5%8D%A1/">打卡</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/qq%E6%9C%BA%E5%99%A8%E4%BA%BA/">qq机器人</a></li>
                         
                     
                 </ul>
@@ -288,47 +285,105 @@
                 <div class="post-content keep-markdown-body">
                     
 
-                    <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>对于一个字符串 S，我们定义 S 的分值 f(S) 为 S 中出现的不同的字符个数。</p>
-<p>例如 f(“aba”)&#x3D;2，f(“abc”)&#x3D;3,f(“aaa”)&#x3D;1 。</p>
-<p>现在给定一个字符串 S[0..n−1]（长度为 n），请你计算对于所有 S 的非空子串 S<a href="0%E2%89%A4i%E2%89%A4j%3Cn">i..j</a>，f(S[i..j]) 的和是多少。</p>
-<h3 id="子串"><a href="#子串" class="headerlink" title="子串"></a>子串</h3><blockquote>
-<p>首先了解什么是子串,一个字符串 s 被称作另一个字符串 S 的子串，表示S&#x3D;XsY。</p>
-</blockquote>
-<p>例如abcc的子串有</p>
-<p>{</p>
-<p>空串</p>
-<p>a</p>
-<p>b ab</p>
-<p>c bc abc</p>
-<p>c cc bcc abcc</p>
-<p>}</p>
-<blockquote>
-<p>为什么会有两个子串c?</p>
-<p>第一个子串<strong>c</strong>前面是_ab_后面是_c_，第二个子串<strong>c</strong>前面是_abc_后面是空，都满足定义！</p>
-</blockquote>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>我们可以用状态转移的方法来思考，状态的定义是当前字符串所有子串的集合(例如:ab,当前字符串子串集合为{a,b,ab,空串})，当新来一个字母b接到字符串后方时，子串集合可以由两部分转移</p>
-<ol>
-<li>老的子串集合直接转移,即{a,b,ab,空串} </li>
-<li>新生成的子串,这部分子串可分为两部分</li>
+                    <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
+<li>催签到功能(详细介绍回复“催签到介绍”)：</li>
 </ol>
 <ul>
-<li>新来的字母单独做为一个子串,即字母{b} </li>
-<li>可以将新字母直接接在旧子串后面形成新子串,即直接接在前一个字母b后面形成{bb,abb}</li>
+<li>群里发送：”催签到”</li>
+<li>群里发送：@bot”登录”</li>
 </ul>
-<p>所以当前状态abb所表示的新集合为:接在后面的集合+新字母单独做子串集合+旧集合，即{bb,abb}+{b}+{a,b,ab,空串}&#x3D;{a,b,ab,空串b,bb,abb}</p>
-<p>我们再来看看在转移过程中,子串数值的变化,仍然以上面的ab新添加b为例子,设旧子串集合{a,b,ab,空串}的总数值为sum0,新子串集合的总数值为x,最终形成的子串集合为sum1,所以</p>
-<blockquote>
-<p>sum1&#x3D;sum0+x -&gt; sum &#x3D; sum + x</p>
-</blockquote>
-<p>递推公式已经推出,我们来看看这个x的数值是怎样变化的,{bb,abb}它是由旧集合中以最后一个字母结尾的子串{b,ab}再加上新字符b形成的,根据题目的定义如果新添加的字符前面已经存在，那么数值不变仍然为前面的子串的数值，反之则在前面子串基础上加上新字符的数值即1.回到x上来,从{b,ab}到{bb,abb},我们设{a,ab}数值为x0,{bb,abb}数值为x1,可以知道x1&#x3D;x0+增量c,增量c是由新加字符决定的，也就是前面有多少个不含新字符的子串数量,这里的增量为0，因为b,ab都含有新加字符b.现在x的递推公式也得到了,最后别忘了新来的字母单独做为一个子串,即字母{b}。</p>
-<blockquote>
-<p>x1 &#x3D; x0 + 增量 + 1</p>
-</blockquote>
-<p>最后我们可以开一个数组st[i]来记录当前状态不含某个字符i的子串数量,当新加一个字符时，我们直接查询即可得到增量,添加完字符后我们对st数组进行更新即可</p>
-<blockquote>
-<p>x &#x3D; x + st[i] + 1</p>
-</blockquote>
-<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">char</span> chs[<span class="number">100005</span>];   <span class="comment">//用来存储字符串</span></span><br><span class="line"><span class="type">int</span> st[<span class="number">30</span>]; <span class="comment">//存储不包含i字符的子串数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">update</span><span class="params">(<span class="type">char</span> ch)</span>&#123;   <span class="comment">//在旧字符串后面加上新字母后，更新st数组</span></span><br><span class="line">    <span class="type">int</span> aim = ch-<span class="string">&#x27;a&#x27;</span>;   <span class="comment">//计算索引,a对应下标0，b对应1以此类推</span></span><br><span class="line">    st[aim] = <span class="number">0</span>;    <span class="comment">//由于在可加的所有子串末尾新加了字母ch，所以前面的所有子串都不包含新加的字母</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;<span class="number">30</span>;i++)&#123;    <span class="comment">//遍历26个字母</span></span><br><span class="line">        <span class="keyword">if</span>(i != aim)&#123;  </span><br><span class="line">            st[i]++;    <span class="comment">//新来的字母单独做为一个子串，所以需要加1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;  <span class="comment">//用于记录子串数值总和sum</span></span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> x = <span class="number">0</span>;  <span class="comment">//用于记录新生成的子串数值和</span></span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;chs;</span><br><span class="line">    <span class="type">int</span> n = <span class="built_in">strlen</span>(chs);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        x = x + st[chs[i]-<span class="string">&#x27;a&#x27;</span>] + <span class="number">1</span>;  <span class="comment">//文章中的x1=x0+增量</span></span><br><span class="line">        sum = sum + x;   <span class="comment">//文章中的sum1=sum0+1+x.</span></span><br><span class="line">        update(chs[i]); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;sum;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>信息推送功能(详细介绍回复“信息推送介绍”): <ul>
+<li>群里或者私聊发送:”添加推送好友:好友qq号”</li>
+<li>群里或者私聊发送:”删除推送好友:好友qq号”</li>
+<li>群里或者私聊发送:”添加推送子群:qq群号”</li>
+<li>群里或者私聊发送:”删除推送子群:qq群号”</li>
+<li>群里或者私聊发送:”查看推送目标”</li>
+<li>群里或者私聊发送:”开始推送”</li>
+<li>群里或者私聊发送:”结束推送”</li>
+<li>群里@全体成员自动推送</li>
+</ul>
+</li>
+<li>查看使用方法:</li>
+</ol>
+<ul>
+<li>群里或者私聊发送:”使用方法”,或者直接戳一戳机器人</li>
+</ul>
+<ol start="4">
+<li>动态开启以上功能(仅限机器人master)</li>
+</ol>
+<ul>
+<li>开启&#x2F;关闭催签到功能</li>
+<li>开启&#x2F;关闭自动催签到</li>
+<li>开启&#x2F;关闭登录</li>
+<li>开启&#x2F;关闭加好友</li>
+<li>开启&#x2F;关闭加群</li>
+<li>开启&#x2F;关闭信息推送</li>
+</ul>
+<ol start="5">
+<li>机器人管理命令(仅限机器人master):<ul>
+<li>查看状态命令:&#x2F;status</li>
+<li>查看文件夹命令:&#x2F;查看文件夹  文件夹</li>
+<li>查看文件内容命令:&#x2F;查看文件 文件夹 文件</li>
+<li>删除文件夹命令:&#x2F;删除文件夹 文件</li>
+<li>删除文件命令:&#x2F;删除文件 文件夹 文件</li>
+<li>通知命令:&#x2F;通知 通知内容</li>
+</ul>
+</li>
+</ol>
+<h2 id="催签到功能介绍"><a href="#催签到功能介绍" class="headerlink" title="催签到功能介绍"></a>催签到功能介绍</h2><h3 id="面向用户"><a href="#面向用户" class="headerlink" title="面向用户"></a>面向用户</h3><p>成都师范学院(暂时未适配其他学校)</p>
+<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><ol>
+<li>手动催签到模块:<ul>
+<li>在群里发送”催签到”,机器人将会@未签到的同学，@信息将会在90分钟后自动撤回</li>
+</ul>
+</li>
+<li>自动催签到模块:<ul>
+<li>机器人将在每天的9.00,11.00,12.00,13.00,14.00,15.00自动@未签到同学</li>
+</ul>
+</li>
+<li>登录模块 :<ul>
+<li>在群里@机器人并回复登录进行登录，登录成功后才可进行催签到，当多人同时进行登录时，可能需要进行排队等待，根据提示操作即可。</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<li>联系我(1597081640)，提供您的学院，专业信息，以及辅导员健康系统的账号和密码 </li>
+<li>等待我添加配置文件后，将机器人拉入学院或班级或专业群 </li>
+<li>@机器人”登录”,进行首次登录 </li>
+<li>登录完成后即可使用</li>
+</ol>
+<ul>
+<li>注:目前仅适配成都师范学院</li>
+</ul>
+<h2 id="信息推送功能介绍"><a href="#信息推送功能介绍" class="headerlink" title="信息推送功能介绍"></a>信息推送功能介绍</h2><h3 id="面向用户-1"><a href="#面向用户-1" class="headerlink" title="面向用户"></a>面向用户</h3><p>社团部门负责人，辅导员，班委，干事，希望对多个群信息进行整合的同学</p>
+<h3 id="使用情景"><a href="#使用情景" class="headerlink" title="使用情景"></a>使用情景</h3><ol>
+<li>当你需要发送通知时，你是否因为要通知多个群，而进行重复的复制粘贴，使用信息推送功能，你只需向机器人发送一次通知，机器人便可以将通知信息发给你需要通知的所有群，具体操作请看以下动图</li>
+</ol>
+<p><img   src="https://cdn.nlark.com/yuque/0/2022/gif/26744320/1647881206921-0cb4a13e-ff7b-4ec3-87e6-9ddb5ef10162.gif#clientId=u3b7b5062-c5fc-4&from=ui&id=u716a08f2&originHeight=1498&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7608677&status=done&style=none&taskId=u43552196-6ba0-41b4-8be6-7f920b6e1bb&title="  alt="push02.gif"></p>
+<ol start="2">
+<li>你是否因为通知群太多时常置顶十几个群？使用信息推送功能，机器人将会把各通知群里的信息合并推送给你(这需要构建一个生态)，你只需要查看机器人给你发送的信息即可！具体操作请看以下动图</li>
+</ol>
+<p><img   src="https://cdn.nlark.com/yuque/0/2022/gif/26744320/1647881395314-c27e3bcd-2e2e-4568-a39a-76c97c2d240f.gif#clientId=u3b7b5062-c5fc-4&from=ui&id=u24adaa87&originHeight=1500&originWidth=2558&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9002116&status=done&style=none&taskId=uca1507f1-b87e-4082-ae2f-f13c03a36d7&title="  alt="push01.gif"></p>
+<ol start="3">
+<li>将专业群里配置班级小群@全体同学的重要信息自动推送到配置的班级小群</li>
+</ol>
+<h3 id="使用方法-建议先了解下面的几个名词"><a href="#使用方法-建议先了解下面的几个名词" class="headerlink" title="使用方法(建议先了解下面的几个名词)"></a>使用方法(建议先了解下面的几个名词)</h3><ol>
+<li>先确定你要以怎样的形式进行信息推送，在群里进行信息推送？或者私聊机器人进行信息推送</li>
+<li>设置推送对象，群里或者私聊发送：“添加推送子群:qq群号”，“添加推送好友:好友qq号”</li>
+<li>群里或者私聊发送：“开始推送”，开启信息推送</li>
+<li>群里或者私聊发送“结束推送”，结束信息推送</li>
+<li>一旦在群里配置了推送目标，@全体成员的信息就会自动推送到推送目标</li>
+<li>如果需要删除子群或者推送好友私聊发送：“删除推送子群:qq群号”来删除子群;“删除推送好友:好友qq号”来删除推送好友</li>
+</ol>
+<h3 id="补充基础名词"><a href="#补充基础名词" class="headerlink" title="补充基础名词"></a>补充基础名词</h3><p>信息源,待推送信息，推送目标</p>
+<ol>
+<li>信息源:指待推送信息的来源，可以为一个群，和个人。当你在群里进行信息推送时，信息源就是该群，当你在打开和机器人的聊天窗口进行信息推送时，信息源就是你本人。 </li>
+<li>待推送信息:支持普通文本，图片，文件(目前仅支持群-&gt;群),语音(目前仅支持本人-&gt;好友，群-&gt;群) </li>
+<li>推送目标：群和好友</li>
+</ol>
+<ul>
+<li>注:信息源和推送目标是通过机器人联系起来的，将待推送信息从群-&gt;群，群-&gt;好友，本人-&gt;好友。所以需要邀请机器人进入群，加机器人为好友。希望你我一起构建信息推送的生态</li>
+</ul>
 
                 </div>
                 
@@ -339,11 +394,11 @@
                             <ul class="post-tags-box border-box">
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/mirai/">mirai</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%89%93%E5%8D%A1/">打卡</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/qq%E6%9C%BA%E5%99%A8%E4%BA%BA/">qq机器人</a>
                                     </li>
                                 
                             </ul>
@@ -382,31 +437,15 @@
                 
                     <div class="post-nav border-box">
                         
-                            <div class="prev-post">
-                                <a class="prev"
-                                   rel="prev"
-                                   href="/2024/04/eefdd2383f98.html"
-                                   title="记录一次博客折腾"
-                                >
-                                    <span class="left arrow-icon flex-center">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">记录一次博客折腾</span>
-                                        <span class="post-nav-item">Prev posts</span>
-                                    </span>
-                                </a>
-                            </div>
-                        
                         
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2024/04/8f737e216c85.html"
-                                   title="Hello World"
+                                   href="/2024/04/efc3d8062e3a.html"
+                                   title="记录一次博客折腾"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">Hello World</span>
+                                        <span class="post-nav-title-item text-ellipsis">记录一次博客折腾</span>
                                         <span class="post-nav-item">Next posts</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -516,7 +555,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E4%B8%B2"><span class="nav-text">子串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%AC%E7%AD%BE%E5%88%B0%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="nav-text">催签到功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E7%94%A8%E6%88%B7"><span class="nav-text">面向用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97"><span class="nav-text">模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%8E%A8%E9%80%81%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="nav-text">信息推送功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E7%94%A8%E6%88%B7-1"><span class="nav-text">面向用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%83%85%E6%99%AF"><span class="nav-text">使用情景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-%E5%BB%BA%E8%AE%AE%E5%85%88%E4%BA%86%E8%A7%A3%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%87%A0%E4%B8%AA%E5%90%8D%E8%AF%8D"><span class="nav-text">使用方法(建议先了解下面的几个名词)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E5%9F%BA%E7%A1%80%E5%90%8D%E8%AF%8D"><span class="nav-text">补充基础名词</span></a></li></ol></li></ol>
     </div>
 </div>
 
@@ -688,7 +727,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E4%B8%B2"><span class="nav-text">子串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%AC%E7%AD%BE%E5%88%B0%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="nav-text">催签到功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E7%94%A8%E6%88%B7"><span class="nav-text">面向用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97"><span class="nav-text">模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%8E%A8%E9%80%81%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="nav-text">信息推送功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E7%94%A8%E6%88%B7-1"><span class="nav-text">面向用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%83%85%E6%99%AF"><span class="nav-text">使用情景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-%E5%BB%BA%E8%AE%AE%E5%85%88%E4%BA%86%E8%A7%A3%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%87%A0%E4%B8%AA%E5%90%8D%E8%AF%8D"><span class="nav-text">使用方法(建议先了解下面的几个名词)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E5%9F%BA%E7%A1%80%E5%90%8D%E8%AF%8D"><span class="nav-text">补充基础名词</span></a></li></ol></li></ol>
     </div>
 </div>
 
