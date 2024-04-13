@@ -9,7 +9,7 @@
     
     <title>
         
-            分解质因数-求完全平方数 |
+            小平方 |
         
         CYY&#39;s Blog
     </title>
@@ -208,7 +208,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        分解质因数-求完全平方数
+                        小平方
                     </div>
                 
 
@@ -234,12 +234,12 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2021-11-07 22:07:13</span>
+                <span class="datetime">2021-11-07 16:58:31</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Sat Apr 13 2024 03:00:19 GMT+0000">2024-04-13 03:00:19</span>
+                <span class="datetime" data-updated="Sat Apr 13 2024 03:13:43 GMT+0000">2024-04-13 03:13:43</span>
             </span>
         
 
@@ -267,6 +267,9 @@
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%89%93%E5%8D%A1/">打卡</a></li>
                         
                     
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%9E%9A%E4%B8%BE/">枚举</a></li>
+                        
+                    
                 </ul>
             </span>
         
@@ -288,37 +291,30 @@
                 <div class="post-content keep-markdown-body">
                     
 
-                    <h4 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h4><p><a class="link"   target="_blank" rel="noopener" href="http://www.acwing.com/problem/content/3493/" >www.acwing.com/problem/content/3493/<i class="fas fa-external-link-alt"></i></a></p>
+                    <h4 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h4><p><a class="link"   target="_blank" rel="noopener" href="http://www.acwing.com/problem/content/34/" >www.acwing.com/problem/content/34/<i class="fas fa-external-link-alt"></i></a></p>
 <hr>
-<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>一个整数 a 是一个完全平方数，是指它是某一个整数的平方，即存在一个整数 b，使得$ a&#x3D;b^ 2$</p>
-<p>给定一个正整数 n，请找到最小的正整数 x，使得它们的乘积是一个完全平方数。</p>
+<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>小蓝发现，对于一个正整数 n 和一个小于 n 的正整数 v，将 v 平方后对 n 取余可能小于 n 的一半，也可能大于等于 n 的一半。</p>
+<p>请问，在 1 到 n−1 中，有多少个数平方后除以 n 的余数小于 n 的一半。</p>
+<p>例如，当 n&#x3D;4 时，1,2,3 的平方除以 4 的余数都小于 4 的一半。</p>
+<p>又如，当 n&#x3D;5 时，1,4 的平方除以 5 的余数都是 1，小于 5 的一半。</p>
+<p>而 2,3 的平方除以 5 的余数都是 4，大于等于 5 的一半。</p>
 <hr>
-<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入一行包含一个正整数 n。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入一行包含一个整数 n。</p>
 <hr>
-<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出找到的最小的正整数 x。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数，表示满足条件的数的数量。</p>
 <hr>
-<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>对于 30% 的评测用例，$1≤n≤1000$，答案不超过 $1000$。</p>
-<p>对于 60% 的评测用例，$1≤n≤10^8$，答案不超过 $10^8$。</p>
-<p>对于所有评测用例，$1≤n≤10^{12}$，答案不超过 $10^{12}$。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤n≤10000</p>
 <hr>
-<h4 id="输入样例1"><a href="#输入样例1" class="headerlink" title="输入样例1"></a>输入样例1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">12</span><br></pre></td></tr></table></figure>
+<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h4 id="输出样例1"><a href="#输出样例1" class="headerlink" title="输出样例1"></a>输出样例1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="输入样例2"><a href="#输入样例2" class="headerlink" title="输入样例2"></a>输入样例2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="输出样例2"><a href="#输出样例2" class="headerlink" title="输出样例2"></a>输出样例2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15</span><br></pre></td></tr></table></figure>
+<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><blockquote>
-<p>用到了分解质因数操作还是有必要记录以下，说一下题目思路。以样例分析，样例给的12求一个数乘以12是完全平方数，我们把12进行分解$3<em>2^2&#x3D;12$ ，我们只需要补一个质因数3就可以变成完全平方数$3^2</em>2^2&#x3D;36$了</p>
+<p>虽然是水题但是有一点需要注意，(n_n)%m&lt;(m&#x2F;2)会造成错误,比如(2_2)%9&lt;(9&#x2F;2)结果为false,应该改为(n_n)%m&lt;(m&#x2F;2.0)或者(n_n)%m*2&lt;m.</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> LL;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    LL n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    LL res = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//分解质因数</span></span><br><span class="line">    <span class="keyword">for</span>(LL i = <span class="number">2</span>;i*i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n%i == <span class="number">0</span>)&#123;</span><br><span class="line">            s++;</span><br><span class="line">            n/=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s%<span class="number">2</span>) res*=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n&gt;<span class="number">1</span>) res*=n;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;res&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="type">int</span> m = n;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(--n)&#123;</span><br><span class="line">        <span class="comment">//虽然是水题但是有一点需要注意，(n*n)%m&lt;(m/2)会造成错误</span></span><br><span class="line">        <span class="comment">//比如(2*2)%9&lt;(9/2)结果为false</span></span><br><span class="line">        <span class="comment">//应该改为(n*n)%m&lt;(m/2.0)或者(n*n)%m*2&lt;m</span></span><br><span class="line">        <span class="keyword">if</span>((n*n)%m&lt;(m/<span class="number">2.0</span>))   count++; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;count&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
                 </div>
                 
@@ -334,6 +330,10 @@
                                 
                                     <li class="tag-item border-box">
                                         <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%89%93%E5%8D%A1/">打卡</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%9E%9A%E4%B8%BE/">枚举</a>
                                     </li>
                                 
                             </ul>
@@ -375,14 +375,14 @@
                             <div class="prev-post">
                                 <a class="prev"
                                    rel="prev"
-                                   href="/2021/11/156da533b445.html"
-                                   title="优先队列-负载均衡"
+                                   href="/2021/11/d51e880d66ce.html"
+                                   title="分解质因数-求完全平方数"
                                 >
                                     <span class="left arrow-icon flex-center">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">优先队列-负载均衡</span>
+                                        <span class="post-nav-title-item text-ellipsis">分解质因数-求完全平方数</span>
                                         <span class="post-nav-item">Prev posts</span>
                                     </span>
                                 </a>
@@ -392,11 +392,11 @@
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2021/11/c75b6fa99206.html"
-                                   title="小平方"
+                                   href="/2021/11/98a87c0fbca7.html"
+                                   title="整数拼接"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">小平方</span>
+                                        <span class="post-nav-title-item text-ellipsis">整数拼接</span>
                                         <span class="post-nav-item">Next posts</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -506,7 +506,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输入样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输出样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输入样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输出样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B"><span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="nav-text">输出样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
     </div>
 </div>
 
@@ -678,7 +678,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输入样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输出样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输入样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输出样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B"><span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="nav-text">输出样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
     </div>
 </div>
 

@@ -9,7 +9,7 @@
     
     <title>
         
-            最长上升子序列问题 |
+            地牢大师 |
         
         CYY&#39;s Blog
     </title>
@@ -208,7 +208,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        最长上升子序列问题
+                        地牢大师
                     </div>
                 
 
@@ -234,12 +234,12 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2021-11-22 23:18:44</span>
+                <span class="datetime">2021-11-13 15:03:51</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Sat Apr 13 2024 03:00:19 GMT+0000">2024-04-13 03:00:19</span>
+                <span class="datetime" data-updated="Sat Apr 13 2024 03:13:43 GMT+0000">2024-04-13 03:13:43</span>
             </span>
         
 
@@ -247,7 +247,7 @@
             <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
                 <ul class="post-category-ul">
                     
-                            <li class="category-item"><a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li>
+                            <li class="category-item"><a href="/categories/test/">test</a></li>
                         
                     
                 </ul>
@@ -264,10 +264,7 @@
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%89%93%E5%8D%A1/">打卡</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/">最长上升子序列</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/DP/">DP</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/bfs/">bfs</a></li>
                         
                     
                 </ul>
@@ -291,32 +288,30 @@
                 <div class="post-content keep-markdown-body">
                     
 
-                    <h4 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/897/" >https://www.acwing.com/problem/content/897/<i class="fas fa-external-link-alt"></i></a></p>
+                    <h4 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1098/" >https://www.acwing.com/problem/content/1098/<i class="fas fa-external-link-alt"></i></a></p>
 <hr>
-<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>给定一个长度为 N 的数列，求数值严格单调递增的子序列的长度最长是多少。</p>
-<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行包含整数 N。</p>
-<p>第二行包含 N 个整数，表示完整序列。</p>
-<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数，表示最大长度。</p>
-<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤N≤1000，</p>
-<p>$−10^9$≤数列中的数≤$10^9$</p>
-<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">7</span><br><span class="line">3 1 2 1 8 5 6</span><br></pre></td></tr></table></figure>
+<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>你现在被困在一个三维地牢中，需要找到最快脱离的出路！</p>
+<p>地牢由若干个单位立方体组成，其中部分不含岩石障碍可以直接通过，部分包含岩石障碍无法通过。</p>
+<p>向北，向南，向东，向西，向上或向下移动一个单元距离均需要一分钟。</p>
+<p>你不能沿对角线移动，迷宫边界都是坚硬的岩石，你不能走出边界范围。</p>
+<p>请问，你有可能逃脱吗？</p>
+<p>如果可以，需要多长时间？</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入包含多组测试数据。</p>
+<p>每组数据第一行包含三个整数 L,R,C 分别表示地牢层数，以及每一层地牢的行数和列数。</p>
+<p>接下来是 L 个 R 行 C 列的字符矩阵，用来表示每一层地牢的具体状况。</p>
+<p>每个字符用来描述一个地牢单元的具体状况。</p>
+<p>其中, 充满岩石障碍的单元格用”#”表示，不含障碍的空单元格用”.”表示，你的起始位置用”S”表示，终点用”E”表示。</p>
+<p>每一个字符矩阵后面都会包含一个空行。</p>
+<p>当输入一行为”0 0 0”时，表示输入终止。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>每组数据输出一个结果，每个结果占一行。</p>
+<p>如果能够逃脱地牢，则输出”Escaped in x minute(s).”，其中X为逃脱所需最短时间。</p>
+<p>如果不能逃脱地牢，则输出”Trapped!”。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤L,R,C≤100</p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">3 4 5</span><br><span class="line">S....</span><br><span class="line">.###.</span><br><span class="line">.##..</span><br><span class="line">###.#</span><br><span class="line"></span><br><span class="line">#####</span><br><span class="line">#####</span><br><span class="line">##.##</span><br><span class="line">##...</span><br><span class="line"></span><br><span class="line">#####</span><br><span class="line">#####</span><br><span class="line">#.###</span><br><span class="line">####E</span><br><span class="line"></span><br><span class="line">1 3 3</span><br><span class="line">S##</span><br><span class="line">#E#</span><br><span class="line">###</span><br><span class="line"></span><br><span class="line">0 0 0</span><br></pre></td></tr></table></figure>
 
-<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+<h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Escaped in 11 minute(s).</span><br><span class="line">Trapped!</span><br></pre></td></tr></table></figure>
 
-<h4 id="dp问题解决思路"><a href="#dp问题解决思路" class="headerlink" title="dp问题解决思路"></a>dp问题解决思路</h4><h5 id="状态表示dp-i"><a href="#状态表示dp-i" class="headerlink" title="状态表示dp[i]"></a>状态表示dp[i]</h5><p>某长度为i的序列的最后一位元素，比如1，2，6序列则可用状态dp[3]来表示 &#x3D; 6</p>
-<h5 id="状态dp-i-转移到dp-i-1"><a href="#状态dp-i-转移到dp-i-1" class="headerlink" title="状态dp[i]转移到dp[i+1]"></a>状态dp[i]转移到dp[i+1]</h5><p>对于小于最长子序列长度的所有子序列状态，有两种可能</p>
-<ol>
-<li><p>i为最长子序列长度时，这时候dp[i]转移到dp[i+1]即是在dp[i+1]所表示序列的基础上加上一个元素，最长序列长度加1。</p>
-</li>
-<li><p>i不为最长子序列长度时，这时候dp[i]转移到dp[i+1]即是更新dp[i+1]所表示的序列考虑一个新元素num</p>
-<ul>
-<li>对于情况(1)，只要大与最长上升子序列即可完成状态转移，dp[i+1] &#x3D; num，<em>比如dp[3]表示的序列为1，2，4，且最长子序列长度就为3，对于新元素5那么dp[4] &#x3D; 5，所代表的序列就是1，2，4，5,最长序列长度加1</em></li>
-<li>对于情况(2)，如果新元素num比待更新的dp[i+1]小，则由dp[i]加上新元素对dp[i+1]进行更新如果大则不更新比较好，我们以较小数结尾肯定比以较大数结尾对后续子串的作用更大。<em>比如原dp[3]表示的子序列是1,2,4，dp[4]表示的子序列是1,2,4,8现在来了新元素5对于dp[3]转移到dp[4],就是将1，2，4加上新元素5更新dp[4],即dp[4]从原来的8变成了5.反之dp[4]等于5肯定比dp[4] &#x3D; 8好啊，因为，从原来要比8大的数才能增加最长序列长度，变成只需要大于5就行！</em></li>
-</ul>
-</li>
-</ol>
-<h5 id="状态初始化"><a href="#状态初始化" class="headerlink" title="状态初始化"></a>状态初始化</h5><p>情况1满足的条件是num&gt;dp[i],情况2满足的条件是num&gt;dp[i]且num&lt;dp[i+1]。所以如果我们将dp数组默认值都设置为最大值，两种情况就可以合并为情况2来考虑。只需要特殊判断一下满足条件时i是否等于最大上升序列长度，如果是则更新最长上升序列长度</p>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> n,len = <span class="number">0</span>,dp[<span class="number">1004</span>];</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="comment">//默认状态数组为最大值，都两种状态变一种状态考虑</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">1004</span>; i++) dp[i] = INT_MAX;</span><br><span class="line">    </span><br><span class="line">    dp[<span class="number">0</span>] = INT_MIN;    <span class="comment">//我们默认最长子序列长度为0，dp[0]没意义设为最小值</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> num;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;num;</span><br><span class="line">        <span class="comment">//每次读入一个新元素</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>;j&lt;=len;j++)&#123;</span><br><span class="line">            <span class="comment">//从0开始遍历到最长子串长度</span></span><br><span class="line">            <span class="keyword">if</span>(num&gt;dp[j]&amp;&amp;num&lt;dp[j+<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="comment">//统一用情况2考虑</span></span><br><span class="line">                dp[j+<span class="number">1</span>] = num;<span class="comment">//状态更新</span></span><br><span class="line">                <span class="keyword">if</span>(j == len) len++; <span class="comment">//特殊判断一下情况1，如果情况1就更新最长序列长度</span></span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;len;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">103</span>;</span><br><span class="line"><span class="type">int</span> moving[<span class="number">6</span>][<span class="number">3</span>] = &#123;&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">-1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,<span class="number">-1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;&#125;;<span class="comment">//偏移量</span></span><br><span class="line"><span class="type">char</span> <span class="built_in">map</span>[MAX][MAX][MAX];</span><br><span class="line"><span class="type">int</span> a,b,c;      <span class="comment">//地图最大值，a最大层数，b最大行数，c最大列数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> x,y,z;  <span class="comment">//x,y,z坐标</span></span><br><span class="line">    <span class="type">int</span> lev;    <span class="comment">//到达该点所用时间</span></span><br><span class="line">&#125;Loc;   <span class="comment">//定义位置结构体</span></span><br><span class="line"></span><br><span class="line">Loc start;  <span class="comment">//存储开始位置&#x27;S&#x27;所在坐标</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//判断位置是否越界</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">isTrue</span><span class="params">(Loc loc)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> loc.x&gt;=<span class="number">0</span>&amp;&amp;loc.x&lt;a&amp;&amp;loc.y&gt;=<span class="number">0</span>&amp;&amp;loc.y&lt;b&amp;&amp;loc.z&gt;=<span class="number">0</span>&amp;&amp;loc.z&lt;c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//宽搜函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">bfs</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;Loc&gt; q;       <span class="comment">//宽搜其实就是层次遍历，所以用到队列</span></span><br><span class="line">    q.push(start);      <span class="comment">//将开始位置入队</span></span><br><span class="line">    <span class="built_in">map</span>[start.x][start.y][start.z] = <span class="string">&#x27;#&#x27;</span>;   <span class="comment">//初始化开始位置为已经访问</span></span><br><span class="line">    start.lev = <span class="number">0</span>;                          <span class="comment">//初始化到达起点位置所需时间为0</span></span><br><span class="line">    <span class="keyword">while</span>(!q.empty())&#123;  </span><br><span class="line">        Loc now,next;               <span class="comment">//定义当前所在位置和下一位置</span></span><br><span class="line">        now = q.front();            <span class="comment">//将对首元素取出，作为当前所在位置</span></span><br><span class="line">        q.pop();                    <span class="comment">//到达该位置后将该位置出队</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)&#123;</span><br><span class="line">            <span class="comment">//遍历上下左右前后6个方向</span></span><br><span class="line">            next.x = now.x + moving[i][<span class="number">0</span>];  <span class="comment">//下一位置坐标=当前位置坐标+偏移量</span></span><br><span class="line">            next.y = now.y + moving[i][<span class="number">1</span>];</span><br><span class="line">            next.z = now.z + moving[i][<span class="number">2</span>];</span><br><span class="line">            next.lev = now.lev + <span class="number">1</span>;         <span class="comment">//到达下一位置时间=当前时间+1</span></span><br><span class="line">            <span class="comment">//如果下一位置合理(没有地图越界)</span></span><br><span class="line">            <span class="keyword">if</span>(isTrue(next))&#123;</span><br><span class="line">                <span class="comment">//如果下一位置不可通过，或者已经到达过了就不在访问</span></span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">map</span>[next.x][next.y][next.z] == <span class="string">&#x27;#&#x27;</span>) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="comment">//如果下一位置可以访问</span></span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">map</span>[next.x][next.y][next.z] == <span class="string">&#x27;.&#x27;</span>)&#123;</span><br><span class="line">                    q.push(next);       <span class="comment">//将下一位置入队，等待下次出队访问</span></span><br><span class="line">                    <span class="built_in">map</span>[next.x][next.y][next.z] = <span class="string">&#x27;#&#x27;</span>;      <span class="comment">//设置下一位置已经访问</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//如果下一位置为出口</span></span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">map</span>[next.x][next.y][next.z] == <span class="string">&#x27;E&#x27;</span>)&#123;</span><br><span class="line">                    <span class="comment">//直接打印时所需要花费的时间</span></span><br><span class="line">                    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;Escaped in &quot;</span>&lt;&lt;next.lev&lt;&lt;<span class="string">&quot; minute(s).&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">                    <span class="keyword">return</span>; <span class="comment">//结束遍历</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;Trapped!&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b&gt;&gt;c,a||b||c)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(<span class="built_in">map</span>,<span class="string">&#x27;#&#x27;</span>,<span class="keyword">sizeof</span>(<span class="built_in">map</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; a; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; b; j++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">0</span>; k &lt; c; k++)&#123;</span><br><span class="line">                    <span class="built_in">cin</span>&gt;&gt;<span class="built_in">map</span>[i][j][k];</span><br><span class="line">                    <span class="keyword">if</span>(<span class="built_in">map</span>[i][j][k] == <span class="string">&#x27;S&#x27;</span>) &#123;</span><br><span class="line">                        start.x = i;</span><br><span class="line">                        start.y = j;</span><br><span class="line">                        start.z = k;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                getchar();</span><br><span class="line">            &#125;</span><br><span class="line">            getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        bfs();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
                 </div>
                 
@@ -335,11 +330,7 @@
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/">最长上升子序列</a>
-                                    </li>
-                                
-                                    <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/DP/">DP</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/bfs/">bfs</a>
                                     </li>
                                 
                             </ul>
@@ -381,14 +372,14 @@
                             <div class="prev-post">
                                 <a class="prev"
                                    rel="prev"
-                                   href="/2022/05/7c67490e0509.html"
-                                   title="Codeforces Round"
+                                   href="/2021/11/8613ecbace68.html"
+                                   title="背包问题之求具体方案"
                                 >
                                     <span class="left arrow-icon flex-center">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">Codeforces Round</span>
+                                        <span class="post-nav-title-item text-ellipsis">背包问题之求具体方案</span>
                                         <span class="post-nav-item">Prev posts</span>
                                     </span>
                                 </a>
@@ -398,11 +389,11 @@
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2021/11/64e7dd8fe558.html"
-                                   title="背包问题之求具体方案"
+                                   href="/2021/11/6f21769ec893.html"
+                                   title="交换瓶子"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">背包问题之求具体方案</span>
+                                        <span class="post-nav-title-item text-ellipsis">交换瓶子</span>
                                         <span class="post-nav-item">Next posts</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -512,7 +503,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B"><span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="nav-text">输出样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dp%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF"><span class="nav-text">dp问题解决思路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%A1%A8%E7%A4%BAdp-i"><span class="nav-text">状态表示dp[i]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81dp-i-%E8%BD%AC%E7%A7%BB%E5%88%B0dp-i-1"><span class="nav-text">状态dp[i]转移到dp[i+1]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">状态初始化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输入样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输出样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
     </div>
 </div>
 
@@ -684,7 +675,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B"><span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="nav-text">输出样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dp%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF"><span class="nav-text">dp问题解决思路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%A1%A8%E7%A4%BAdp-i"><span class="nav-text">状态表示dp[i]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81dp-i-%E8%BD%AC%E7%A7%BB%E5%88%B0dp-i-1"><span class="nav-text">状态dp[i]转移到dp[i+1]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">状态初始化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输入样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输出样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
     </div>
 </div>
 

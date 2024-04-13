@@ -9,7 +9,7 @@
     
     <title>
         
-            算法题之栈的压入、弹出序列 |
+            基于栈的进制转换实例 |
         
         CYY&#39;s Blog
     </title>
@@ -208,7 +208,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        算法题之栈的压入、弹出序列
+                        基于栈的进制转换实例
                     </div>
                 
 
@@ -234,12 +234,12 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2021-11-04 17:16:57</span>
+                <span class="datetime">2021-10-31 22:23:30</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Sat Apr 13 2024 03:00:19 GMT+0000">2024-04-13 03:00:19</span>
+                <span class="datetime" data-updated="Sat Apr 13 2024 03:13:43 GMT+0000">2024-04-13 03:13:43</span>
             </span>
         
 
@@ -247,10 +247,7 @@
             <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
                 <ul class="post-category-ul">
                     
-                            <li class="category-item"><a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li>
-                        
-                    
-                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E5%89%91%E6%8C%87Offer/">剑指Offer</a></li>
+                            <li class="category-item"><a href="/categories/%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/">简单应用</a></li>
                         
                     
                 </ul>
@@ -261,10 +258,10 @@
             <span class="post-tag meta-info-item border-box">
                 <ul class="post-tag-ul">
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/c/">c</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%89%93%E5%8D%A1/">打卡</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li>
                         
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%A0%88/">栈</a></li>
@@ -291,39 +288,10 @@
                 <div class="post-content keep-markdown-body">
                     
 
-                    <h4 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h4><p><a class="link"   target="_blank" rel="noopener" href="http://www.acwing.com/problem/content/40/" >www.acwing.com/problem/content/40/<i class="fas fa-external-link-alt"></i></a></p>
-<hr>
-<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。</p>
-<p>假设压入栈的所有数字均不相等。</p>
-<p>例如序列 1,2,3,4,5 是某栈的压入顺序，序列 4,5,3,2,1 是该压栈序列对应的一个弹出序列，但 4,3,5,1,2 就不可能是该压栈序列的弹出序列。</p>
-<hr>
-<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>若两个序列长度不等则视为并不是一个栈的压入、弹出序列。若两个序列都为空，则视为是一个栈的压入、弹出序列。</p>
-<hr>
-<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：[1,2,3,4,5]</span><br><span class="line">      [4,5,3,2,1]</span><br><span class="line"></span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>以1，2，3，4，5为例，题中所说入栈顺序是指，**如果现在3入栈那么在3入栈之前1，2一定已经入栈(但不一定仍在栈中)**；</p>
-<p>我们先模拟两个出栈顺序，找出不同点与规律。</p>
-<blockquote>
-<p>例如出栈顺序可为1，2，3，4，5，那么出入栈的操作为：1先入栈然后出栈，2入栈然后出栈（这时栈为空），3入栈然后出栈，4入栈然后出栈，4入栈然后出栈；如果出栈顺序为1，2，3，5，4，那么出入栈的操作为：1先入栈然后出栈，2入栈然后出栈，3入栈然后出栈，4入栈，<strong>5入栈然后出栈，4出栈</strong>；</p>
+                    <blockquote>
+<p>一个进制转换的小程序，利用栈数据结构的特性</p>
 </blockquote>
-<p>一个出栈顺序是1，2，3，4，5，而另一个是1，2，3，5，4.通过对比过程我们可以知道一个是4入栈后出栈，一个是4入栈后但没有出栈而是继续入栈。所以，对于同一个元素入栈后，有两种操作选择，继续入栈和出栈。这时我们可以画一颗二叉树，每一条路就是我们可以选择的方案。题中并没有让我们求所有方案，只给我们一种方案去判断，所以我们只需要根据出栈顺序去模拟该进行的是入栈还是出栈操作就行了。简单来说就是给你了路标，你跟着走，走通了就是正确的路标走不通就是错误的路标。接下来继续看例子，<em>入栈顺序仍是1，2，3，4，5</em></p>
-<blockquote>
-<p>第一条路：入栈顺序1，2，3，4，5，出栈顺序1，2，5，4，3</p>
-</blockquote>
-<blockquote>
-<p>模拟过程：首先1入栈，入栈后有两条路可以选，出栈或者继续入栈，这时看地图(给的出栈顺序)第一个元素是1，说明我们要选择的路是1出栈；然后继续2入栈，看地图(出栈顺序)第二个元素是2，说明我们要选择的路是2出栈；然后继续3入栈，看地图(出栈顺序)第三个元素是5，说明我们要选择的路不是出栈而是继续入栈（这时栈中有元素3）；然后继续4入栈，看地图(出栈顺序)第三个元素是5，说明我们要选择的路不是出栈而是继续入栈（这时栈中有元素3，4）；然后继续5入栈，看地图(出栈顺序)第三个元素是5，说明我们要选择的路是出栈刚刚入栈的5，出栈后栈中还有元素3，4，看地图(出栈顺序)第四个元素是4，所以我们再出栈，出栈后栈中还有元素3，看地图(出栈顺序)第五个元素是3，所以我们再出栈.最后模拟完毕，路走通了。</p>
-</blockquote>
-<blockquote>
-<p>第二条路：入栈顺序1，2，3，4，5，出栈顺序1，2，5，3，4</p>
-</blockquote>
-<blockquote>
-<p>模拟过程：首先1入栈，入栈后有两条路可以选，出栈或者继续入栈，这时看地图(给的出栈顺序)第一个元素是1，说明我们要选择的路是1出栈；然后继续2入栈，看地图(出栈顺序)第二个元素是2，说明我们要选择的路是2出栈；然后继续3入栈，看地图(出栈顺序)第三个元素是5，说明我们要选择的路不是出栈而是继续入栈（这时栈中有元素3）；然后继续4入栈，看地图(出栈顺序)第三个元素是5，说明我们要选择的路不是出栈而是继续入栈（这时栈中有元素3，4）；然后继续5入栈，看地图(出栈顺序)第三个元素是5，说明我们要选择的路是出栈刚刚入栈的5，出栈后栈中还有元素3，4，看地图(出栈顺序)第四个元素是3，所以我们不能再出栈，需要入栈但是1，2，3，4，5都已经入栈了没有元素了，所以路走不通。</p>
-</blockquote>
-<hr>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isPopOrder</span><span class="params">(<span class="type">int</span> [] pushV,<span class="type">int</span> [] popV)</span> &#123;</span><br><span class="line">        <span class="comment">//如果长度不一样直接return false</span></span><br><span class="line">        <span class="keyword">if</span>(pushV.length != popV.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果输入输出栈为空则直接return true</span></span><br><span class="line">        <span class="keyword">if</span>(pushV.length == <span class="number">0</span> &amp;&amp; popV.length == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Stack&lt;Integer&gt; s=<span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;  <span class="comment">//定义j指向popV数组，存储判断到了哪个元素</span></span><br><span class="line">        <span class="comment">//循环入栈，如果栈顶元素与出栈数组popV的所指向的元素相等则出栈该元素，如果栈不为空则继续尝试出栈操作。无法出栈则继续循环入栈直到无法入栈</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;pushV.length;i++)&#123;</span><br><span class="line">            s.push(pushV[i]);</span><br><span class="line">            <span class="keyword">while</span>(!s.isEmpty()&amp;&amp;s.peek() == popV[j])&#123;</span><br><span class="line">                j++;</span><br><span class="line">                s.pop();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//最后模拟的栈中应该为空，如果为空则出栈顺序符合，反之不符合</span></span><br><span class="line">        <span class="keyword">if</span>(s.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXSIZE 200</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="comment">//这里采用不同于算法总结帖子里的方法建立栈 </span></span><br><span class="line">	<span class="type">int</span> *top;  <span class="comment">//指向栈顶 </span></span><br><span class="line">	<span class="type">int</span> *base; <span class="comment">//指向栈底 </span></span><br><span class="line">	<span class="type">int</span> SIZE;</span><br><span class="line">&#125;Stack;</span><br><span class="line">Stack *<span class="title function_">initStack</span><span class="params">()</span>&#123;</span><br><span class="line">	Stack *s = (Stack*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Stack));	<span class="comment">//动态声明一个栈 </span></span><br><span class="line">	s-&gt;SIZE = MAXSIZE;							<span class="comment">//设置栈的最大大小 </span></span><br><span class="line">	s-&gt;base = (<span class="type">int</span>*)<span class="built_in">malloc</span>(MAXSIZE*<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//动态生成一个数组将数组首地址赋值给s-&gt;base,数组大小为MAXSIZE </span></span><br><span class="line">	s-&gt;top = s-&gt;base;							<span class="comment">//初始化栈时栈为空，所以栈顶指针与栈底指针指向数组首地址 </span></span><br><span class="line">	<span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断栈是否为空，当栈顶与栈底指向同一块区域则表明栈为空 </span></span><br><span class="line"><span class="type">int</span> <span class="title function_">isEmpty</span><span class="params">(Stack *s)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(s-&gt;base == s-&gt;top) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断栈是否满，如果栈顶-栈底等于栈的最大长度则满 </span></span><br><span class="line"><span class="type">int</span> <span class="title function_">isFull</span><span class="params">(Stack *s)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(s-&gt;top - s-&gt;base == s-&gt;SIZE) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//压栈，先判断栈是否满，未满则将数据存入，栈顶指针++ </span></span><br><span class="line"><span class="type">int</span> <span class="title function_">push</span><span class="params">(Stack *s,<span class="type">int</span> data)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!isFull(s))&#123;</span><br><span class="line">		*(s-&gt;top) = data;</span><br><span class="line">		s-&gt;top++;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//出栈，先判断栈是否空，不为空则将数据弹出，栈顶指针-- </span></span><br><span class="line"><span class="type">int</span> <span class="title function_">pop</span><span class="params">(Stack *s,<span class="type">int</span> *data)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!isEmpty(s))&#123;</span><br><span class="line">		*data = *(s-&gt;top<span class="number">-1</span>);</span><br><span class="line">		s-&gt;top--;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;请输入一位数:&quot;</span>);</span><br><span class="line">	<span class="type">int</span> num;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;num);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;请输入转换的进制:&quot;</span>);</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="type">int</span> next = num;</span><br><span class="line">	Stack *s = initStack();		<span class="comment">//申请一个栈</span></span><br><span class="line">	<span class="comment">//利用栈先进后出的原理，将进制转换的余数依次放入栈中，最后在依次出栈，出栈顺序即为进制数 </span></span><br><span class="line">	<span class="keyword">while</span>(next != <span class="number">0</span>)&#123;</span><br><span class="line">		push(s,next % n );</span><br><span class="line">		next = next / n;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="comment">//循环出栈直到栈空 </span></span><br><span class="line">	<span class="keyword">while</span>(!isEmpty(s))&#123;</span><br><span class="line">		<span class="type">int</span> data;</span><br><span class="line">		pop(s,&amp;data);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,data);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
                 </div>
                 
@@ -334,11 +302,11 @@
                             <ul class="post-tags-box border-box">
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/c/">c</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%89%93%E5%8D%A1/">打卡</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
@@ -384,14 +352,14 @@
                             <div class="prev-post">
                                 <a class="prev"
                                    rel="prev"
-                                   href="/2021/11/bd217cbfabfb.html"
-                                   title="整数拼接"
+                                   href="/2021/11/962a214fea5c.html"
+                                   title="反转链表"
                                 >
                                     <span class="left arrow-icon flex-center">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">整数拼接</span>
+                                        <span class="post-nav-title-item text-ellipsis">反转链表</span>
                                         <span class="post-nav-item">Prev posts</span>
                                     </span>
                                 </a>
@@ -401,11 +369,11 @@
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2021/11/dc17efc3cc71.html"
-                                   title="合并两个排序的链表"
+                                   href="/2021/10/d9bfc811f73f.html"
+                                   title="基于哈希表的简单联系人查询系统"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">合并两个排序的链表</span>
+                                        <span class="post-nav-title-item text-ellipsis">基于哈希表的简单联系人查询系统</span>
                                         <span class="post-nav-item">Next posts</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -515,7 +483,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-text">注意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B"><span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
+        
     </div>
 </div>
 
@@ -687,7 +655,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-text">注意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B"><span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
+        
     </div>
 </div>
 

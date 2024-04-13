@@ -9,7 +9,7 @@
     
     <title>
         
-            优先队列-负载均衡 |
+            分解质因数-求完全平方数 |
         
         CYY&#39;s Blog
     </title>
@@ -208,7 +208,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        优先队列-负载均衡
+                        分解质因数-求完全平方数
                     </div>
                 
 
@@ -234,12 +234,12 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2021-11-08 17:17:10</span>
+                <span class="datetime">2021-11-07 22:07:13</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Sat Apr 13 2024 03:00:19 GMT+0000">2024-04-13 03:00:19</span>
+                <span class="datetime" data-updated="Sat Apr 13 2024 03:13:43 GMT+0000">2024-04-13 03:13:43</span>
             </span>
         
 
@@ -267,12 +267,6 @@
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%89%93%E5%8D%A1/">打卡</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">优先队列</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%A0%86/">堆</a></li>
-                        
-                    
                 </ul>
             </span>
         
@@ -294,56 +288,37 @@
                 <div class="post-content keep-markdown-body">
                     
 
-                    <blockquote>
-<p>题目用到了优先队列的一些操作，如果知道操作就比较简单了，所以有必要记录一下。</p>
+                    <h4 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h4><p><a class="link"   target="_blank" rel="noopener" href="http://www.acwing.com/problem/content/3493/" >www.acwing.com/problem/content/3493/<i class="fas fa-external-link-alt"></i></a></p>
+<hr>
+<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>一个整数 a 是一个完全平方数，是指它是某一个整数的平方，即存在一个整数 b，使得$ a&#x3D;b^ 2$</p>
+<p>给定一个正整数 n，请找到最小的正整数 x，使得它们的乘积是一个完全平方数。</p>
+<hr>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入一行包含一个正整数 n。</p>
+<hr>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出找到的最小的正整数 x。</p>
+<hr>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>对于 30% 的评测用例，$1≤n≤1000$，答案不超过 $1000$。</p>
+<p>对于 60% 的评测用例，$1≤n≤10^8$，答案不超过 $10^8$。</p>
+<p>对于所有评测用例，$1≤n≤10^{12}$，答案不超过 $10^{12}$。</p>
+<hr>
+<h4 id="输入样例1"><a href="#输入样例1" class="headerlink" title="输入样例1"></a>输入样例1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">12</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="输出样例1"><a href="#输出样例1" class="headerlink" title="输出样例1"></a>输出样例1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="输入样例2"><a href="#输入样例2" class="headerlink" title="输入样例2"></a>输入样例2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="输出样例2"><a href="#输出样例2" class="headerlink" title="输出样例2"></a>输出样例2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><blockquote>
+<p>用到了分解质因数操作还是有必要记录以下，说一下题目思路。以样例分析，样例给的12求一个数乘以12是完全平方数，我们把12进行分解$3<em>2^2&#x3D;12$ ，我们只需要补一个质因数3就可以变成完全平方数$3^2</em>2^2&#x3D;36$了</p>
 </blockquote>
-<h4 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h4><p><a class="link"   target="_blank" rel="noopener" href="http://www.acwing.com/problem/content/3495/" >www.acwing.com/problem/content/3495/<i class="fas fa-external-link-alt"></i></a></p>
-<hr>
-<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>有 n 台计算机，第 i 台计算机的运算能力为$ v_i$。</p>
-<p>有一系列的任务被指派到各个计算机上，第 i 个任务在 $a_i$ 时刻分配，指定计算机编号为 $b_i$，耗时为 $c_i$ 且算力消耗为 $d_i$。</p>
-<p>如果此任务成功分配，将立刻开始运行，期间持续占用 bi 号计算机 $d_i$ 的算力，持续 $c_i$ 秒。</p>
-<p>对于每次任务分配，如果计算机剩余的运算能力不足则输出 −1，并取消这次分配，否则输出分配完这个任务后这台计算机的剩余运算能力。</p>
-<hr>
-<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入的第一行包含两个整数 n,m，分别表示计算机数目和要分配的任务数。</p>
-<p>第二行包含 n 个整数$ v_1,v_2,⋅⋅⋅v_n$，分别表示每个计算机的运算能力。</p>
-<p>接下来 m 行每行 4 个整数 $a_i,b_i,c_i,d_i$，意义如上所述。数据保证 $a_i$ 严格递增，即 $a_i&lt;a_i+1$。</p>
-<hr>
-<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出 m 行，每行包含一个数，对应每次任务分配的结果。</p>
-<hr>
-<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>对于 20% 的评测用例，$n,m≤200$。</p>
-<p>对于 40% 的评测用例，$n,m≤2000$。</p>
-<p>对于所有评测用例，$1≤n,m≤200000，$$1≤a_i,c_i,d_i,v_i≤10^9$，$1≤b_i≤n$。</p>
-<hr>
-<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">5 5</span><br><span class="line">1 1 5 3</span><br><span class="line">2 2 2 6</span><br><span class="line">3 1 2 3</span><br><span class="line">4 1 6 1</span><br><span class="line">5 1 3 3</span><br><span class="line">6 1 3 4</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> LL;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    LL n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    LL res = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//分解质因数</span></span><br><span class="line">    <span class="keyword">for</span>(LL i = <span class="number">2</span>;i*i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n%i == <span class="number">0</span>)&#123;</span><br><span class="line">            s++;</span><br><span class="line">            n/=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s%<span class="number">2</span>) res*=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n&gt;<span class="number">1</span>) res*=n;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;res&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">-1</span><br><span class="line">-1</span><br><span class="line">1</span><br><span class="line">-1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h4><p>时刻 1，第 1 个任务被分配到第 1 台计算机，耗时为 5，这个任务时刻 6 会结束，占用计算机 1 的算力 3。</p>
-<p>时刻 2，第 2 个任务需要的算力不足，所以分配失败了。</p>
-<p>时刻 3，第 1 个计算机仍然正在计算第 1 个任务，剩余算力不足 3，所以失败。</p>
-<p>时刻 4，第 1 个计算机仍然正在计算第 1 个任务，但剩余算力足够，分配后剩余算力 1。</p>
-<p>时刻 5，第 1 个计算机仍然正在计算第 1,4 个任务，剩余算力不足 4，失败。</p>
-<p>时刻 6，第 1 个计算机仍然正在计算第 4 个任务，剩余算力足够，且恰好用完。</p>
-<hr>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">200005</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;<span class="type">int</span>,<span class="type">int</span>&gt; PII;  <span class="comment">//加入的工作，存储形式为&lt;结束时刻，算力&gt;，前一个参数存放结束时刻，后一个参数存放占用的算力</span></span><br><span class="line"><span class="type">int</span> computer[MAX];          <span class="comment">//维护一个电脑算力数组</span></span><br><span class="line"><span class="built_in">priority_queue</span>&lt;PII,<span class="built_in">vector</span>&lt;PII&gt;,greater&lt;PII&gt;&gt; pq[MAX];<span class="comment">//优先队列数组，为每个电脑目标创建一个优先队列存取加入的PII类型的工作</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;computer[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> a,aim,usetime,usev; <span class="comment">//时刻，目标，消耗时间，消耗算力</span></span><br><span class="line">    <span class="keyword">while</span>(m--) &#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;aim&gt;&gt;usetime&gt;&gt;usev;</span><br><span class="line">        <span class="comment">//循环处理该目标电脑的工作，如果工作结束时间&lt;=该时刻则恢复算力清除这一工作</span></span><br><span class="line">        <span class="keyword">while</span>(pq[aim].size() &amp;&amp; (pq[aim].top().first &lt;= a))&#123;</span><br><span class="line">            computer[aim]+=pq[aim].top().second;<span class="comment">//恢复算力</span></span><br><span class="line">            pq[aim].pop();<span class="comment">//弹出任务</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//处理完后，判断当前安排的工作是否还可以执行</span></span><br><span class="line">        <span class="keyword">if</span>(computer[aim] &gt;= usev)&#123;</span><br><span class="line">            pq[aim].push(&#123;a+usetime,usev&#125;);<span class="comment">//加入任务</span></span><br><span class="line">            computer[aim]-=usev;<span class="comment">//更新算力</span></span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;computer[aim]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="number">-1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h4><blockquote>
-<p>优先队列虽然称为队列，但其底层实现原理是基于堆的设计思想，还没详细学，这里先粗略的记录下基础操作，之后学了再更新</p>
-</blockquote>
-<ul>
-<li><p>所在库:queue</p>
-</li>
-<li><p>操作和队列相似</p>
-</li>
-<li><p>c++中的定义 priority_queue&lt; 数据类型，容器(vector&lt;&gt;),排序方式(greater&lt;&gt;,less&lt;&gt;)&gt;</p>
-<ul>
-<li>greater&lt;&gt;大顶堆-降序</li>
-<li>less&lt;&gt;小顶堆-升序</li>
-</ul>
-</li>
-</ul>
 
                 </div>
                 
@@ -359,14 +334,6 @@
                                 
                                     <li class="tag-item border-box">
                                         <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%89%93%E5%8D%A1/">打卡</a>
-                                    </li>
-                                
-                                    <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">优先队列</a>
-                                    </li>
-                                
-                                    <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%A0%86/">堆</a>
                                     </li>
                                 
                             </ul>
@@ -408,14 +375,14 @@
                             <div class="prev-post">
                                 <a class="prev"
                                    rel="prev"
-                                   href="/2021/11/5c62de6f39ae.html"
-                                   title="日志统计"
+                                   href="/2021/11/8f084a61ae60.html"
+                                   title="优先队列-负载均衡"
                                 >
                                     <span class="left arrow-icon flex-center">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">日志统计</span>
+                                        <span class="post-nav-title-item text-ellipsis">优先队列-负载均衡</span>
                                         <span class="post-nav-item">Prev posts</span>
                                     </span>
                                 </a>
@@ -425,11 +392,11 @@
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2021/11/c01aab09b56c.html"
-                                   title="分解质因数-求完全平方数"
+                                   href="/2021/11/74607c1102d1.html"
+                                   title="小平方"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">分解质因数-求完全平方数</span>
+                                        <span class="post-nav-title-item text-ellipsis">小平方</span>
                                         <span class="post-nav-item">Next posts</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -539,7 +506,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输入样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输出样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B%E8%A7%A3%E9%87%8A"><span class="nav-text">样例解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97"><span class="nav-text">优先队列</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输入样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输出样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输入样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输出样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
     </div>
 </div>
 
@@ -711,7 +678,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输入样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输出样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B%E8%A7%A3%E9%87%8A"><span class="nav-text">样例解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97"><span class="nav-text">优先队列</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输入样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输出样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输入样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输出样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
     </div>
 </div>
 

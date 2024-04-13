@@ -9,7 +9,7 @@
     
     <title>
         
-            交换瓶子 |
+            bfs-献给阿尔吉侬的花束 |
         
         CYY&#39;s Blog
     </title>
@@ -208,7 +208,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        交换瓶子
+                        bfs-献给阿尔吉侬的花束
                     </div>
                 
 
@@ -234,12 +234,12 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2021-11-12 22:25:48</span>
+                <span class="datetime">2021-11-12 00:09:29</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Sat Apr 13 2024 03:00:19 GMT+0000">2024-04-13 03:00:19</span>
+                <span class="datetime" data-updated="Sat Apr 13 2024 03:13:43 GMT+0000">2024-04-13 03:13:43</span>
             </span>
         
 
@@ -248,9 +248,6 @@
                 <ul class="post-category-ul">
                     
                             <li class="category-item"><a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li>
-                        
-                    
-                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a></li>
                         
                     
                 </ul>
@@ -265,6 +262,9 @@
                         
                     
                             <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%89%93%E5%8D%A1/">打卡</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/bfs/">bfs</a></li>
                         
                     
                 </ul>
@@ -288,48 +288,27 @@
                 <div class="post-content keep-markdown-body">
                     
 
-                    <h4 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1226/" >https://www.acwing.com/problem/content/1226/<i class="fas fa-external-link-alt"></i></a></p>
+                    <h4 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h4><p><a class="link"   target="_blank" rel="noopener" href="http://www.acwing.com/problem/content/1103/" >www.acwing.com/problem/content/1103/<i class="fas fa-external-link-alt"></i></a></p>
 <hr>
-<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>有 N 个瓶子，编号 1∼N，放在架子上。</p>
-<p>比如有 5 个瓶子：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 1 3 5 4</span><br></pre></td></tr></table></figure>
+<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>阿尔吉侬是一只聪明又慵懒的小白鼠，它最擅长的就是走各种各样的迷宫。</p>
+<p>今天它要挑战一个非常大的迷宫，研究员们为了鼓励阿尔吉侬尽快到达终点，就在终点放了一块阿尔吉侬最喜欢的奶酪。</p>
+<p>现在研究员们想知道，如果阿尔吉侬足够聪明，它最少需要多少时间就能吃到奶酪。</p>
+<p>迷宫用一个 R×C 的字符矩阵来表示。</p>
+<p>字符 S 表示阿尔吉侬所在的位置，字符 E 表示奶酪所在的位置，字符 # 表示墙壁，字符 . 表示可以通行。</p>
+<p>阿尔吉侬在 1 个单位时间内可以从当前的位置走到它上下左右四个方向上的任意一个位置，但不能走出地图边界。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行是一个正整数 T，表示一共有 T 组数据。</p>
+<p>每一组数据的第一行包含了两个用空格分开的正整数 R 和 C，表示地图是一个 R×C 的矩阵。</p>
+<p>接下来的 R 行描述了地图的具体内容，每一行包含了 C 个字符。字符含义如题目描述中所述。保证有且仅有一个 S 和 E。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>对于每一组数据，输出阿尔吉侬吃到奶酪的最少单位时间。</p>
+<p>若阿尔吉侬无法吃到奶酪，则输出“oop!”（只输出引号里面的内容，不输出引号）。</p>
+<p>每组数据的输出结果占一行。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1&lt;T≤10,</p>
+<p>2≤R,C≤200</p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">3 4</span><br><span class="line">.S..</span><br><span class="line">###.</span><br><span class="line">..E.</span><br><span class="line">3 4</span><br><span class="line">.S..</span><br><span class="line">.E..</span><br><span class="line">....</span><br><span class="line">3 4</span><br><span class="line">.S..</span><br><span class="line">####</span><br><span class="line">..E.</span><br></pre></td></tr></table></figure>
 
-<p>要求每次拿起 2 个瓶子，交换它们的位置。</p>
-<p>经过若干次后，使得瓶子的序号为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 2 3 4 5</span><br></pre></td></tr></table></figure>
+<h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">1</span><br><span class="line">oop!</span><br></pre></td></tr></table></figure>
 
-<p>对于这么简单的情况，显然，至少需要交换 2 次就可以复位。</p>
-<p>如果瓶子更多呢？你可以通过编程来解决。</p>
-<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行包含一个整数 N，表示瓶子数量。</p>
-<p>第二行包含 N 个整数，表示瓶子目前的排列状况。</p>
-<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个正整数，表示至少交换多少次，才能完成排序。</p>
-<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤N≤10000</p>
-<h4 id="输入样例1"><a href="#输入样例1" class="headerlink" title="输入样例1"></a>输入样例1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">3 1 2 5 4</span><br></pre></td></tr></table></figure>
-
-<h4 id="输出样例1"><a href="#输出样例1" class="headerlink" title="输出样例1"></a>输出样例1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
-
-<h4 id="输入样例2"><a href="#输入样例2" class="headerlink" title="输入样例2"></a>输入样例2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">5 4 3 2 1</span><br></pre></td></tr></table></figure>
-
-<h4 id="输出样例2"><a href="#输出样例2" class="headerlink" title="输出样例2"></a>输出样例2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
-
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><h5 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h5><blockquote>
-<p>用贪心的思想：</p>
-</blockquote>
-<blockquote>
-<p>根据题意可知，所给一个N，那么就必然包含1-n这n个数字，还要求递增，因此其数字应该与下标对应（下标0不存储数据），意思就是数字1必须在1这个下标位置，数字2必须在2这个下标位置，所以我们直接对元素互换。互换次数就是所求答案</p>
-</blockquote>
-<blockquote>
-<p>样例分析：</p>
-</blockquote>
-<blockquote>
-<p>3，1，2，5，4 第一个数字是3，它本应该在下标为3的位置，但是却在下标为1这个位置，无论我们怎么交换，数字3最终会在3这个位置，最终结果一样，我们怎样保证最少次交换次数让其在它本应该在的位置呢？显然我们直接将3放在下标3的位置，与原来下标3位置的元素进行交换即可，所以3和2交换，第一位是2，2又和1交换，现在数组变成1，2，3，5，4，我们继续遍历到5，然后5和4进行交换。总交换次数3</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">10004</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> n,res = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> num[MAX];</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">cin</span>&gt;&gt;num[i];</span><br><span class="line">    <span class="comment">//枚举如果第i位的值是否在其所在位置</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="type">int</span> temp;</span><br><span class="line">        <span class="keyword">while</span>(num[i] != i)&#123;</span><br><span class="line">            <span class="comment">//不在就交换位置</span></span><br><span class="line">            temp = num[i];</span><br><span class="line">            num[i] = num[temp];</span><br><span class="line">            num[temp] = temp;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;res&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="图"><a href="#图" class="headerlink" title="图"></a>图</h5><blockquote>
-<p>可以将数组转换成图，我们把以交换顺序为边作图（上面那种方法分析了实际上就是数字应该与其下标对应，所以是3就要和下标为3的元素互换），直接样例分析：3，1，2，5，4：3-&gt;2-&gt;1&gt;3这是一个环，5-&gt;4-&gt;5这是一个环。我们最终要将数组搞成升序也就是：1，2，3，4，5，转换为图其实就是1-&gt;1,2-&gt;2,3-&gt;3,4-&gt;4,5-&gt;5。也就是从上面2个环转换成5个自环。对于一个环（3，1，2），我们任意交换一对（1，2）线性结果为3，2，1，环为3–&gt;1-&gt;3,2-&gt;2.1个环裂成了2个环，再交换一次3-&gt;1-&gt;3这个环，又分一个环出来，最终（3，1，2）这个三个元素组成的环操作两次变成全自环。对于（5，4）这两个元素组成的环，交换一次即可。对于一个环，有3个元素，操作2次，有2个元素操作1次。综合来说对于两个环，有3+2五个元素，操作了2+1次，5个元素操作了3次，多举几个例子就可以得到，元素数量-操作次数&#x3D;环数，所以，元素数量-环数 &#x3D;操作次数，因此我们只需要看有多少个环就行</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">10004</span>;</span><br><span class="line"><span class="type">bool</span> v[MAX];<span class="comment">//记录是否遍历过</span></span><br><span class="line"><span class="type">int</span> num[MAX];</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> n,res = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">cin</span>&gt;&gt;num[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!v[num[i]])&#123;	<span class="comment">//如果第i个位置的数组没有遍历则就是一个新环</span></span><br><span class="line">            res++;<span class="comment">//环数++</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = num[i]; !v[j]; j = num[j])&#123;</span><br><span class="line">                v[j] = <span class="literal">true</span>;	<span class="comment">//循环遍历，遍历的元素设为t</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;n-res&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> x first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y second</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;<span class="type">int</span>,<span class="type">int</span>&gt; PII;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">202</span>;</span><br><span class="line"><span class="type">char</span> <span class="built_in">map</span>[MAX][MAX]; <span class="comment">//地图数组</span></span><br><span class="line"><span class="type">int</span> dis[MAX][MAX];  <span class="comment">//距离数组</span></span><br><span class="line"><span class="type">int</span> max_x,max_y;    <span class="comment">//x最大值，y最大值</span></span><br><span class="line"><span class="type">int</span> moving[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">-1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">-1</span>,<span class="number">0</span>&#125;&#125;; <span class="comment">//偏移量</span></span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> <span class="title function_">isTrue</span><span class="params">(PII loc)</span>&#123;</span><br><span class="line">    <span class="comment">//判断是否越界是否为墙</span></span><br><span class="line">    <span class="keyword">return</span> loc.x &gt;= <span class="number">0</span> &amp;&amp; loc.x &lt; max_x &amp;&amp; loc.y &gt;= <span class="number">0</span> &amp;&amp; loc.y &lt;max_y &amp;&amp; <span class="built_in">map</span>[loc.x][loc.y] != <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//宽搜-bfs</span></span><br><span class="line"><span class="comment">//bfs算法类似于层次遍历算法，将遍历过的位置用数组记录，防止重复遍历</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">bfs</span><span class="params">(PII start)</span>&#123;</span><br><span class="line">	<span class="built_in">map</span>[start.x][start.y] = <span class="string">&#x27;#&#x27;</span>;    <span class="comment">//先将起始位置设为已经访问</span></span><br><span class="line">    <span class="built_in">queue</span>&lt;PII&gt; q;                   <span class="comment">//层次遍历需要用到数组</span></span><br><span class="line">    q.push(start);                  <span class="comment">//先将起始节点加入队列</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">        PII now = q.front();        <span class="comment">//取出队头，为当前所在节点</span></span><br><span class="line">        PII next;                   <span class="comment">//当前节点子节点</span></span><br><span class="line">        q.pop();                    <span class="comment">//将当前对头出队</span></span><br><span class="line">       </span><br><span class="line">        <span class="comment">//遍历上下左右四个方向</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">            next.x = now.x + moving[i][<span class="number">0</span>];</span><br><span class="line">            next.y = now.y + moving[i][<span class="number">1</span>];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(isTrue(next))&#123;<span class="comment">//判断子节点是否符合要求</span></span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">map</span>[next.x][next.y] == <span class="string">&#x27;.&#x27;</span>)&#123;</span><br><span class="line">                    q.push(next);<span class="comment">//符合要求就将子节点入队</span></span><br><span class="line">                    dis[next.x][next.y] = dis[now.x][now.y] + <span class="number">1</span>;<span class="comment">//记录子节点层次</span></span><br><span class="line">                    <span class="built_in">map</span>[next.x][next.y] = <span class="string">&#x27;#&#x27;</span>;<span class="comment">//记录子节点已经访问</span></span><br><span class="line">                &#125;  </span><br><span class="line">            	<span class="keyword">if</span>(<span class="built_in">map</span>[next.x][next.y] == <span class="string">&#x27;E&#x27;</span>)&#123;</span><br><span class="line">            	    <span class="comment">//如果子节点为出口则输出结果</span></span><br><span class="line">                    <span class="built_in">cout</span>&lt;&lt;dis[now.x][now.y]+<span class="number">1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125; </span><br><span class="line">            &#125;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;oop!&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(<span class="built_in">map</span>, <span class="string">&#x27;#&#x27;</span>, <span class="keyword">sizeof</span>(<span class="built_in">map</span>));</span><br><span class="line">        <span class="built_in">memset</span>(dis, <span class="number">0</span>, <span class="keyword">sizeof</span>(dis));</span><br><span class="line">        PII start;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;max_x&gt;&gt;max_y;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; max_x; i++)</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;<span class="built_in">map</span>[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; max_x; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; max_y; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">map</span>[i][j] == <span class="string">&#x27;S&#x27;</span>)&#123;</span><br><span class="line">                    start.x = i;</span><br><span class="line">                    start.y = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        bfs(start);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
                 </div>
                 
@@ -345,6 +324,10 @@
                                 
                                     <li class="tag-item border-box">
                                         <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%89%93%E5%8D%A1/">打卡</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/bfs/">bfs</a>
                                     </li>
                                 
                             </ul>
@@ -386,14 +369,14 @@
                             <div class="prev-post">
                                 <a class="prev"
                                    rel="prev"
-                                   href="/2021/11/e55649128667.html"
-                                   title="地牢大师"
+                                   href="/2021/11/6f21769ec893.html"
+                                   title="交换瓶子"
                                 >
                                     <span class="left arrow-icon flex-center">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">地牢大师</span>
+                                        <span class="post-nav-title-item text-ellipsis">交换瓶子</span>
                                         <span class="post-nav-item">Prev posts</span>
                                     </span>
                                 </a>
@@ -403,11 +386,11 @@
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2021/11/2257c6fe6bfe.html"
-                                   title="bfs-献给阿尔吉侬的花束"
+                                   href="/2021/11/47df09e21552.html"
+                                   title="日志统计"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">bfs-献给阿尔吉侬的花束</span>
+                                        <span class="post-nav-title-item text-ellipsis">日志统计</span>
                                         <span class="post-nav-item">Next posts</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -517,7 +500,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输入样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输出样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输入样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输出样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83"><span class="nav-text">贪心</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-text">图</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输入样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输出样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
     </div>
 </div>
 
@@ -689,7 +672,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输入样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1"><span class="nav-text">输出样例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输入样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B2"><span class="nav-text">输出样例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83"><span class="nav-text">贪心</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-text">图</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输入样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输出样例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
     </div>
 </div>
 
