@@ -9,7 +9,7 @@
     
     <title>
         
-            基于Mirai的健康系统催签到以及信息推送机器人 |
+            kafka在windows环境下集群部署 |
         
         CYY&#39;s Blog
     </title>
@@ -40,7 +40,7 @@
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
     KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
   </script>
-<meta name="generator" content="Hexo 7.1.1"></head>
+<meta name="generator" content="Hexo 7.2.0"></head>
 
 
 <body>
@@ -208,7 +208,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        基于Mirai的健康系统催签到以及信息推送机器人
+                        kafka在windows环境下集群部署
                     </div>
                 
 
@@ -234,34 +234,28 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2024-04-15 12:37:21</span>
+                <span class="datetime">2024-04-26 18:44:44</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Mon Apr 15 2024 12:37:21 GMT+0000">2024-04-15 12:37:21</span>
+                <span class="datetime" data-updated="Fri Apr 26 2024 10:49:51 GMT+0000">2024-04-26 10:49:51</span>
             </span>
         
 
-        
-            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
-                <ul class="post-category-ul">
-                    
-                            <li class="category-item"><a href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a></li>
-                        
-                    
-                </ul>
-            </span>
         
 
         
             <span class="post-tag meta-info-item border-box">
                 <ul class="post-tag-ul">
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/mirai/">mirai</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/kafka/">#kafka</a></li>
                         
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/qq%E6%9C%BA%E5%99%A8%E4%BA%BA/">qq机器人</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">#大数据</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E9%83%A8%E7%BD%B2/">部署</a></li>
                         
                     
                 </ul>
@@ -285,105 +279,42 @@
                 <div class="post-content keep-markdown-body">
                     
 
-                    <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
-<li>催签到功能(详细介绍回复“催签到介绍”)：</li>
-</ol>
+                    <h2 id="下载-kafka-安装包"><a href="#下载-kafka-安装包" class="headerlink" title="下载 kafka 安装包"></a>下载 kafka 安装包</h2><p>下载地址：<a class="link"   target="_blank" rel="noopener" href="https://archive.apache.org/dist/kafka/3.6.1/kafka_2.12-3.6.1.tgz" >Kafka<i class="fas fa-external-link-alt"></i></a></p>
+<p>下载后在 <code>E</code> 盘下新建文件夹 <code>kafka-cluster</code> ，将下载的压缩包解压到 <code>kafka-cluster</code> 目录下并复制 4 份 ，分别改名为，<code>kafka-zk</code>，<code>kafka1</code>，<code>kafka2</code>，<code>kafka3</code>。</p>
 <ul>
-<li>群里发送：”催签到”</li>
-<li>群里发送：@bot”登录”</li>
+<li><strong>kafka-zk：</strong> 统一 kafka 节点的 zookeeper ，因为 kafka 内置了 ZooKeeper 软件，所以此处将解压缩的文件作为 ZooKeeper 软件使用。</li>
+<li><strong>kafka1：</strong> 表示第一个节点。</li>
+<li><strong>kafka2：</strong> 表示第二个节点。</li>
+<li><strong>kafka3：</strong> 表示第三个节点。</li>
 </ul>
-<ol start="2">
-<li>信息推送功能(详细介绍回复“信息推送介绍”): <ul>
-<li>群里或者私聊发送:”添加推送好友:好友qq号”</li>
-<li>群里或者私聊发送:”删除推送好友:好友qq号”</li>
-<li>群里或者私聊发送:”添加推送子群:qq群号”</li>
-<li>群里或者私聊发送:”删除推送子群:qq群号”</li>
-<li>群里或者私聊发送:”查看推送目标”</li>
-<li>群里或者私聊发送:”开始推送”</li>
-<li>群里或者私聊发送:”结束推送”</li>
-<li>群里@全体成员自动推送</li>
-</ul>
-</li>
-<li>查看使用方法:</li>
-</ol>
-<ul>
-<li>群里或者私聊发送:”使用方法”,或者直接戳一戳机器人</li>
-</ul>
-<ol start="4">
-<li>动态开启以上功能(仅限机器人master)</li>
-</ol>
-<ul>
-<li>开启&#x2F;关闭催签到功能</li>
-<li>开启&#x2F;关闭自动催签到</li>
-<li>开启&#x2F;关闭登录</li>
-<li>开启&#x2F;关闭加好友</li>
-<li>开启&#x2F;关闭加群</li>
-<li>开启&#x2F;关闭信息推送</li>
-</ul>
-<ol start="5">
-<li>机器人管理命令(仅限机器人master):<ul>
-<li>查看状态命令:&#x2F;status</li>
-<li>查看文件夹命令:&#x2F;查看文件夹  文件夹</li>
-<li>查看文件内容命令:&#x2F;查看文件 文件夹 文件</li>
-<li>删除文件夹命令:&#x2F;删除文件夹 文件</li>
-<li>删除文件命令:&#x2F;删除文件 文件夹 文件</li>
-<li>通知命令:&#x2F;通知 通知内容</li>
-</ul>
-</li>
-</ol>
-<h2 id="催签到功能介绍"><a href="#催签到功能介绍" class="headerlink" title="催签到功能介绍"></a>催签到功能介绍</h2><h3 id="面向用户"><a href="#面向用户" class="headerlink" title="面向用户"></a>面向用户</h3><p>成都师范学院(暂时未适配其他学校)</p>
-<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><ol>
-<li>手动催签到模块:<ul>
-<li>在群里发送”催签到”,机器人将会@未签到的同学，@信息将会在90分钟后自动撤回</li>
-</ul>
-</li>
-<li>自动催签到模块:<ul>
-<li>机器人将在每天的9.00,11.00,12.00,13.00,14.00,15.00自动@未签到同学</li>
-</ul>
-</li>
-<li>登录模块 :<ul>
-<li>在群里@机器人并回复登录进行登录，登录成功后才可进行催签到，当多人同时进行登录时，可能需要进行排队等待，根据提示操作即可。</li>
-</ul>
-</li>
-</ol>
-<h3 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
-<li>联系我(1597081640)，提供您的学院，专业信息，以及辅导员健康系统的账号和密码 </li>
-<li>等待我添加配置文件后，将机器人拉入学院或班级或专业群 </li>
-<li>@机器人”登录”,进行首次登录 </li>
-<li>登录完成后即可使用</li>
-</ol>
-<ul>
-<li>注:目前仅适配成都师范学院</li>
-</ul>
-<h2 id="信息推送功能介绍"><a href="#信息推送功能介绍" class="headerlink" title="信息推送功能介绍"></a>信息推送功能介绍</h2><h3 id="面向用户-1"><a href="#面向用户-1" class="headerlink" title="面向用户"></a>面向用户</h3><p>社团部门负责人，辅导员，班委，干事，希望对多个群信息进行整合的同学</p>
-<h3 id="使用情景"><a href="#使用情景" class="headerlink" title="使用情景"></a>使用情景</h3><ol>
-<li>当你需要发送通知时，你是否因为要通知多个群，而进行重复的复制粘贴，使用信息推送功能，你只需向机器人发送一次通知，机器人便可以将通知信息发给你需要通知的所有群，具体操作请看以下动图</li>
-</ol>
-<p><img   src="https://cdn.nlark.com/yuque/0/2022/gif/26744320/1647881206921-0cb4a13e-ff7b-4ec3-87e6-9ddb5ef10162.gif#clientId=u3b7b5062-c5fc-4&from=ui&id=u716a08f2&originHeight=1498&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7608677&status=done&style=none&taskId=u43552196-6ba0-41b4-8be6-7f920b6e1bb&title="  alt="push02.gif"></p>
-<ol start="2">
-<li>你是否因为通知群太多时常置顶十几个群？使用信息推送功能，机器人将会把各通知群里的信息合并推送给你(这需要构建一个生态)，你只需要查看机器人给你发送的信息即可！具体操作请看以下动图</li>
-</ol>
-<p><img   src="https://cdn.nlark.com/yuque/0/2022/gif/26744320/1647881395314-c27e3bcd-2e2e-4568-a39a-76c97c2d240f.gif#clientId=u3b7b5062-c5fc-4&from=ui&id=u24adaa87&originHeight=1500&originWidth=2558&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9002116&status=done&style=none&taskId=uca1507f1-b87e-4082-ae2f-f13c03a36d7&title="  alt="push01.gif"></p>
-<ol start="3">
-<li>将专业群里配置班级小群@全体同学的重要信息自动推送到配置的班级小群</li>
-</ol>
-<h3 id="使用方法-建议先了解下面的几个名词"><a href="#使用方法-建议先了解下面的几个名词" class="headerlink" title="使用方法(建议先了解下面的几个名词)"></a>使用方法(建议先了解下面的几个名词)</h3><ol>
-<li>先确定你要以怎样的形式进行信息推送，在群里进行信息推送？或者私聊机器人进行信息推送</li>
-<li>设置推送对象，群里或者私聊发送：“添加推送子群:qq群号”，“添加推送好友:好友qq号”</li>
-<li>群里或者私聊发送：“开始推送”，开启信息推送</li>
-<li>群里或者私聊发送“结束推送”，结束信息推送</li>
-<li>一旦在群里配置了推送目标，@全体成员的信息就会自动推送到推送目标</li>
-<li>如果需要删除子群或者推送好友私聊发送：“删除推送子群:qq群号”来删除子群;“删除推送好友:好友qq号”来删除推送好友</li>
-</ol>
-<h3 id="补充基础名词"><a href="#补充基础名词" class="headerlink" title="补充基础名词"></a>补充基础名词</h3><p>信息源,待推送信息，推送目标</p>
-<ol>
-<li>信息源:指待推送信息的来源，可以为一个群，和个人。当你在群里进行信息推送时，信息源就是该群，当你在打开和机器人的聊天窗口进行信息推送时，信息源就是你本人。 </li>
-<li>待推送信息:支持普通文本，图片，文件(目前仅支持群-&gt;群),语音(目前仅支持本人-&gt;好友，群-&gt;群) </li>
-<li>推送目标：群和好友</li>
-</ol>
-<ul>
-<li>注:信息源和推送目标是通过机器人联系起来的，将待推送信息从群-&gt;群，群-&gt;好友，本人-&gt;好友。所以需要邀请机器人进入群，加机器人为好友。希望你我一起构建信息推送的生态</li>
-</ul>
+<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><p>修改 <code>kafka-zk/config/zookeeper.properties</code> 文件下的内容</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dataDir</span>=<span class="string">E:/kafka-cluster/kafka-zk/data</span></span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>kafka1/config/server.properties</code> 文件下的内容</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">broker.id</span>=<span class="string">1</span></span><br><span class="line"><span class="attr">listeners</span>=<span class="string">PLAINTEXT://:9091</span></span><br><span class="line"><span class="attr">log.dirs</span>=<span class="string">E:/kafka-cluster/kafka1/data</span></span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>kafka2/config/server.properties</code> 文件下的内容</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">broker.id</span>=<span class="string">2</span></span><br><span class="line"><span class="attr">listeners</span>=<span class="string">PLAINTEXT://:9092</span></span><br><span class="line"><span class="attr">log.dirs</span>=<span class="string">E:/kafka-cluster/kafka2/data</span></span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>kafka3/config/server.properties</code> 文件下的内容</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">broker.id</span>=<span class="string">3</span></span><br><span class="line"><span class="attr">listeners</span>=<span class="string">PLAINTEXT://:9093</span></span><br><span class="line"><span class="attr">log.dirs</span>=<span class="string">E:/kafka-cluster/kafka3/data</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="封装启动脚本"><a href="#封装启动脚本" class="headerlink" title="封装启动脚本"></a>封装启动脚本</h2><p><strong>（1）封装 zookeeper 启动脚本</strong></p>
+<p>在 <code>kafka-zk</code> 文件夹下新建 <code>zk.cmd</code> 文件</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> bin/windows/zookeeper-server-<span class="built_in">start</span>.bat config/zookeeper.properties</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）封装 kafka 启动脚本</strong></p>
+<p>在 <code>kafka1</code>，<code>kafka2</code>，<code>kafka3</code> 新建 <code>kafka.cmd</code> 文件</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> bin/windows/kafka-server-<span class="built_in">start</span>.bat config/server.properties</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）封装集群启动脚本</strong></p>
+<p>在 <code>kafka-cluster</code> 目录下新建 <code>cluster.cmd</code> 文件</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> kafka-zk</span><br><span class="line"><span class="built_in">start</span> zk.<span class="built_in">cmd</span></span><br><span class="line"><span class="built_in">ping</span> <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span> -n <span class="number">10</span> &gt;<span class="built_in">nul</span></span><br><span class="line"><span class="built_in">cd</span> ../kafka1</span><br><span class="line"><span class="built_in">start</span> kafka.<span class="built_in">cmd</span></span><br><span class="line"><span class="built_in">cd</span> ../kafka2</span><br><span class="line"><span class="built_in">start</span> kafka.<span class="built_in">cmd</span></span><br><span class="line"><span class="built_in">cd</span> ../kafka3</span><br><span class="line"><span class="built_in">start</span> kafka.<span class="built_in">cmd</span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>kafka-cluster</code> 目录下新建 <code>cluster-clear.cmd</code> 文件用于清除 kafka 运行产生的数据</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> kafka-zookeeper</span><br><span class="line"><span class="built_in">rd</span> /s /q data</span><br><span class="line"><span class="built_in">cd</span> ../kafka1</span><br><span class="line"><span class="built_in">rd</span> /s /q data</span><br><span class="line"><span class="built_in">cd</span> ../kafka2</span><br><span class="line"><span class="built_in">rd</span> /s /q data</span><br><span class="line"><span class="built_in">cd</span> ../kafka3</span><br><span class="line"><span class="built_in">rd</span> /s /q data</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h2><p>启动 <code>cluster.cmd</code> 脚本就可以启动集群服务了。</p>
 
                 </div>
                 
@@ -394,11 +325,15 @@
                             <ul class="post-tags-box border-box">
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/mirai/">mirai</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/kafka/">#kafka</a>
                                     </li>
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/qq%E6%9C%BA%E5%99%A8%E4%BA%BA/">qq机器人</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">#大数据</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E9%83%A8%E7%BD%B2/">部署</a>
                                     </li>
                                 
                             </ul>
@@ -437,31 +372,15 @@
                 
                     <div class="post-nav border-box">
                         
-                            <div class="prev-post">
-                                <a class="prev"
-                                   rel="prev"
-                                   href="/2024/04/0f97f33e9f1c.html"
-                                   title="重庆邮电大学考研经验"
-                                >
-                                    <span class="left arrow-icon flex-center">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">重庆邮电大学考研经验</span>
-                                        <span class="post-nav-item">Prev posts</span>
-                                    </span>
-                                </a>
-                            </div>
-                        
                         
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2024/04/af678e62090e.html"
-                                   title="记录一次博客折腾"
+                                   href="/2024/04/7110a727ad6b.html"
+                                   title="基于Mirai的健康系统催签到以及信息推送机器人"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">记录一次博客折腾</span>
+                                        <span class="post-nav-title-item text-ellipsis">基于Mirai的健康系统催签到以及信息推送机器人</span>
                                         <span class="post-nav-item">Next posts</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -571,7 +490,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%AC%E7%AD%BE%E5%88%B0%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="nav-text">催签到功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E7%94%A8%E6%88%B7"><span class="nav-text">面向用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97"><span class="nav-text">模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%8E%A8%E9%80%81%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="nav-text">信息推送功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E7%94%A8%E6%88%B7-1"><span class="nav-text">面向用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%83%85%E6%99%AF"><span class="nav-text">使用情景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-%E5%BB%BA%E8%AE%AE%E5%85%88%E4%BA%86%E8%A7%A3%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%87%A0%E4%B8%AA%E5%90%8D%E8%AF%8D"><span class="nav-text">使用方法(建议先了解下面的几个名词)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E5%9F%BA%E7%A1%80%E5%90%8D%E8%AF%8D"><span class="nav-text">补充基础名词</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-kafka-%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-text">下载 kafka 安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-text">修改配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%81%E8%A3%85%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="nav-text">封装启动脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="nav-text">启动脚本</span></a></li></ol>
     </div>
 </div>
 
@@ -743,7 +662,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%AC%E7%AD%BE%E5%88%B0%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="nav-text">催签到功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E7%94%A8%E6%88%B7"><span class="nav-text">面向用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97"><span class="nav-text">模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%8E%A8%E9%80%81%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="nav-text">信息推送功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E7%94%A8%E6%88%B7-1"><span class="nav-text">面向用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%83%85%E6%99%AF"><span class="nav-text">使用情景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-%E5%BB%BA%E8%AE%AE%E5%85%88%E4%BA%86%E8%A7%A3%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%87%A0%E4%B8%AA%E5%90%8D%E8%AF%8D"><span class="nav-text">使用方法(建议先了解下面的几个名词)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E5%9F%BA%E7%A1%80%E5%90%8D%E8%AF%8D"><span class="nav-text">补充基础名词</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-kafka-%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-text">下载 kafka 安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-text">修改配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%81%E8%A3%85%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="nav-text">封装启动脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="nav-text">启动脚本</span></a></li></ol>
     </div>
 </div>
 
