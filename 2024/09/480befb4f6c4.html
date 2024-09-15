@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="CYY">
+    
+    <title>
+        
+        CYY&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/favicon.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"bigcyy.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"CYY's Blog","author":"CYY","avatar":"/images/avater.jpg","logo":"/images/logo.jpg","favicon":"/images/favicon.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","about":"/about"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated","post_datetime_format":"YYYY-MM-DD HH:mm:ss"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"pe9zdpj3qADCM9bxhbR3wKX2-MdYXbMMI","appkey":"TGTlSpRXoiB5xt2ezBqZYgJT","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.jpg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               CYY&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avater.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">CYY</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-09-15 09:59:48</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sun Sep 15 2024 09:59:48 GMT+0000">2024-09-15 09:59:48</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="什么是微服务事务"><a href="#什么是微服务事务" class="headerlink" title="什么是微服务事务"></a>什么是微服务事务</h2><p>在某个微服务业务中，业务需要对数据库进行多次操作，其中对数据库的操作又由其他微服务业务完成，这整个业务所涉及的数据库操作需要同时成功或者同时失败。</p>
+<h2 id="微服务事务和单体架构的事务有何区别"><a href="#微服务事务和单体架构的事务有何区别" class="headerlink" title="微服务事务和单体架构的事务有何区别"></a>微服务事务和单体架构的事务有何区别</h2><p>在传统微服务业务中，对数据库的操作都包含在同一个数据库，可以依靠数据库自带的事务进行管理。在微服务中，每一个微服务都会对应自己的数据库，因此业务对数据库的操作涉及多个微服务业务对其自己的数据库进行操作。这时无法依靠数据库自带的事务进行处理。</p>
+<h2 id="微服务事务的处理架构"><a href="#微服务事务的处理架构" class="headerlink" title="微服务事务的处理架构"></a>微服务事务的处理架构</h2><h3 id="seata-架构"><a href="#seata-架构" class="headerlink" title="seata 架构"></a>seata 架构</h3><blockquote>
+<p>三个角色和两种模式</p>
+</blockquote>
+<p><strong>TM</strong>（Transaction Manager）：事务管理，通知 TC 开启与结束一个事务，或者回滚事务</p>
+<p><strong>RM</strong>（Resource Manager）：分支事务管理，主要功能是注册子事务，报告子事务状态（成功&#x2F;失败），接收 TC 的命令执行提交或回滚。</p>
+<p><strong>TC</strong>（Transaction Coordinator）：事务协调器，独立的微服务，维护事务的运行状态<br>根据 TM 的指示开启事务记录以及事务完成后检查事务涉及的分支事务是否全部成功完成，若全部成功完成执行提交，若未成功完成执行回滚。</p>
+<p><strong>例子</strong></p>
+<p>如下图的订单业务，订单业务中需要生成订单，清除购物车，扣除库存。生成订单的操作和订单业务同属一个微服务，操作的同一个数据库。但是清除购物车的操作属于购物车微服务，操作的数据库和生成订单业务操作的数据库不同。扣除库存操作同理。</p>
+<p><img   src="/./assets/transaction-202409151726393561-1.png"  alt="图1"></p>
+<h4 id="AT-模式"><a href="#AT-模式" class="headerlink" title="AT 模式"></a>AT 模式</h4><p>在 AT 工作模式下，订单业务开始时，TM 会通知 TC 开启一个事务，随后依次执行生产订单，清除购物车，扣除库存子业务。当执行生成订单操作时，RM 会向 TC 发起注册通知，表面子业务开始执行，当执行完后立即提交此子业务的事务，然后生成undo log（非 mysql 的 undo log），再通知 TC 子业务执行完成。其他子业务同理。</p>
+<p>最后订单业务执行完成后，TM 通知 TC 业务执行完毕，TC 这时检查每个分支事务执行情况，若有一个执行失败则发通知给 RM，令其根据 undo log 进行回滚。若均执行成功则会删除 undo log</p>
+<p>AT 模式的优点是性能高，其缺点是一致性差，由于分支事务完成后立即提交，若后续的分支事务出现错误，在这个过程中其他业务所得到的数据结果是脏数据，只有等回滚后数据才是正确的，因此AT 模式只能保证结果一致性。<br><img   src="/transaction-202409151726393561-2.png"  alt="图2"></p>
+<h4 id="XA-模式"><a href="#XA-模式" class="headerlink" title="XA 模式"></a>XA 模式</h4><p>XA 模式和 AT模式的主要区别在于，其子业务执行后不会立即提交，因此也不会生成 undo log（非 mysql 的 undo log），等整个业务完成后，依靠 TC 的通知决定回滚还是统一提交。</p>
+<p>所以其优点是数据一致性高，但其缺点也很明显，它的性能低。<br><img   src="/transaction-202409151726393561-3.png"  alt="图3"></p>
+<h4 id="Seata-在-SpringBoot-中的集成"><a href="#Seata-在-SpringBoot-中的集成" class="headerlink" title="Seata 在 SpringBoot 中的集成"></a>Seata 在 SpringBoot 中的集成</h4><p><strong>部署 TC</strong></p>
+<ol>
+<li>准备数据库表</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `seata`;</span><br><span class="line">USE `seata`;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `global_table`</span><br><span class="line">(</span><br><span class="line">    `xid`                       <span class="type">VARCHAR</span>(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    `transaction_id`            <span class="type">BIGINT</span>,</span><br><span class="line">    `status`                    TINYINT      <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    `application_id`            <span class="type">VARCHAR</span>(<span class="number">32</span>),</span><br><span class="line">    `transaction_service_group` <span class="type">VARCHAR</span>(<span class="number">32</span>),</span><br><span class="line">    `transaction_name`          <span class="type">VARCHAR</span>(<span class="number">128</span>),</span><br><span class="line">    `timeout`                   <span class="type">INT</span>,</span><br><span class="line">    `begin_time`                <span class="type">BIGINT</span>,</span><br><span class="line">    `application_data`          <span class="type">VARCHAR</span>(<span class="number">2000</span>),</span><br><span class="line">    `gmt_create`                DATETIME,</span><br><span class="line">    `gmt_modified`              DATETIME,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (`xid`),</span><br><span class="line">    KEY `idx_status_gmt_modified` (`status` , `gmt_modified`),</span><br><span class="line">    KEY `idx_transaction_id` (`transaction_id`)</span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB</span><br><span class="line">  <span class="keyword">DEFAULT</span> CHARSET <span class="operator">=</span> utf8mb4;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `branch_table`</span><br><span class="line">(</span><br><span class="line">    `branch_id`         <span class="type">BIGINT</span>       <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    `xid`               <span class="type">VARCHAR</span>(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    `transaction_id`    <span class="type">BIGINT</span>,</span><br><span class="line">    `resource_group_id` <span class="type">VARCHAR</span>(<span class="number">32</span>),</span><br><span class="line">    `resource_id`       <span class="type">VARCHAR</span>(<span class="number">256</span>),</span><br><span class="line">    `branch_type`       <span class="type">VARCHAR</span>(<span class="number">8</span>),</span><br><span class="line">    `status`            TINYINT,</span><br><span class="line">    `client_id`         <span class="type">VARCHAR</span>(<span class="number">64</span>),</span><br><span class="line">    `application_data`  <span class="type">VARCHAR</span>(<span class="number">2000</span>),</span><br><span class="line">    `gmt_create`        DATETIME(<span class="number">6</span>),</span><br><span class="line">    `gmt_modified`      DATETIME(<span class="number">6</span>),</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (`branch_id`),</span><br><span class="line">    KEY `idx_xid` (`xid`)</span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB</span><br><span class="line">  <span class="keyword">DEFAULT</span> CHARSET <span class="operator">=</span> utf8mb4;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `lock_table`</span><br><span class="line">(</span><br><span class="line">    `row_key`        <span class="type">VARCHAR</span>(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    `xid`            <span class="type">VARCHAR</span>(<span class="number">128</span>),</span><br><span class="line">    `transaction_id` <span class="type">BIGINT</span>,</span><br><span class="line">    `branch_id`      <span class="type">BIGINT</span>       <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    `resource_id`    <span class="type">VARCHAR</span>(<span class="number">256</span>),</span><br><span class="line">    `table_name`     <span class="type">VARCHAR</span>(<span class="number">32</span>),</span><br><span class="line">    `pk`             <span class="type">VARCHAR</span>(<span class="number">36</span>),</span><br><span class="line">    `status`         TINYINT      <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;0:locked ,1:rollbacking&#x27;</span>,</span><br><span class="line">    `gmt_create`     DATETIME,</span><br><span class="line">    `gmt_modified`   DATETIME,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (`row_key`),</span><br><span class="line">    KEY `idx_status` (`status`),</span><br><span class="line">    KEY `idx_branch_id` (`branch_id`),</span><br><span class="line">    KEY `idx_xid_and_branch_id` (`xid` , `branch_id`)</span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB</span><br><span class="line">  <span class="keyword">DEFAULT</span> CHARSET <span class="operator">=</span> utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `distributed_lock`</span><br><span class="line">(</span><br><span class="line">    `lock_key`       <span class="type">CHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    `lock_value`     <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    `expire`         <span class="type">BIGINT</span>,</span><br><span class="line">    <span class="keyword">primary</span> key (`lock_key`)</span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB</span><br><span class="line">  <span class="keyword">DEFAULT</span> CHARSET <span class="operator">=</span> utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `distributed_lock` (lock_key, lock_value, expire) <span class="keyword">VALUES</span> (<span class="string">&#x27;AsyncCommitting&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `distributed_lock` (lock_key, lock_value, expire) <span class="keyword">VALUES</span> (<span class="string">&#x27;RetryCommitting&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `distributed_lock` (lock_key, lock_value, expire) <span class="keyword">VALUES</span> (<span class="string">&#x27;RetryRollbacking&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `distributed_lock` (lock_key, lock_value, expire) <span class="keyword">VALUES</span> (<span class="string">&#x27;TxTimeoutCheck&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>准备配置文件</li>
+</ol>
+<p>  <a href="./assets/seata.zip">文件下载</a></p>
+<pre><code>下载文件后，修改配置文件中的 mysql 连接信息和 nacos 信息，然后将整个文件夹上传到服务器的 home 目录。
+</code></pre>
+<ol start="3">
+<li>Docker 部署</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run --name seata \</span><br><span class="line">-p 8099:8099 \</span><br><span class="line">-p 7099:7099 \</span><br><span class="line">-e SEATA_IP=192.168.192.101 \</span><br><span class="line">-v ./seata:/seata-server/resources \</span><br><span class="line">--privileged=true \</span><br><span class="line">--ulimit nofile=65536:65536 \</span><br><span class="line">-d \</span><br><span class="line">seataio/seata-server:1.5.2</span><br></pre></td></tr></table></figure>
+
+<p><strong>微服务中集成 RM</strong></p>
+<ol>
+<li>导入依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--seata--&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-seata<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>编写配置</p>
+<p> 在 nacos 中添加共享的配置 shared-seata.yaml，随后在各微服务配置拉取此配置文件</p>
+</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">seata:</span></span><br><span class="line">  <span class="attr">registry:</span> <span class="comment"># TC服务注册中心的配置，微服务根据这些信息去注册中心获取tc服务地址</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">nacos</span> <span class="comment"># 注册中心类型 nacos</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">      <span class="attr">namespace:</span> <span class="string">&quot;&quot;</span> <span class="comment"># namespace，默认为空</span></span><br><span class="line">      <span class="attr">group:</span> <span class="string">DEFAULT_GROUP</span> <span class="comment"># 分组，默认是DEFAULT_GROUP</span></span><br><span class="line">      <span class="attr">application:</span> <span class="string">seata-server</span> <span class="comment"># seata服务名称</span></span><br><span class="line">      <span class="attr">username:</span> <span class="string">nacos</span></span><br><span class="line">      <span class="attr">password:</span> <span class="string">nacos</span></span><br><span class="line">  <span class="attr">tx-service-group:</span> <span class="string">hmall</span> <span class="comment"># 事务组名称</span></span><br><span class="line">  <span class="attr">service:</span></span><br><span class="line">    <span class="attr">vgroup-mapping:</span> <span class="comment"># 事务组与tc集群的映射关系</span></span><br><span class="line">      <span class="attr">hmall:</span> <span class="string">&quot;default&quot;</span></span><br><span class="line">  <span class="comment"># data-source-proxy-mode: XA </span></span><br><span class="line">  <span class="comment"># 默认为 AT模式</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>使用 AT 模式必须要添加数据库表</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- for AT mode you must to init this sql for you business database. the seata server not need it.</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> </span><br><span class="line">`undo_log`</span><br><span class="line">(</span><br><span class="line">    `branch_id`     <span class="type">BIGINT</span>       <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;branch transaction id&#x27;</span>,</span><br><span class="line">    `xid`           <span class="type">VARCHAR</span>(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;global transaction id&#x27;</span>,</span><br><span class="line">    `context`       <span class="type">VARCHAR</span>(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;undo_log context,such as serialization&#x27;</span>,</span><br><span class="line">    `rollback_info` LONGBLOB     <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;rollback info&#x27;</span>,</span><br><span class="line">    `log_status`    <span class="type">INT</span>(<span class="number">11</span>)      <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;0:normal status,1:defense status&#x27;</span>,</span><br><span class="line">    `log_created`   DATETIME(<span class="number">6</span>)  <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;create datetime&#x27;</span>,</span><br><span class="line">    `log_modified`  DATETIME(<span class="number">6</span>)  <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;modify datetime&#x27;</span>,</span><br><span class="line">    <span class="keyword">UNIQUE</span> KEY `ux_undo_log` (`xid`, `branch_id`)</span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB</span><br><span class="line">  AUTO_INCREMENT <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">  <span class="keyword">DEFAULT</span> CHARSET <span class="operator">=</span> utf8mb4 COMMENT <span class="operator">=</span><span class="string">&#x27;AT transaction mode undo table&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>微服务中集成</strong> TM</p>
+<p>使用 @GlobalTransactional 标注事务即可集成 TM</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024/09/44c6ecf1bc7c.html"
+                                   title="记录一次博客折腾"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">记录一次博客折腾</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/09/20ddb1d7f49b.html"
+                                   title="蓝桥杯-子串分值和"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">蓝桥杯-子串分值和</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'pe9zdpj3qADCM9bxhbR3wKX2-MdYXbMMI',
+              appKey: 'TGTlSpRXoiB5xt2ezBqZYgJT',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'en'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BA%8B%E5%8A%A1"><span class="nav-text">什么是微服务事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BA%8B%E5%8A%A1%E5%92%8C%E5%8D%95%E4%BD%93%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB"><span class="nav-text">微服务事务和单体架构的事务有何区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%A4%84%E7%90%86%E6%9E%B6%E6%9E%84"><span class="nav-text">微服务事务的处理架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#seata-%E6%9E%B6%E6%9E%84"><span class="nav-text">seata 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AT-%E6%A8%A1%E5%BC%8F"><span class="nav-text">AT 模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XA-%E6%A8%A1%E5%BC%8F"><span class="nav-text">XA 模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Seata-%E5%9C%A8-SpringBoot-%E4%B8%AD%E7%9A%84%E9%9B%86%E6%88%90"><span class="nav-text">Seata 在 SpringBoot 中的集成</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">CYY</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BA%8B%E5%8A%A1"><span class="nav-text">什么是微服务事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BA%8B%E5%8A%A1%E5%92%8C%E5%8D%95%E4%BD%93%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB"><span class="nav-text">微服务事务和单体架构的事务有何区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%A4%84%E7%90%86%E6%9E%B6%E6%9E%84"><span class="nav-text">微服务事务的处理架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#seata-%E6%9E%B6%E6%9E%84"><span class="nav-text">seata 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AT-%E6%A8%A1%E5%BC%8F"><span class="nav-text">AT 模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XA-%E6%A8%A1%E5%BC%8F"><span class="nav-text">XA 模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Seata-%E5%9C%A8-SpringBoot-%E4%B8%AD%E7%9A%84%E9%9B%86%E6%88%90"><span class="nav-text">Seata 在 SpringBoot 中的集成</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
