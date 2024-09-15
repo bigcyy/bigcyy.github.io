@@ -259,12 +259,12 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2024-09-15 10:02:41</span>
+                <span class="datetime">2024-09-15 13:25:38</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Sun Sep 15 2024 10:02:41 GMT+0000">2024-09-15 10:02:41</span>
+                <span class="datetime" data-updated="Sun Sep 15 2024 13:25:38 GMT+0000">2024-09-15 13:25:38</span>
             </span>
         
 
@@ -309,12 +309,12 @@
 <p><strong>TC</strong>（Transaction Coordinator）：事务协调器，独立的微服务，维护事务的运行状态<br>根据 TM 的指示开启事务记录以及事务完成后检查事务涉及的分支事务是否全部成功完成，若全部成功完成执行提交，若未成功完成执行回滚。</p>
 <p><strong>例子</strong></p>
 <p>如下图的订单业务，订单业务中需要生成订单，清除购物车，扣除库存。生成订单的操作和订单业务同属一个微服务，操作的同一个数据库。但是清除购物车的操作属于购物车微服务，操作的数据库和生成订单业务操作的数据库不同。扣除库存操作同理。</p>
-<p><img   src="/./assets/transaction-202409151726393561-1.png"  alt="图1"></p>
+<p><img   src="https://pub-b396583cbcaa4e91838aa6126ad25cf8.r2.dev/transaction-202409151726393561-1.png" ></p>
 <h4 id="AT-模式"><a href="#AT-模式" class="headerlink" title="AT 模式"></a>AT 模式</h4><p>在 AT 工作模式下，订单业务开始时，TM 会通知 TC 开启一个事务，随后依次执行生产订单，清除购物车，扣除库存子业务。当执行生成订单操作时，RM 会向 TC 发起注册通知，表面子业务开始执行，当执行完后立即提交此子业务的事务，然后生成undo log（非 mysql 的 undo log），再通知 TC 子业务执行完成。其他子业务同理。</p>
 <p>最后订单业务执行完成后，TM 通知 TC 业务执行完毕，TC 这时检查每个分支事务执行情况，若有一个执行失败则发通知给 RM，令其根据 undo log 进行回滚。若均执行成功则会删除 undo log</p>
-<p>AT 模式的优点是性能高，其缺点是一致性差，由于分支事务完成后立即提交，若后续的分支事务出现错误，在这个过程中其他业务所得到的数据结果是脏数据，只有等回滚后数据才是正确的，因此AT 模式只能保证结果一致性。<br><img   src="/transaction-202409151726393561-2.png"  alt="图2"></p>
+<p>AT 模式的优点是性能高，其缺点是一致性差，由于分支事务完成后立即提交，若后续的分支事务出现错误，在这个过程中其他业务所得到的数据结果是脏数据，只有等回滚后数据才是正确的，因此AT 模式只能保证结果一致性。<br><img   src="https://pub-b396583cbcaa4e91838aa6126ad25cf8.r2.dev/transaction-202409151726393561-2.png" ></p>
 <h4 id="XA-模式"><a href="#XA-模式" class="headerlink" title="XA 模式"></a>XA 模式</h4><p>XA 模式和 AT模式的主要区别在于，其子业务执行后不会立即提交，因此也不会生成 undo log（非 mysql 的 undo log），等整个业务完成后，依靠 TC 的通知决定回滚还是统一提交。</p>
-<p>所以其优点是数据一致性高，但其缺点也很明显，它的性能低。<br><img   src="/transaction-202409151726393561-3.png"  alt="图3"></p>
+<p>所以其优点是数据一致性高，但其缺点也很明显，它的性能低。<br><img   src="https://pub-b396583cbcaa4e91838aa6126ad25cf8.r2.dev/transaction-202409151726393561-3.png" ></p>
 <h4 id="Seata-在-SpringBoot-中的集成"><a href="#Seata-在-SpringBoot-中的集成" class="headerlink" title="Seata 在 SpringBoot 中的集成"></a>Seata 在 SpringBoot 中的集成</h4><p><strong>部署 TC</strong></p>
 <ol>
 <li>准备数据库表</li>
@@ -324,7 +324,7 @@
 <ol start="2">
 <li>准备配置文件</li>
 </ol>
-<p>  <a href="./assets/seata.zip">文件下载</a></p>
+<p>  <a class="link"   target="_blank" rel="noopener" href="https://pub-b396583cbcaa4e91838aa6126ad25cf8.r2.dev/seata.zip" >点此下载配置文件<i class="fas fa-external-link-alt"></i></a></p>
 <pre><code>下载文件后，修改配置文件中的 mysql 连接信息和 nacos 信息，然后将整个文件夹上传到服务器的 home 目录。
 </code></pre>
 <ol start="3">
@@ -398,14 +398,14 @@
                             <div class="prev-post">
                                 <a class="prev"
                                    rel="prev"
-                                   href="/2024/09/a9a4684944e2.html"
-                                   title="记录一次博客折腾"
+                                   href="/2024/09/2a8e71b8afba.html"
+                                   title="Hello World"
                                 >
                                     <span class="left arrow-icon flex-center">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">记录一次博客折腾</span>
+                                        <span class="post-nav-title-item text-ellipsis">Hello World</span>
                                         <span class="post-nav-item">Prev posts</span>
                                     </span>
                                 </a>
@@ -415,7 +415,7 @@
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2024/09/80dde3d4fac9.html"
+                                   href="/2024/09/c8d6885ce1c3.html"
                                    title="蓝桥杯-子串分值和"
                                 >
                                     <span class="title flex-center">
