@@ -9,7 +9,7 @@
     
     <title>
         
-            记录一次博客折腾 |
+            分布式锁的两种实现方式浅谈 |
         
         CYY&#39;s Blog
     </title>
@@ -233,7 +233,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        记录一次博客折腾
+                        分布式锁的两种实现方式浅谈
                     </div>
                 
 
@@ -259,12 +259,12 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2024-09-15 13:25:38</span>
+                <span class="datetime">2024-11-13 09:35:18</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Sun Sep 15 2024 13:25:38 GMT+0000">2024-09-15 13:25:38</span>
+                <span class="datetime" data-updated="Wed Nov 13 2024 09:35:18 GMT+0000">2024-11-13 09:35:18</span>
             </span>
         
 
@@ -272,22 +272,13 @@
             <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
                 <ul class="post-category-ul">
                     
-                            <li class="category-item"><a href="/categories/%E6%9D%82%E6%96%87/">杂文</a></li>
+                            <li class="category-item"><a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a></li>
                         
                     
                 </ul>
             </span>
         
 
-        
-            <span class="post-tag meta-info-item border-box">
-                <ul class="post-tag-ul">
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/blog/">blog</a></li>
-                        
-                    
-                </ul>
-            </span>
         
 
         
@@ -308,42 +299,59 @@
                     
 
                     
-                         <h2 id="使用的技术"><a href="#使用的技术" class="headerlink" title="使用的技术"></a>使用的技术</h2><blockquote>
-<p>hexo+github pages静态托管+语雀写markdown+github actions自动化部署+腾讯云cos图片存储+hexo-yuque</p>
-</blockquote>
-<h3 id="技术点介绍"><a href="#技术点介绍" class="headerlink" title="技术点介绍"></a>技术点介绍</h3><ol>
-<li><p><a href="%5Bhttps://hexo.bootcss.com/%5D(https://hexo.bootcss.com/)">hexo</a></p>
-<blockquote>
-<p>快速简洁高效,多插件,多主题,基于node.js的博客框架。我们使用它来搭建我们的博客。</p>
-</blockquote>
-</li>
-<li><p><a href="%5Bhttps://pages.github.com/%5D(https://pages.github.com/)">github pages</a></p>
-<blockquote>
-<p>github提供的静态页面,您和您的项目的网站。直接从您的GitHub存储库托管。只需编辑、推送，您的更改就会实时进行更新。我们使用它来进行博客网站托管(白嫖github服务器)</p>
-</blockquote>
-</li>
-<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.yuque.com/" >语雀<i class="fas fa-external-link-alt"></i></a></p>
-<blockquote>
-<p>新一代云端知识库，语雀自研编辑器，支持文档、表格、演示文稿、绘图四大文稿类型，具备 Markdown、代码块、LaTeX 公式、PlantUML 等专业编辑能力，同时支持本地视频、Office 文件、PDF 文件等内容的上传与在线预览，可满足多种专业岗位需求，让创作更高效。我们使用语雀来进行博客文章的编写。</p>
-</blockquote>
-</li>
-<li><p><a href="%5Bhttps://github.com/features/actions%5D(https://github.com/features/actions)">github actions</a></p>
-<blockquote>
-<p>GitHub Actions 可让您轻松自动化所有软件工作流程，直接从 GitHub 构建、测试和部署您的代码。我们使用它来讲博客源码自动化部署到github psges</p>
-</blockquote>
-</li>
-<li><p><a href="%5Bhttps://cloud.tencent.com/product/cos%5D(https://cloud.tencent.com/product/cos)">腾讯云cos</a></p>
-<blockquote>
-<p>安全稳定、低成本的海量云端存储服务,我们用它来存储图片</p>
-</blockquote>
-</li>
-<li><p><a href="%5Bhttps://github.com/x-cold/yuque-hexo%5D(https://github.com/x-cold/yuque-hexo)">hexo-yuque</a></p>
-<blockquote>
-<p>A downloader for articles from yuque（语雀知识库同步工具）我们使用它将记录在语雀上的博客同步到博客中</p>
-</blockquote>
-</li>
-</ol>
-<h3 id="技术点之间的联系"><a href="#技术点之间的联系" class="headerlink" title="技术点之间的联系"></a>技术点之间的联系</h3>
+                         <p>在分布式系统中，多个客户端可能会并发地访问临界资源。为了避免资源冲突和数据不一致，我们通常需要使用分布式锁来控制对共享资源的访问。分布式锁的本质就是排队，确保只有一个客户端可以访问资源，其他客户端需要等待。当访问完成时，锁会被释放，允许其他客户端依次访问资源。</p>
+<p>本文将分别介绍如何利用 <strong>Zookeeper</strong> 和 <strong>Redis</strong> 实现分布式锁，并分析它们的特点和应用场景。</p>
+<h2 id="Zookeeper-实现分布式锁"><a href="#Zookeeper-实现分布式锁" class="headerlink" title="Zookeeper 实现分布式锁"></a>Zookeeper 实现分布式锁</h2><p>Zookeeper 是一个高可靠的分布式协调框架，它提供了强一致性的节点管理功能，能够很好地支持分布式锁的实现。Zookeeper 的节点创建和监听机制可以模拟出一个排队的过程，从而确保在分布式系统中客户端能够按顺序访问临界资源。</p>
+<h3 id="入队过程"><a href="#入队过程" class="headerlink" title="入队过程"></a>入队过程</h3><p>Zookeeper 的节点创建操作实际上就是将客户端加入队列。例如，假设有三个客户端需要访问某个临界资源，客户端 1 会首先创建一个临时顺序节点，Zookeeper 会为它分配一个序号，表明它在队列中的位置。客户端 2 和客户端 3 会依次创建节点，Zookeeper 会为每个客户端分配一个唯一的顺序号，这样就完成了入队的过程。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Client 1 -&gt; /lock/0000000001</span><br><span class="line">Client 2 -&gt; /lock/0000000002</span><br><span class="line">Client 3 -&gt; /lock/0000000003</span><br></pre></td></tr></table></figure>
+
+<p>每个客户端的节点都具有一个唯一的序号，从而可以按照序号来判断它们在队列中的位置。</p>
+<h3 id="出队过程"><a href="#出队过程" class="headerlink" title="出队过程"></a>出队过程</h3><p>在队列中，队首的客户端拥有访问临界资源的权利。当队首的客户端访问完资源后，它会删除自己在 Zookeeper 中创建的临时节点，从而完成出队操作。然后，新的队首客户端就可以开始访问资源。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Client 1 -&gt; /lock/0000000001 (访问资源)</span><br><span class="line">Client 1 删除节点 -&gt; 出队</span><br><span class="line">Client 2 -&gt; /lock/0000000002 (访问资源)</span><br></pre></td></tr></table></figure>
+
+<p>通过删除临时节点，Zookeeper 实现了客户端之间的出队操作。此时，客户端 2 成为新的队首，继续访问资源。</p>
+<h3 id="队首切换"><a href="#队首切换" class="headerlink" title="队首切换"></a>队首切换</h3><p>为了实现自动切换队首，客户端在创建节点时会监听自己前一个节点的删除事件。具体而言，当客户端创建节点后，会监听它前一个节点的状态。如果前一个节点被删除，意味着它已经完成了对资源的访问，当前客户端就可以获得访问资源的权限。</p>
+<p>这种机制利用了 Zookeeper 的 Watcher 机制，确保了分布式锁的公平性和顺序性。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Client 2 在创建节点时监听 /lock/0000000001</span><br><span class="line">Client 1 删除节点 -&gt; Client 2 收到回调 -&gt; Client 2 访问资源</span><br></pre></td></tr></table></figure>
+
+<p>通过这种方式，Zookeeper 可以有效地管理客户端的访问顺序，实现公平的分布式锁。</p>
+<h3 id="Zookeeper-分布式锁的优缺点"><a href="#Zookeeper-分布式锁的优缺点" class="headerlink" title="Zookeeper 分布式锁的优缺点"></a>Zookeeper 分布式锁的优缺点</h3><p><strong>优点：</strong></p>
+<ul>
+<li><strong>公平性</strong>：Zookeeper 可以保证客户端按照创建节点的顺序访问临界资源，确保分布式锁的公平性。</li>
+<li><strong>可靠性</strong>：Zookeeper 提供强一致性的保证，确保锁机制在集群中的可靠性。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li><strong>性能瓶颈</strong>：由于 Zookeeper 是基于磁盘存储的，频繁的节点创建和删除可能会带来性能瓶颈。</li>
+<li><strong>复杂性</strong>：Zookeeper 实现分布式锁需要较为复杂的节点管理和事件监听机制，对于一些简单的应用场景可能不太适合。</li>
+</ul>
+<h2 id="Redis-实现分布式锁"><a href="#Redis-实现分布式锁" class="headerlink" title="Redis 实现分布式锁"></a>Redis 实现分布式锁</h2><p>与 Zookeeper 相比，Redis 实现分布式锁更加轻量级，且通常用于不需要严格排队和公平性的场景。Redis 利用其高效的内存存储和命令执行特性，可以实现简单而高效的分布式锁机制。</p>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>在 Redis 中，我们可以使用 <code>SET NX PX</code> 命令来实现分布式锁。该命令会尝试将一个指定的键（锁标识）设置为一个值。如果该键不存在，则设置成功，表示当前客户端获得了锁；如果键已经存在，则表示资源被其他客户端占用，当前客户端无法获得锁。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET lock_key unique_value NX PX 30000</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><code>NX</code>：表示只有在键不存在时才会设置成功，保证了锁的互斥性。</li>
+<li><code>PX</code>：表示设置键值对的过期时间，避免死锁的发生。</li>
+</ul>
+<h3 id="死锁防止"><a href="#死锁防止" class="headerlink" title="死锁防止"></a>死锁防止</h3><p>为了防止死锁，我们通常会给锁设置一个过期时间。这样，当客户端在持有锁时，如果由于某种原因未能及时释放锁，Redis 会自动删除该锁，从而避免锁永远不被释放的情况发生。</p>
+<h3 id="Redis-分布式锁的优缺点"><a href="#Redis-分布式锁的优缺点" class="headerlink" title="Redis 分布式锁的优缺点"></a>Redis 分布式锁的优缺点</h3><p><strong>优点：</strong></p>
+<ul>
+<li><strong>高效性</strong>：Redis 是基于内存的，操作非常高效，能够承受较高的并发请求。</li>
+<li><strong>简单易用</strong>：相比 Zookeeper，Redis 的 API 简单，易于实现。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li><strong>缺乏公平性</strong>：Redis 的分布式锁并不保证客户端按顺序访问资源，某些客户端可能会频繁获取锁，而其他客户端可能一直处于等待状态。</li>
+<li><strong>需要额外处理死锁</strong>：虽然 Redis 提供了过期时间机制，但如果客户端未能正确释放锁，仍然有可能出现死锁，需要额外的处理逻辑来避免这种情况。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
+<li><strong>Zookeeper</strong>：适用于需要高可靠性、强一致性和公平性的场景，尤其适合需要排队访问的应用。它能够确保客户端按照顺序访问资源，但性能上可能受到一些限制，尤其是在高并发场景下。</li>
+<li><strong>Redis</strong>：适用于高性能要求的场景，尤其是对锁的竞争较少、没有严格顺序要求的应用。Redis 锁实现简单且高效，但不保证公平性，可能会导致锁的“饥饿”问题。</li>
+</ul>
+<p>在实际应用中，选择 Zookeeper 还是 Redis 取决于具体的业务需求和系统架构。如果系统中有复杂的分布式协调需求，Zookeeper 更为合适；如果系统需要高并发且对锁的顺序要求不高，Redis 是更好的选择。</p>
+<p>希望本文能帮助您更好地理解 Zookeeper 和 Redis 实现分布式锁的原理，并为您的项目提供一定的技术参考。</p>
+
                     
                 </div>
 
@@ -351,14 +359,6 @@
 
                 <div class="post-bottom-tags-and-share border-box">
                     <div>
-                        
-                            <ul class="post-tags-box border-box">
-                                
-                                    <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/blog/">blog</a>
-                                    </li>
-                                
-                            </ul>
                         
                     </div>
                     <div>
@@ -394,15 +394,31 @@
                 
                     <div class="post-nav border-box">
                         
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024/11/1881479d7ee9.html"
+                                   title="Hello World"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Hello World</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
                         
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2024/09/c47f76ae6341.html"
-                                   title="基于Mirai的健康系统催签到以及信息推送机器人"
+                                   href="/2024/11/a9c6dd458473.html"
+                                   title="微服务事务"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">基于Mirai的健康系统催签到以及信息推送机器人</span>
+                                        <span class="post-nav-title-item text-ellipsis">微服务事务</span>
                                         <span class="post-nav-item">Next posts</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -512,7 +528,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF"><span class="nav-text">使用的技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B9%E4%BB%8B%E7%BB%8D"><span class="nav-text">技术点介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E8%81%94%E7%B3%BB"><span class="nav-text">技术点之间的联系</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper-%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-text">Zookeeper 实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A5%E9%98%9F%E8%BF%87%E7%A8%8B"><span class="nav-text">入队过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BA%E9%98%9F%E8%BF%87%E7%A8%8B"><span class="nav-text">出队过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%9F%E9%A6%96%E5%88%87%E6%8D%A2"><span class="nav-text">队首切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zookeeper-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">Zookeeper 分布式锁的优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-text">Redis 实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E9%98%B2%E6%AD%A2"><span class="nav-text">死锁防止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">Redis 分布式锁的优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">适用场景</span></a></li></ol></li></ol>
     </div>
 </div>
 
@@ -681,7 +697,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF"><span class="nav-text">使用的技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B9%E4%BB%8B%E7%BB%8D"><span class="nav-text">技术点介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E8%81%94%E7%B3%BB"><span class="nav-text">技术点之间的联系</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper-%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-text">Zookeeper 实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A5%E9%98%9F%E8%BF%87%E7%A8%8B"><span class="nav-text">入队过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BA%E9%98%9F%E8%BF%87%E7%A8%8B"><span class="nav-text">出队过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%9F%E9%A6%96%E5%88%87%E6%8D%A2"><span class="nav-text">队首切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zookeeper-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">Zookeeper 分布式锁的优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-text">Redis 实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E9%98%B2%E6%AD%A2"><span class="nav-text">死锁防止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">Redis 分布式锁的优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">适用场景</span></a></li></ol></li></ol>
     </div>
 </div>
 
