@@ -1,0 +1,29 @@
+/* 将侧边工具栏从右下角移动到左下角 */
+.side-tools {
+  position: fixed;
+  left: 0 !important; /* 改为左侧 */
+  right: auto !important; /* 取消右侧定位 */
+  bottom: 1.6rem;
+  z-index: 99;
+  box-sizing: border-box;
+  padding-left: 1rem !important; /* 改为左侧内边距 */
+  padding-right: 0 !important; /* 取消右侧内边距 */
+}
+
+/* 平板设备适配 */
+@media (max-width: 992px) {
+  .side-tools {
+    padding-left: 0 !important;
+  }
+}
+
+/* 如果有悬停效果，需要调整方向 */
+.side-tools:hover .side-tools-container {
+  transform: translateX(0) !important;
+  opacity: 1;
+}
+
+/* 如果工具栏有滑动效果，可能需要调整滑动方向 */
+.side-tools-container {
+  transform-origin: left center !important;
+}

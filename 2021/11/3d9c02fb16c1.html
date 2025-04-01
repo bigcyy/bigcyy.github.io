@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
+    <meta name="keywords" content="编程, 技术, 博客, 生活, CYY, bigcyy, 陈阳, Yang Chen">
+    <meta name="description" content="这是一个关于编程、技术和生活的个人博客">
     <meta name="author" content="CYY">
     
     <title>
         
-            反转链表 |
+            合并两个排序的链表 |
         
         CYY&#39;s Blog
     </title>
@@ -32,13 +32,23 @@
 <link rel="stylesheet" href="/font/css/brands.min.css">
 
     
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom-side-tools.css">
+
+            
+        
+    
     <script class="keep-theme-configurations">
     const KEEP = window.KEEP || {}
-    KEEP.hexo_config = {"hostname":"bigcyy.github.io","root":"/","language":"en","path":"search.json"}
-    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"CYY's Blog","author":"CYY","avatar":"/images/avater.jpg","logo":"/images/logo.jpg","favicon":"/images/favicon.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","about":"/about"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated","post_datetime_format":"YYYY-MM-DD HH:mm:ss"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"pe9zdpj3qADCM9bxhbR3wKX2-MdYXbMMI","appkey":"TGTlSpRXoiB5xt2ezBqZYgJT","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.5"}
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
-    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
-    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+    KEEP.hexo_config = {"hostname":"bigcyy.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"CYY's Blog","author":"CYY","avatar":"/images/avater.jpg","logo":"/images/logo.jpg","favicon":"/images/favicon.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","about":"/about"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated","post_datetime_format":"YYYY-MM-DD HH:mm:ss"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"pe9zdpj3qADCM9bxhbR3wKX2-MdYXbMMI","appkey":"TGTlSpRXoiB5xt2ezBqZYgJT","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom-side-tools.css"],"js":[null]},"root":"","source_data":{},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
 <meta name="generator" content="Hexo 7.3.0"></head>
 
@@ -82,7 +92,7 @@
                         <li class="menu-item flex-start border-box">
                             <a class="menu-text-color border-box" href="/">
                                 
-                                HOME
+                                首页
                                 
                             </a>
                             
@@ -92,7 +102,7 @@
                         <li class="menu-item flex-start border-box">
                             <a class="menu-text-color border-box" href="/archives">
                                 
-                                ARCHIVES
+                                归档
                                 
                             </a>
                             
@@ -102,7 +112,7 @@
                         <li class="menu-item flex-start border-box">
                             <a class="menu-text-color border-box" href="/tags">
                                 
-                                TAGS
+                                标签
                                 
                             </a>
                             
@@ -112,7 +122,7 @@
                         <li class="menu-item flex-start border-box">
                             <a class="menu-text-color border-box" href="/categories">
                                 
-                                CATEGORIES
+                                分类
                                 
                             </a>
                             
@@ -122,7 +132,7 @@
                         <li class="menu-item flex-start border-box">
                             <a class="menu-text-color border-box" href="/about">
                                 
-                                ABOUT
+                                关于
                                 
                             </a>
                             
@@ -154,7 +164,7 @@
                     <label class="drawer-menu-label border-box">
                         <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
                             
-                            HOME
+                            首页
                         </a>
                         
                     </label>
@@ -166,7 +176,7 @@
                     <label class="drawer-menu-label border-box">
                         <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
                             
-                            ARCHIVES
+                            归档
                         </a>
                         
                     </label>
@@ -178,7 +188,7 @@
                     <label class="drawer-menu-label border-box">
                         <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
                             
-                            TAGS
+                            标签
                         </a>
                         
                     </label>
@@ -190,7 +200,7 @@
                     <label class="drawer-menu-label border-box">
                         <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
                             
-                            CATEGORIES
+                            分类
                         </a>
                         
                     </label>
@@ -202,7 +212,7 @@
                     <label class="drawer-menu-label border-box">
                         <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
                             
-                            ABOUT
+                            关于
                         </a>
                         
                     </label>
@@ -233,7 +243,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        反转链表
+                        合并两个排序的链表
                     </div>
                 
 
@@ -259,13 +269,13 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2021-11-03 00:20:07</span>
+                <span class="datetime">2021-11-04 00:37:17</span>
             </span>
 
             
                 <span class="meta-info-item post-update-date">
                     <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                    <span class="datetime" data-updated="Wed Nov 03 2021 00:20:07 GMT+0000">2021-11-03 00:20:07</span>
+                    <span class="datetime" data-updated="Wed Nov 03 2021 16:37:17 GMT+0000">2021-11-04 00:37:17</span>
                 </span>
             
         
@@ -319,13 +329,14 @@
                     
 
                     
-                         <h4 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h4><p><a class="link"   target="_blank" rel="noopener" href="http://www.acwing.com/problem/content/33/" >www.acwing.com/problem/content/33/<i class="fas fa-external-link-alt"></i></a></p>
-<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>定义一个函数，输入一个链表的头结点，反转该链表并输出反转后链表的头结点。</p>
-<h4 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h4><p>请同时实现迭代版本和递归版本。</p>
-<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入:1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</span><br><span class="line"></span><br><span class="line">输出:5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</span><br></pre></td></tr></table></figure>
+                         <h4 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h4><p><a class="link"   target="_blank" rel="noopener" href="http://www.acwing.com/problem/content/34/" >www.acwing.com/problem/content/34/<i class="fas fa-external-link-alt"></i></a></p>
+<hr>
+<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的。</p>
+<hr>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：1-&gt;3-&gt;5 , 2-&gt;4-&gt;5</span><br><span class="line"></span><br><span class="line">输出：1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;5</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">public:</span><br><span class="line">    ListNode* <span class="title function_">reverseList</span><span class="params">(ListNode* head)</span> &#123;</span><br><span class="line">        ListNode* newHead = (ListNode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(ListNode));</span><br><span class="line">        newHead-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        </span><br><span class="line">        ListNode* nowNode = head;</span><br><span class="line">        ListNode* nextNode;</span><br><span class="line">        <span class="keyword">while</span>(nowNode)&#123;</span><br><span class="line">            nextNode = nowNode-&gt;next;</span><br><span class="line">            nowNode-&gt;next = newHead-&gt;next;</span><br><span class="line">            newHead-&gt;next = nowNode;</span><br><span class="line">            nowNode = nextNode;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead-&gt;next;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">public:</span><br><span class="line">    ListNode* <span class="title function_">merge</span><span class="params">(ListNode* l1, ListNode* l2)</span> &#123;</span><br><span class="line">        ListNode* newNode = (ListNode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(ListNode));</span><br><span class="line">        newNode-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        </span><br><span class="line">        ListNode* nodeL1 = l1;</span><br><span class="line">        ListNode* nodeL2 = l2;</span><br><span class="line">        ListNode* endNode = newNode;</span><br><span class="line">        <span class="keyword">while</span>(nodeL1!= <span class="literal">NULL</span>&amp;&amp;nodeL2!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(nodeL1-&gt;val&lt;= nodeL2-&gt;val)&#123;</span><br><span class="line">                endNode-&gt;next = nodeL1;</span><br><span class="line">                endNode = nodeL1;</span><br><span class="line">                nodeL1 = nodeL1-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                endNode-&gt;next = nodeL2;</span><br><span class="line">                endNode = nodeL2;</span><br><span class="line">                nodeL2 = nodeL2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(nodeL1!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            endNode-&gt;next = nodeL1;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nodeL2!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            endNode-&gt;next = nodeL2;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            endNode-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newNode-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <hr>
 
@@ -359,19 +370,19 @@
                             <div class="post-share-container border-box">
     <ul class="share-list-wrap border-box">
         <li class="qq share-item border-box flex-center tooltip"
-            data-tooltip-content="Share to QQ"
+            data-tooltip-content="分享到 QQ"
         >
             <i class="fa-brands fa-qq"></i>
         </li>
         <li class="wechat share-item border-box flex-center tooltip tooltip-img"
-            data-tooltip-content="Share to WeChat"
-            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-content="分享到微信"
+            data-tooltip-img-tip="微信扫一扫"
             data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
         >
             <i class="fa-brands fa-weixin"></i>
         </li>
         <li class="weibo share-item border-box flex-center tooltip"
-            data-tooltip-content="Share to WeiBo"
+            data-tooltip-content="分享到微博"
         >
             <i class="fa-brands fa-weibo"></i>
         </li>
@@ -390,15 +401,15 @@
                             <div class="prev-post">
                                 <a class="prev"
                                    rel="prev"
-                                   href="/2021/11/a7f2452f9d3d.html"
-                                   title="合并两个排序的链表"
+                                   href="/2021/11/bdfb1b20a4e6.html"
+                                   title="蓝桥杯-子串分值和"
                                 >
                                     <span class="left arrow-icon flex-center">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">合并两个排序的链表</span>
-                                        <span class="post-nav-item">Prev posts</span>
+                                        <span class="post-nav-title-item text-ellipsis">蓝桥杯-子串分值和</span>
+                                        <span class="post-nav-item">上一篇</span>
                                     </span>
                                 </a>
                             </div>
@@ -407,12 +418,12 @@
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2021/10/abee52497627.html"
-                                   title="基于栈的进制转换实例"
+                                   href="/2021/11/b66198f70862.html"
+                                   title="反转链表"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">基于栈的进制转换实例</span>
-                                        <span class="post-nav-item">Next posts</span>
+                                        <span class="post-nav-title-item text-ellipsis">反转链表</span>
+                                        <span class="post-nav-item">下一篇</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
                                         <i class="fas fa-chevron-right"></i>
@@ -429,15 +440,15 @@
 
     <div class="comments-container border-box">
         <div id="comments-anchor" class="comment-area-title border-box">
-            <i class="fas fa-comments"></i>&nbsp;Comments
+            <i class="fas fa-comments"></i>&nbsp;评论
         </div>
         <div class="comment-plugin-fail border-box">
-    <span class="fail-tip">Comment plugin failed to load</span>
-    <button class="reload keep-button">Click to reload</button>
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
 </div>
 <div class="comment-plugin-loading flex-center border-box">
     <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
-    <span class="load-tip">Loading comment plugin</span>
+    <span class="load-tip">正在加载评论插件</span>
 </div>
 <script data-pjax>
   window.KeepCommentPlugin = {}
@@ -478,7 +489,7 @@
               avatar: 'wavatar',
               enableQQ: true,
               placeholder: '',
-              lang: 'en'.toLowerCase()
+              lang: 'zh-CN'.toLowerCase()
             }
 
             if ('') {
@@ -521,7 +532,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="nav-text">思考题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B"><span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B"><span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
     </div>
 </div>
 
@@ -546,7 +557,7 @@
     </div>
 
     <div class="theme-info info-item">
-        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
     </div>
 
     
@@ -664,7 +675,7 @@
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="Search..."
+                       placeholder="搜索..."
                        spellcheck="false"
                        type="search"
                        class="search-input"
@@ -690,7 +701,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="nav-text">思考题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B"><span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B"><span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="nav-text">AC代码</span></a></li></ol>
     </div>
 </div>
 
@@ -779,5 +790,178 @@
 
 
 
-</body>
+    
+        
+    
+
+<!-- hexo injector body_end start -->
+  <script>
+    window.difyChatbotConfig = {
+      token: 's6zJ8mf6JK2mnrgf'
+    }
+  </script>
+  <script
+    src="https://udify.app/embed.min.js"
+    id="s6zJ8mf6JK2mnrgf"
+    defer>
+  </script>
+  <style>
+    #dify-chatbot-bubble-button {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 28px;
+      background-color: #2563EB !important;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 24px 0px;
+      cursor: pointer;
+      z-index: 2147483647;
+      transition: transform 0.2s ease;
+    }
+    
+    #dify-chatbot-bubble-button:hover {
+      transform: scale(1.05);
+    }
+
+    #dify-chatbot-bubble-window {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      left: unset;
+      right: 0;
+      bottom: 0;
+      width: 28rem;
+      max-width: calc(100vw - 1rem);
+      height: 40rem;
+      max-height: calc(100vh - 4rem);
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      z-index: 2147483640;
+      overflow: hidden;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+  </style>
+  <script>
+    // 等待DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 等待聊天按钮加载
+      const checkButton = setInterval(function() {
+        const button = document.getElementById('dify-chatbot-bubble-button');
+        if (button) {
+          clearInterval(checkButton);
+          
+          // 添加拖动功能
+          makeDraggable(button);
+          
+          // 监听ESC键关闭聊天窗口
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+              const chatWindow = document.getElementById('dify-chatbot-bubble-window');
+              if (chatWindow && chatWindow.style.display !== 'none') {
+                chatWindow.style.display = 'none';
+              }
+            }
+          });
+        }
+      }, 500);
+      
+      // 使元素可拖动的函数
+      function makeDraggable(element) {
+        let isDragging = false;
+        let offsetX, offsetY;
+        let initialClick = false;
+        
+        // 从localStorage加载保存的位置
+        const savedPosition = localStorage.getItem('dify-button-position');
+        if (savedPosition) {
+          try {
+            const position = JSON.parse(savedPosition);
+            element.style.top = position.top;
+            element.style.right = 'auto';
+            element.style.bottom = 'auto';
+            element.style.left = position.left;
+          } catch (e) {
+            console.error('Failed to parse saved position', e);
+          }
+        }
+        
+        element.addEventListener('mousedown', function(e) {
+          // 只有在左键点击时才启用拖动
+          if (e.button !== 0) return;
+          
+          initialClick = true;
+          
+          // 记录初始位置，但还不开始拖动
+          offsetX = e.clientX - element.getBoundingClientRect().left;
+          offsetY = e.clientY - element.getBoundingClientRect().top;
+          
+          // 防止拖动时选中文本
+          e.preventDefault();
+        });
+        
+        document.addEventListener('mousemove', function(e) {
+          // 只有当鼠标移动超过一定距离时才开始拖动
+          if (initialClick) {
+            const moveX = Math.abs(e.clientX - (element.getBoundingClientRect().left + offsetX));
+            const moveY = Math.abs(e.clientY - (element.getBoundingClientRect().top + offsetY));
+            
+            if (moveX > 5 || moveY > 5) {
+              isDragging = true;
+              initialClick = false;
+              element.style.transition = 'none';
+              
+              // 隐藏聊天窗口
+              const chatWindow = document.getElementById('dify-chatbot-bubble-window');
+              if (chatWindow) {
+                chatWindow.style.display = 'none';
+              }
+            }
+          }
+          
+          if (!isDragging) return;
+          
+          // 计算新位置
+          const left = e.clientX - offsetX;
+          const top = e.clientY - offsetY;
+          
+          // 限制在窗口内
+          const maxX = window.innerWidth - element.offsetWidth;
+          const maxY = window.innerHeight - element.offsetHeight;
+          
+          element.style.left = Math.max(0, Math.min(left, maxX)) + 'px';
+          element.style.top = Math.max(0, Math.min(top, maxY)) + 'px';
+          element.style.right = 'auto';
+          element.style.bottom = 'auto';
+        });
+        
+        document.addEventListener('mouseup', function() {
+          if (isDragging) {
+            isDragging = false;
+            element.style.transition = '';
+            
+            // 保存位置到localStorage
+            localStorage.setItem('dify-button-position', JSON.stringify({
+              left: element.style.left,
+              top: element.style.top
+            }));
+          }
+          
+          initialClick = false;
+        });
+        
+        // 防止拖动时触发点击事件
+        element.addEventListener('click', function(e) {
+          if (isDragging) {
+            e.stopPropagation();
+            isDragging = false;
+          }
+        });
+      }
+    });
+  </script>
+<!-- hexo injector body_end end --></body>
 </html>
