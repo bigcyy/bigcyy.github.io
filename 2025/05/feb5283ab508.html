@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="编程, 技术, 博客, 生活, CYY, bigcyy, 陈阳, Yang Chen">
+    <meta name="description" content="这是一个关于编程、技术和生活的个人博客">
+    <meta name="author" content="CYY">
+    
+    <title>
+        
+            GSOC 2025 AI-Powered Monitoring Assistant for Apache HertzBeat |
+        
+        CYY&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/favicon.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom-side-tools.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"bigcyy.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"CYY's Blog","author":"CYY","avatar":"/images/avater.jpg","logo":"/images/logo.jpg","favicon":"/images/favicon.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","about":"/about"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated","post_datetime_format":"YYYY-MM-DD HH:mm:ss"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"pe9zdpj3qADCM9bxhbR3wKX2-MdYXbMMI","appkey":"TGTlSpRXoiB5xt2ezBqZYgJT","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom-side-tools.css"],"js":[null]},"root":"","source_data":{},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.jpg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               CYY&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                标签
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        GSOC 2025 AI-Powered Monitoring Assistant for Apache HertzBeat
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avater.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">CYY</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-05-12 00:00:24</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Sun May 11 2025 16:00:24 GMT+0000">2025-05-12 00:00:24</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/gsoc/">gsoc</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/ai/">ai</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/LLM/">LLM</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/hertzbeat/">hertzbeat</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/MCP/">MCP</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>准备了差不多两个月参加 GSOC 2025，项目是为 HertzBeat 引入 AI Agent 实现 MCP Server，虽然准备了那么久但最终还是落选了，直呼太卷了！卷归卷还是祝贺中选的那位小伙伴。听导师说，中选的是为外国朋友，在最后的提案评分上比我高一些，Google 也不公布中选选手的提案，还想学习一下别人的方案呢。</p>
+<p>反正都写了方案，我也将我的方案发布出来记录一下。也许对想要为自己的项目接入 AI 功能的朋友有启发。</p>
+<hr>
+<h2 id="1-个人介绍"><a href="#1-个人介绍" class="headerlink" title="1. 个人介绍"></a>1. 个人介绍</h2><p>我的名字是陈阳，来自重庆邮电大学，目前就读于研究生一年级。</p>
+<p>当我发现 <a class="link"   target="_blank" rel="noopener" href="https://issues.apache.org/jira/browse/GSOC-293" >HertzBeat GSOC-293<i class="fas fa-external-link-alt"></i></a> 这一项目时，我感到无比兴奋，因为它完美契合了我的研究兴趣！我擅长 Java 开发，同时在 Python 和 TypeScript 方面也积累了丰富的经验。自 ChatGPT 发布以来，我一直密切关注 LLM 领域的发展及其实际应用，并积极投身相关的开发与研究。</p>
+<p>我对开源充满热情，并渴望深入参与其中。此前，我曾向 SpringAI 提交过一个 PR（<a class="link"   target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-ai/pull/2277" >等待合并<i class="fas fa-external-link-alt"></i></a>），并成功向 Langchain4j 贡献了一个已合并的 <a class="link"   target="_blank" rel="noopener" href="https://github.com/langchain4j/langchain4j/pull/2659" >PR<i class="fas fa-external-link-alt"></i></a>。这些开源经历不仅让我收获了宝贵的实践经验，也进一步激发了我对开源社区的热爱和投入。</p>
+<p>为了更好地参与 HertzBeat GSoC 相关内容，我已经开始深入阅读 <a class="link"   target="_blank" rel="noopener" href="https://github.com/apache/hertzbeat" >HertzBeat 源码<i class="fas fa-external-link-alt"></i></a>，并积极参与社区。令人激动的是，我最近向 HertzBeat 社区提交了自己的 <a class="link"   target="_blank" rel="noopener" href="https://github.com/apache/hertzbeat/pull/3143" >第一个 PR<i class="fas fa-external-link-alt"></i></a>。尽管这只是一个相对简单的贡献，但对我而言，它意义非凡——标志着我正式迈入 HertzBeat 这个充满活力的开源社区，也坚定了我持续贡献的信心。</p>
+<h2 id="2-功能需求分析"><a href="#2-功能需求分析" class="headerlink" title="2.功能需求分析"></a>2.功能需求分析</h2><p>在深入分析功能需求后，我总结出 LLM 需要操作的核心对象包括：</p>
+<ul>
+<li>监控项</li>
+<li>监控项的各项指标</li>
+<li>报警数据</li>
+</ul>
+<p>因此可围绕这三个操作对象创建 MCP 服务提供给 LLM 使用，下面是一些核心功能的分析：</p>
+<p><strong>监控查询</strong>：用户可以在聊天界面查询目前已经有的监控项。我们在给出监控项信息的同时需要尽量提供给用户相关联的完整信息。</p>
+<p><strong>指标数据查询</strong>: 用户可以在聊天界面查询某个监控项的指标情况。同时需要支持指标的图表展示。</p>
+<p><strong>报警数据查询</strong>: AI代理需要为用户提供报警数据查询功能，用户可以在聊天界面查询报警内容。</p>
+<p><strong>监控任务添加</strong>: AI代理需要为用户提供新增监控任务的功能，用户可以在聊天界面提供监控任务的信息实现监控任务的添加。</p>
+<p><strong>阈值配置</strong>: AI代理需要为用户提供报警阈值配置的功能，用户可以在聊天界面提供监控项以及监控指标的阈值信息实现对阈值的配置。</p>
+<h2 id="3-设计方案"><a href="#3-设计方案" class="headerlink" title="3. 设计方案"></a>3. 设计方案</h2><h3 id="3-1-整体架构设计"><a href="#3-1-整体架构设计" class="headerlink" title="3.1. 整体架构设计"></a>3.1. 整体架构设计</h3><p><img   src="/images/GSOC-2025-AI-Powered-Monitoring-Assistant-for-Apache-HertzBeat-1.png" ></p>
+<h3 id="3-2-各组件介绍"><a href="#3-2-各组件介绍" class="headerlink" title="3.2. 各组件介绍"></a>3.2. 各组件介绍</h3><h4 id="3-2-1-核心-Agent"><a href="#3-2-1-核心-Agent" class="headerlink" title="3.2.1. 核心 Agent"></a>3.2.1. 核心 Agent</h4><p>功能职责：</p>
+<ul>
+<li>意图识别，解析用户的需求</li>
+<li>监控系统辅助：通过分析用户的需求，并结合当前支持的 MCP 服务辅助用户。</li>
+<li>简单聊天</li>
+</ul>
+<p>当用户的请求是要查询监控项时（如”现在哪些监控项存在异常？”）：</p>
+<ul>
+<li>解析查询意图，确定查询对象是监控项，确定查询的条件</li>
+<li>调用 MCP 服务获取监控项数据</li>
+<li>分析数据并给用户友好的响应结果</li>
+</ul>
+<p>当用户的请求是查询监控项的指标数据时（如“服务器 192.168.1.1 最近一天 CPU 使用情况？”）：</p>
+<ul>
+<li>由于监控项有哪些指标数据是通过监控项的 YML 决定的，Agent 查询指标数据首先需要获取监控项以及监控项的指标，因此首先需要调用 MCP 服务获取具体的数据然后分析。</li>
+<li>分析并构建查询条件（指标类型、目标对象、阈值条件、时间范围等参数）<ul>
+<li>指标类型：CPU 使用率</li>
+<li>阈值条件：&gt;80%</li>
+<li>时间范围：当前</li>
+<li>目标对象：所有服务器</li>
+</ul>
+</li>
+<li>调用 MCP 服务获取具体指标数据</li>
+<li>根据需要生成数据可视化（如”服务器192.168.1.1 最近一天 CPU 使用情况用图表展示”）</li>
+</ul>
+<p>当用户的请求是查询报警数据时：</p>
+<ul>
+<li>解析关于报警数据的自然语言查询</li>
+<li>构建查询条件并调用 MCP 服务获取报警数据</li>
+<li>分析报警信息</li>
+<li>向用户展示报警信息与分析结果</li>
+</ul>
+<p>当用户的请求是需要配置监控项时（如”我要监控 Web 服务的响应时间”）：</p>
+<ul>
+<li>目前 HertzBeat 是通过监控模版 YML 确定要监控一个监控项需要提供哪些数据，以及可以监控的指标，因此需要调用 MCP 服务读取 YML 信息</li>
+<li>分析 YML 并要求用户提供信息。</li>
+<li>识别用户提供的监控类型、监控目标、监控参数等信息</li>
+<li>调用 MCP 服务创建新的监控任务</li>
+<li>返回创建结果</li>
+</ul>
+<p>当用户的请求需要配置警报的阈值时（如”当 Web 服务响应时间超过 5 秒时触发警报”）：</p>
+<ul>
+<li>Agent 需要收集警报配置的相关信息<ul>
+<li>阈值名称：由用户指定</li>
+<li>指标类型：指标类型由监控项的 YML 所定义，Agent 需要让用户进行选择</li>
+<li>阈值规则：后端采用 JexlEngine 进行解析，Agent 需要解析用户的意图生成表达式</li>
+<li>关联监控：由用户指定，Agent 解析并关联到现有的监控项</li>
+<li>告警级别</li>
+<li>触发次数</li>
+<li>告警内容等</li>
+</ul>
+</li>
+<li>调用 MCP 服务添加警报阈值配置</li>
+<li>返回配置结果和确认信息</li>
+</ul>
+<h4 id="3-2-2-辅助-LLM-与记忆模块"><a href="#3-2-2-辅助-LLM-与记忆模块" class="headerlink" title="3.2.2. 辅助 LLM 与记忆模块"></a>3.2.2. 辅助 LLM 与记忆模块</h4><p>辅助 LLM 包括对用户的请求进行重写、数据的可视化、SQL 编写等等。这些 LLM 可以是便宜的模型，也可以是专业的模型，以更好的辅助核心 Agent 完成工作。辅助 LLM 的调用我们也封装成 MCP 服务。</p>
+<p>记忆模块主要负责 Agent 的记忆管理，主要包括所有的聊天记录以及记忆的持久化。</p>
+<h4 id="3-2-3-MCP-服务"><a href="#3-2-3-MCP-服务" class="headerlink" title="3.2.3. MCP 服务"></a>3.2.3. MCP 服务</h4><p>MCP 服务是整个 Agent 系统的核心组件，它在任务执行过程中发挥关键作用。核心 Agent 会根据具体任务的需求，动态选择合适的 MCP 服务，以协助自身高效完成任务。MCP 服务的实现主要依托于 HertzBeat 现有的后端接口，以提供稳定且强大的支持。</p>
+<p>下面是一些可能需要的 MCP 服务：</p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>输入</strong></th>
+<th><strong>输出</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>列出所有支持的操作</td>
+<td>列出所有支持的操作</td>
+<td>无</td>
+<td>所有支持的操作列表</td>
+</tr>
+<tr>
+<td>根据过滤条件获取监控项</td>
+<td>根据查询过滤条件获取监控信息列表，支持多种过滤方式</td>
+<td>• 监控ID列表：可选，按指定监控项ID筛选  <br>• 监控类型：可选，按监控应用类型筛选（如”linux”）  <br>• 监控状态：可选，按状态筛选（0&#x3D;未监控，1&#x3D;可用，2&#x3D;已禁用，9&#x3D;所有）  <br>• 主机搜索：可选，支持主机名模糊查询</td>
+<td>返回监控信息列表，每条记录包含：  <br>• 监控项ID  <br>• 采集任务ID  <br>• 任务名称  <br>• 监控类型  <br>• 目标主机  <br>• 采集间隔  <br>• 任务状态  <br>• 任务标签  <br>• 任务注解  <br>• 描述信息  <br>• 创建&#x2F;修改信息  <br>• 时间戳</td>
+</tr>
+<tr>
+<td>获取监控项指标信息</td>
+<td>查询指定监控项的指标</td>
+<td>• 监控项ID：必填，指定查询的监控对象  <br>• 指标名称：必填，指定查询的具体监控指标（如：cpu）</td>
+<td>• 监控项的基本信息  <br>• 监控指标名称  <br>• 最新采集时间戳 <br>• 指标字段列表  <br>• 数据行列表</td>
+</tr>
+<tr>
+<td>获取告警信息</td>
+<td>查询当前的报警数据</td>
+<td>• 告警状态：可选，筛选特定状态的告警（如”已解决”或”触发中”）  <br>• 搜索关键词：可选，用于告警内容的模糊查询</td>
+<td>告警列表，每条记录包括：  <br>• 告警ID  <br>• 标签集合  <br>• 注解集合  <br>• 告警内容  <br>• 告警状态  <br>• 触发次数  <br>• 时间信息（开始&#x2F;激活&#x2F;结束）  <br>• 创建&#x2F;修改信息</td>
+</tr>
+<tr>
+<td>获取可监控指标</td>
+<td>查询监控项下可配置的报警指标</td>
+<td>• 监控类型：必填，指定要查询的监控类型名称（如”api”）  <br>• 语言类型：可选，指定返回结果的语言（如”zh-CN”）</td>
+<td>层次化的监控指标结构列表，每个节点包含：  <br>• 类别  <br>• 属性值  <br>• 显示标签  <br>• 叶子节点标识  <br>• 菜单隐藏标识  <br>• 指标类型：数值型(0)或字符串型(1)  <br>• 指标单位  <br>• 子节点列表</td>
+</tr>
+<tr>
+<td>配置警报阈值</td>
+<td>设置监控项的报警阈值，并校验数据合理性</td>
+<td>• 告警规则名称：必填<br>• 规则类型：如实时(realtime)或周期性(periodic)  <br>• 告警阈值表达式：如”usage&gt;90”  <br>• 执行周期：周期性规则的检查间隔(秒)  <br>• 告警触发次数：达到指定次数后触发告警  <br>• 标签：键值对形式的标签信息  <br>• 注解：键值对形式的附加信息  <br>• 告警内容模板</td>
+<td>配置是否成功</td>
+</tr>
+<tr>
+<td>添加监控项目</td>
+<td>通过对话方式新增监控项</td>
+<td>• 监控基本信息（必填）：监控任务的基础配置  <br>• 监控参数列表（必填）：至少一个参数，每个参数包含：  <br>- 参数标识字段（如”port”）  <br>- 参数值（如”8080”）  <br>- 参数类型（0:数字、1:字符串、2:加密字符串等）  <br>• 收集器标识（可选）：指定使用的收集器</td>
+<td>添加是否成功</td>
+</tr>
+<tr>
+<td>查询监控项表单信息</td>
+<td>查询新增监控项所需填写的表单字段</td>
+<td>监控类型名称（如：api、database等）</td>
+<td>参数定义列表，每个参数包含：  <br>• 监控应用类型名称  <br>• 参数字段名称&#x2F;标识符  <br>• 字段类型  <br>• 是否必填  <br>• 参数默认值  <br>• 取值范围&#x2F;限制  <br>• 可选值列表  <br>• 键值对相关信息  <br>• 参数依赖关系</td>
+</tr>
+<tr>
+<td>SQL 执行</td>
+<td>允许 LLM 生成 SQL 查询数据</td>
+<td>Calcite 能解析的标准 SQL 语句</td>
+<td>SQL 执行结果</td>
+</tr>
+<tr>
+<td>表结构信息获取</td>
+<td>获取表的结构信息</td>
+<td>表名称</td>
+<td>表的定义语句</td>
+</tr>
+<tr>
+<td>获取指标历史信息</td>
+<td>根据时间范围，获取某个指标的历史信息</td>
+<td>• 监控任务ID：必填，路径参数  <br>• 指标完整路径：必填，格式为”应用.指标类型.指标名称”  <br>• 标签过滤：选填，按特定标签筛选数据  <br>• 历史时间范围：选填，默认为6小时</td>
+<td>历史指标数据，包含：  <br>• 监控任务ID  <br>• 监控类型  <br>• 监控指标类型  <br>• 监控指标字段  <br>• 监控范围查询数据</td>
+</tr>
+<tr>
+<td>数值比较</td>
+<td>比较两个指标的大小，解决LLM数学能力弱的问题</td>
+<td>比较表达式，例如 20MB&gt;10MB</td>
+<td>比较结果（大于、小于、等于）</td>
+</tr>
+</tbody></table>
+<h4 id="3-2-4-协调器"><a href="#3-2-4-协调器" class="headerlink" title="3.2.4. 协调器"></a>3.2.4. 协调器</h4><p>协调器主要负责上下文的管理。同时维护与前端的连接，以保证在 Agent 多次调用工具过程中的信息输出。</p>
+<p>功能职责：</p>
+<ul>
+<li>管理多轮对话状态（记忆）</li>
+<li>处理上下文信息传递</li>
+<li>维持与前端的交互</li>
+</ul>
+<p>工作流程：</p>
+<ul>
+<li>接收用户输入</li>
+<li>调用 Agent 处理用户请求</li>
+<li>保存聊天至全局记忆中</li>
+<li>响应 Agent 的输出</li>
+</ul>
+<h3 id="3-3-组件实现"><a href="#3-3-组件实现" class="headerlink" title="3.3. 组件实现"></a>3.3. 组件实现</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">classDiagram</span><br><span class="line"></span><br><span class="line">    class Agent&#123;</span><br><span class="line">        +List&lt;ToolCallService&gt; toolCallService;</span><br><span class="line">        +handleUserRequest(UserRequest userRequest): AgentResponse</span><br><span class="line">        +doToolCall(Tool): ToolCallResult</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Coordinator&#123;</span><br><span class="line">        +Integer maxSelfIterationNumber</span><br><span class="line">        +Integer selfIterationNumber</span><br><span class="line">        +Agent agent</span><br><span class="line">        +SessionContext sessionContext</span><br><span class="line">        </span><br><span class="line">        +handleUserRequest(UserRequest userRequest): AgentResponse</span><br><span class="line">        +handleAgentResponse(AgentResponse response)</span><br><span class="line">        +handleToolCall(Tool tool): ToolCallResult</span><br><span class="line">        +handleToolCallResult(ToolCallResult res): AgentResponse</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class ToolCallService&#123;</span><br><span class="line">        +allTools(): List&lt;Tool&gt;</span><br><span class="line">        +judgeIsSupport(String name): boolean</span><br><span class="line">        +getToolByName(String name): Tool</span><br><span class="line">        +call(Tool tool): ToolCallResult</span><br><span class="line">        +validateToolParams(Tool tool): ValidationResult</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class MCPToolCallService&#123;</span><br><span class="line">        -connectMCPServer(ConnectionParams params): Connection</span><br><span class="line">        -callMCPService(String serviceName, Map params): ToolCallResult</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Context&#123;</span><br><span class="line">        +getContextId(): String</span><br><span class="line">        +getCreationTime(): DateTime</span><br><span class="line">        +updateLastAccessTime(): void</span><br><span class="line">        #serializeContext(): String</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class AgentContext&#123;</span><br><span class="line">        +getLLM(): LLM</span><br><span class="line">        +getToolMapping(): Map&lt;String,Tool&gt;</span><br><span class="line">        +getAgentConfiguration(): AgentConfig</span><br><span class="line">        +addAllowedTool(Tool tool): void</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class SessionContext&#123;</span><br><span class="line">        +getMemory(): List&lt;Memory&gt;</span><br><span class="line">        +addToMemory(Memory memoryItem): void</span><br><span class="line">        +retrieveRelevantMemory(String query): List&lt;Memory&gt;</span><br><span class="line">        +getConversationHistory(): List&lt;Message&gt;</span><br><span class="line">        +clearTemporaryMemory(): void</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Tool&#123;</span><br><span class="line">        -String name</span><br><span class="line">        -String description</span><br><span class="line">        -List&lt;String&gt; requiredParams</span><br><span class="line">        -List&lt;String&gt; optionalParams</span><br><span class="line">        +validateParams(Map params): boolean</span><br><span class="line">        +getToolSchema(): String</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class MCPTool&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ToolCallService &lt;|.. InternalToolCallService</span><br><span class="line">    ToolCallService &lt;|.. MCPToolCallService</span><br><span class="line"></span><br><span class="line">    Coordinator o-- Agent</span><br><span class="line">    Agent o-- ToolCallService</span><br><span class="line"></span><br><span class="line">    Context &lt;|.. AgentContext</span><br><span class="line">    Context &lt;|.. SessionContext</span><br><span class="line">    Context --&gt; Agent</span><br><span class="line">    Context --&gt; Coordinator</span><br><span class="line">    </span><br><span class="line">    Tool --&gt; ToolCallService</span><br><span class="line">    Tool &lt;|-- MCPTool</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="3-3-1-Tool（工具）"><a href="#3-3-1-Tool（工具）" class="headerlink" title="3.3.1. Tool（工具）"></a>3.3.1. Tool（工具）</h4><p>Tool 是系统中的基础构建块，代表 Agent 可调用的功能单元。Tool 类设计为抽象基类，提供了通用的工具属性和方法。</p>
+<p>核心功能：</p>
+<ul>
+<li>定义工具名称、描述和参数规范</li>
+<li>提供参数验证机制</li>
+<li>格式化调用参数</li>
+<li>生成工具模式描述</li>
+</ul>
+<p>主要派生类：</p>
+<ul>
+<li>MCPTool：MCP 服务中的工具</li>
+</ul>
+<h4 id="3-3-2-ToolCallService（工具调用服务）"><a href="#3-3-2-ToolCallService（工具调用服务）" class="headerlink" title="3.3.2. ToolCallService（工具调用服务）"></a>3.3.2. ToolCallService（工具调用服务）</h4><p>ToolCallService  负责工具的管理和执行，作为工具仓库和执行引擎的角色。</p>
+<p>核心职责</p>
+<ul>
+<li>维护可用工具列表</li>
+<li>判断是否支持特定工具</li>
+<li>根据名称检索工具</li>
+<li>执行工具调用并返回结果</li>
+<li>验证工具参数合法性</li>
+</ul>
+<p>主要实现类：</p>
+<ul>
+<li>MCPToolCallService：负责连接 MCP 并调用其服务</li>
+</ul>
+<h4 id="3-3-3-Context（上下文）"><a href="#3-3-3-Context（上下文）" class="headerlink" title="3.3.3. Context（上下文）"></a>3.3.3. Context（上下文）</h4><p>Context 是系统的状态管理组件，负责存储配置信息、历史记忆和运行时状态。</p>
+<p>核心功能：</p>
+<ul>
+<li>提供上下文标识和时间戳管理</li>
+<li>支持上下文序列化</li>
+<li>管理访问时间记录</li>
+</ul>
+<p>主要派生类：</p>
+<ul>
+<li>SessionContext：管理整个会话生命周期的上下文，包括记忆存储和会话配置、提供对话历史记录。并支持相关记忆检索以及管理临时记忆清理</li>
+<li>AgentContext：管理 Agent 层面的配置和状态、提供LLM实例访问以及管理工具映射关系</li>
+</ul>
+<h4 id="3-3-4-Agent（智能代理）"><a href="#3-3-4-Agent（智能代理）" class="headerlink" title="3.3.4. Agent（智能代理）"></a>3.3.4. Agent（智能代理）</h4><p>Agent 是系统的核心智能组件，封装了 LLM 能力和工具调用逻辑，负责理解和处理用户请求。</p>
+<p>核心职责：</p>
+<ul>
+<li>处理用户请求</li>
+<li>执行工具调用</li>
+<li>监控查询、指标查询、监控配置、告警阈值配置</li>
+</ul>
+<h4 id="3-3-5-Coordinator"><a href="#3-3-5-Coordinator" class="headerlink" title="3.3.5. Coordinator"></a>3.3.5. Coordinator</h4><p>Coordinator 是整个系统的中央控制器，管理工作流程和状态转换等。</p>
+<p>核心职责：</p>
+<ul>
+<li>处理用户请求的入口点</li>
+<li>管理 Agent 响应处理</li>
+<li>处理工具调用数据</li>
+<li>维护上下文状态</li>
+<li>控制迭代次数</li>
+<li>跟踪聊天进度</li>
+</ul>
+<p>工作流程</p>
+<ul>
+<li>用户请求首先由 Coordinator 接收，并存入记忆</li>
+<li>Coordinator 将请求转发给 Agent</li>
+<li>Agent 分析请求并决定是直接回答还是调用工具</li>
+<li>Agent 响应结果由 Coordinator 存入记忆</li>
+<li>如需工具调用，Coordinator 调用 Agent ，Agent 通过 ToolCallService 执行相应 Tool</li>
+<li>工具执行结果由 Coordinator 存入记忆</li>
+<li>然后工具执行结果交由 Coordinator 返回给 Agent 进行进一步处理</li>
+<li>直到完成整个任务</li>
+</ul>
+<h2 id="4-可交付成果"><a href="#4-可交付成果" class="headerlink" title="4. 可交付成果"></a>4. 可交付成果</h2><p>通过引入 Agent 增强的智能监控助手，使监控系统更加智能化、人性化。具体收益包括：</p>
+<ul>
+<li>降低使用门槛：通过自然语言交互，使非技术用户也能轻松操作复杂的监控系统</li>
+<li>提升效率：用户可以通过简单对话快速查询监控数据、配置监控项和阈值，无需在多个界面间切换</li>
+<li>增强分析能力：Agent 可以对监控数据进行智能分析，提供更有价值的洞察</li>
+<li>扩展生态：为 Apache HertzBeat 开辟 AI 赋能的新方向，吸引更多开发者参与</li>
+</ul>
+<p>项目完成后，将为 Apache HertzBeat 留下一个完整的 Agent 集成框架，使社区能够持续扩展和改进 AI 能力，并为其他 Apache 项目提供 LLM 集成的参考实现。</p>
+<p>除此之外还将为 Apache HertzBeat 社区留下设计文档和用户文档。</p>
+<h2 id="5-实施计划"><a href="#5-实施计划" class="headerlink" title="5.实施计划"></a>5.实施计划</h2><p>项目预计持续三个月，目标是构建基于 AI 代理的监控系统，并完成 MCP 协议的集成及前端交互设计。我每天可投入 <strong>5-8 小时</strong> 进行开发，其余时间可能需要处理研究生导师安排的任务和论文的阅读。计划划分为四个阶段，每个阶段都有明确的目标和任务，以确保项目的稳步推进。</p>
+<h3 id="第一阶段：基础-Agent-框架搭建与调试（6-月-3-日-6-月-29-日）"><a href="#第一阶段：基础-Agent-框架搭建与调试（6-月-3-日-6-月-29-日）" class="headerlink" title="第一阶段：基础 Agent 框架搭建与调试（6 月 3 日 - 6 月 29 日）"></a>第一阶段：基础 Agent 框架搭建与调试（6 月 3 日 - 6 月 29 日）</h3><p><strong>目标：</strong> 搭建并测试核心 Agent，使其能够独立运行，并确保多轮对话的基本可用性。</p>
+<table>
+<thead>
+<tr>
+<th><strong>时间</strong></th>
+<th><strong>任务</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>6 月 3 日 - 6 月 8 日</td>
+<td>实现基础 Agent 功能并实现协调器，测试其运行情况。</td>
+</tr>
+<tr>
+<td>6 月 9 日 - 6 月 15 日</td>
+<td>继续完善框架，增加记忆模块，确保 Agent 支持多轮对话。</td>
+</tr>
+<tr>
+<td>6 月 16 日 - 6 月 22 日</td>
+<td>优化 Agent 交互，使整体框架能够正确运行，并确保各组件协同工作。</td>
+</tr>
+<tr>
+<td>6 月 23 日 - 6 月 29 日</td>
+<td>实现完整的 Agent 机制，调整 Prompt 以提升整体智能性和稳定性。</td>
+</tr>
+</tbody></table>
+<h3 id="第二阶段：MCP-协议集成与工具开发（6-月-30-日-7-月-27-日）"><a href="#第二阶段：MCP-协议集成与工具开发（6-月-30-日-7-月-27-日）" class="headerlink" title="第二阶段：MCP 协议集成与工具开发（6 月 30 日 - 7 月 27 日）"></a>第二阶段：MCP 协议集成与工具开发（6 月 30 日 - 7 月 27 日）</h3><p><strong>目标：</strong> 完成 MCP 协议的对接，开发 MCP 服务器所需的各类工具，使系统能够支持标准化监控与告警配置。</p>
+<table>
+<thead>
+<tr>
+<th><strong>时间</strong></th>
+<th><strong>任务</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>6 月 30 日 - 7 月 6 日</td>
+<td>初步集成 MCP 协议，确保 Agent 能够与 MCP 服务器通信。</td>
+</tr>
+<tr>
+<td>7 月 7 日 - 7 月 13 日</td>
+<td>开发 MCP 服务器的 <strong>监控项查询、指标查询、报警查询</strong> 工具。</td>
+</tr>
+<tr>
+<td>7 月 14 日 - 7 月 20 日</td>
+<td>开发 <strong>配置警告阈值、配置监控项</strong> 相关工具，支持个性化的监控管理。</td>
+</tr>
+<tr>
+<td>7 月 21 日 - 7 月 27 日</td>
+<td>开发 <strong>SQL 执行、表结构获取</strong> 等功能，使 MCP 服务器支持高级查询和可视化分析。</td>
+</tr>
+</tbody></table>
+<h3 id="第三阶段：前端交互开发与-AI-代理对接（7-月-28-日-8-月-17-日）"><a href="#第三阶段：前端交互开发与-AI-代理对接（7-月-28-日-8-月-17-日）" class="headerlink" title="第三阶段：前端交互开发与 AI 代理对接（7 月 28 日 - 8 月 17 日）"></a>第三阶段：前端交互开发与 AI 代理对接（7 月 28 日 - 8 月 17 日）</h3><p><strong>目标：</strong> 设计并开发前端界面，实现前端对 AI 代理的交互支持，并增强可视化功能。</p>
+<table>
+<thead>
+<tr>
+<th><strong>时间</strong></th>
+<th><strong>任务</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7 月 28 日 - 8 月 3 日</td>
+<td>搭建前端基础框架，完成前端与后端 AI 代理的基本对接。</td>
+</tr>
+<tr>
+<td>8 月 4 日 - 8 月 10 日</td>
+<td>增加前端 <strong>图表渲染支持</strong>，提供数据可视化能力。</td>
+</tr>
+<tr>
+<td>8 月 11 日 - 8 月 17 日</td>
+<td>进一步优化前端，支持 <strong>可配置的 MCP 服务</strong>，增强用户交互体验。</td>
+</tr>
+</tbody></table>
+<h3 id="第四阶段：系统联调与最终优化（8-月-18-日-9-月-1-日）"><a href="#第四阶段：系统联调与最终优化（8-月-18-日-9-月-1-日）" class="headerlink" title="第四阶段：系统联调与最终优化（8 月 18 日 - 9 月 1 日）"></a>第四阶段：系统联调与最终优化（8 月 18 日 - 9 月 1 日）</h3><p><strong>目标：</strong> 确保前后端系统联调无误，进行全面测试与优化，提交最终成果。</p>
+<table>
+<thead>
+<tr>
+<th><strong>时间</strong></th>
+<th><strong>任务</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>8 月 18 日 - 8 月 24 日</td>
+<td>进行 <strong>前后端联调</strong>，优化系统性能，并排查潜在问题。</td>
+</tr>
+<tr>
+<td>8 月 25 日 - 9 月 1 日</td>
+<td><strong>最终测试、完善文档</strong>，提交最终成果，并接受导师评估。</td>
+</tr>
+</tbody></table>
+<h2 id="6-MCP-Demo"><a href="#6-MCP-Demo" class="headerlink" title="6. MCP Demo"></a>6. MCP Demo</h2>
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/gsoc/">gsoc</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/ai/">ai</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/LLM/">LLM</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/hertzbeat/">hertzbeat</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/MCP/">MCP</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到 QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="分享到微信"
+            data-tooltip-img-tip="微信扫一扫"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到微博"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/03/5a4d92542c4f.html"
+                                   title="火山模型和数据库向量化执行引擎"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">火山模型和数据库向量化执行引擎</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'pe9zdpj3qADCM9bxhbR3wKX2-MdYXbMMI',
+              appKey: 'TGTlSpRXoiB5xt2ezBqZYgJT',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D"><span class="nav-text">1. 个人介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-text">2.功能需求分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="nav-text">3. 设计方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-text">3.1. 整体架构设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%90%84%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D"><span class="nav-text">3.2. 各组件介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-%E6%A0%B8%E5%BF%83-Agent"><span class="nav-text">3.2.1. 核心 Agent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-%E8%BE%85%E5%8A%A9-LLM-%E4%B8%8E%E8%AE%B0%E5%BF%86%E6%A8%A1%E5%9D%97"><span class="nav-text">3.2.2. 辅助 LLM 与记忆模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-MCP-%E6%9C%8D%E5%8A%A1"><span class="nav-text">3.2.3. MCP 服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-%E5%8D%8F%E8%B0%83%E5%99%A8"><span class="nav-text">3.2.4. 协调器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0"><span class="nav-text">3.3. 组件实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-Tool%EF%BC%88%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="nav-text">3.3.1. Tool（工具）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-ToolCallService%EF%BC%88%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E6%9C%8D%E5%8A%A1%EF%BC%89"><span class="nav-text">3.3.2. ToolCallService（工具调用服务）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-Context%EF%BC%88%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%89"><span class="nav-text">3.3.3. Context（上下文）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-4-Agent%EF%BC%88%E6%99%BA%E8%83%BD%E4%BB%A3%E7%90%86%EF%BC%89"><span class="nav-text">3.3.4. Agent（智能代理）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-5-Coordinator"><span class="nav-text">3.3.5. Coordinator</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8F%AF%E4%BA%A4%E4%BB%98%E6%88%90%E6%9E%9C"><span class="nav-text">4. 可交付成果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%AE%9E%E6%96%BD%E8%AE%A1%E5%88%92"><span class="nav-text">5.实施计划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%9F%BA%E7%A1%80-Agent-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E4%B8%8E%E8%B0%83%E8%AF%95%EF%BC%886-%E6%9C%88-3-%E6%97%A5-6-%E6%9C%88-29-%E6%97%A5%EF%BC%89"><span class="nav-text">第一阶段：基础 Agent 框架搭建与调试（6 月 3 日 - 6 月 29 日）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9AMCP-%E5%8D%8F%E8%AE%AE%E9%9B%86%E6%88%90%E4%B8%8E%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%EF%BC%886-%E6%9C%88-30-%E6%97%A5-7-%E6%9C%88-27-%E6%97%A5%EF%BC%89"><span class="nav-text">第二阶段：MCP 协议集成与工具开发（6 月 30 日 - 7 月 27 日）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%89%8D%E7%AB%AF%E4%BA%A4%E4%BA%92%E5%BC%80%E5%8F%91%E4%B8%8E-AI-%E4%BB%A3%E7%90%86%E5%AF%B9%E6%8E%A5%EF%BC%887-%E6%9C%88-28-%E6%97%A5-8-%E6%9C%88-17-%E6%97%A5%EF%BC%89"><span class="nav-text">第三阶段：前端交互开发与 AI 代理对接（7 月 28 日 - 8 月 17 日）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%9A%E7%B3%BB%E7%BB%9F%E8%81%94%E8%B0%83%E4%B8%8E%E6%9C%80%E7%BB%88%E4%BC%98%E5%8C%96%EF%BC%888-%E6%9C%88-18-%E6%97%A5-9-%E6%9C%88-1-%E6%97%A5%EF%BC%89"><span class="nav-text">第四阶段：系统联调与最终优化（8 月 18 日 - 9 月 1 日）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-MCP-Demo"><span class="nav-text">6. MCP Demo</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">CYY</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D"><span class="nav-text">1. 个人介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-text">2.功能需求分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="nav-text">3. 设计方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-text">3.1. 整体架构设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%90%84%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D"><span class="nav-text">3.2. 各组件介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-%E6%A0%B8%E5%BF%83-Agent"><span class="nav-text">3.2.1. 核心 Agent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-%E8%BE%85%E5%8A%A9-LLM-%E4%B8%8E%E8%AE%B0%E5%BF%86%E6%A8%A1%E5%9D%97"><span class="nav-text">3.2.2. 辅助 LLM 与记忆模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-MCP-%E6%9C%8D%E5%8A%A1"><span class="nav-text">3.2.3. MCP 服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-%E5%8D%8F%E8%B0%83%E5%99%A8"><span class="nav-text">3.2.4. 协调器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0"><span class="nav-text">3.3. 组件实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-Tool%EF%BC%88%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="nav-text">3.3.1. Tool（工具）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-ToolCallService%EF%BC%88%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E6%9C%8D%E5%8A%A1%EF%BC%89"><span class="nav-text">3.3.2. ToolCallService（工具调用服务）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-Context%EF%BC%88%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%89"><span class="nav-text">3.3.3. Context（上下文）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-4-Agent%EF%BC%88%E6%99%BA%E8%83%BD%E4%BB%A3%E7%90%86%EF%BC%89"><span class="nav-text">3.3.4. Agent（智能代理）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-5-Coordinator"><span class="nav-text">3.3.5. Coordinator</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8F%AF%E4%BA%A4%E4%BB%98%E6%88%90%E6%9E%9C"><span class="nav-text">4. 可交付成果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%AE%9E%E6%96%BD%E8%AE%A1%E5%88%92"><span class="nav-text">5.实施计划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%9F%BA%E7%A1%80-Agent-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E4%B8%8E%E8%B0%83%E8%AF%95%EF%BC%886-%E6%9C%88-3-%E6%97%A5-6-%E6%9C%88-29-%E6%97%A5%EF%BC%89"><span class="nav-text">第一阶段：基础 Agent 框架搭建与调试（6 月 3 日 - 6 月 29 日）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9AMCP-%E5%8D%8F%E8%AE%AE%E9%9B%86%E6%88%90%E4%B8%8E%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%EF%BC%886-%E6%9C%88-30-%E6%97%A5-7-%E6%9C%88-27-%E6%97%A5%EF%BC%89"><span class="nav-text">第二阶段：MCP 协议集成与工具开发（6 月 30 日 - 7 月 27 日）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%89%8D%E7%AB%AF%E4%BA%A4%E4%BA%92%E5%BC%80%E5%8F%91%E4%B8%8E-AI-%E4%BB%A3%E7%90%86%E5%AF%B9%E6%8E%A5%EF%BC%887-%E6%9C%88-28-%E6%97%A5-8-%E6%9C%88-17-%E6%97%A5%EF%BC%89"><span class="nav-text">第三阶段：前端交互开发与 AI 代理对接（7 月 28 日 - 8 月 17 日）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%9A%E7%B3%BB%E7%BB%9F%E8%81%94%E8%B0%83%E4%B8%8E%E6%9C%80%E7%BB%88%E4%BC%98%E5%8C%96%EF%BC%888-%E6%9C%88-18-%E6%97%A5-9-%E6%9C%88-1-%E6%97%A5%EF%BC%89"><span class="nav-text">第四阶段：系统联调与最终优化（8 月 18 日 - 9 月 1 日）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-MCP-Demo"><span class="nav-text">6. MCP Demo</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+<!-- hexo injector body_end start -->
+  <script>
+    window.difyChatbotConfig = {
+      token: 's6zJ8mf6JK2mnrgf'
+    }
+  </script>
+  <script
+    src="https://udify.app/embed.min.js"
+    id="s6zJ8mf6JK2mnrgf"
+    defer>
+  </script>
+  <style>
+    #dify-chatbot-bubble-button {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 28px;
+      background-color: #2563EB !important;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 24px 0px;
+      cursor: pointer;
+      z-index: 2147483647;
+      transition: transform 0.2s ease;
+    }
+    
+    #dify-chatbot-bubble-button:hover {
+      transform: scale(1.05);
+    }
+
+    #dify-chatbot-bubble-window {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      left: unset;
+      right: 0;
+      bottom: 0;
+      width: 28rem;
+      max-width: calc(100vw - 1rem);
+      height: 40rem;
+      max-height: calc(100vh - 4rem);
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      z-index: 2147483640;
+      overflow: hidden;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+  </style>
+  <script>
+    // 等待DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 等待聊天按钮加载
+      const checkButton = setInterval(function() {
+        const button = document.getElementById('dify-chatbot-bubble-button');
+        if (button) {
+          clearInterval(checkButton);
+          
+          // 添加拖动功能
+          makeDraggable(button);
+          
+          // 监听ESC键关闭聊天窗口
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+              const chatWindow = document.getElementById('dify-chatbot-bubble-window');
+              if (chatWindow && chatWindow.style.display !== 'none') {
+                chatWindow.style.display = 'none';
+              }
+            }
+          });
+        }
+      }, 500);
+      
+      // 使元素可拖动的函数
+      function makeDraggable(element) {
+        let isDragging = false;
+        let offsetX, offsetY;
+        let initialClick = false;
+        
+        // 从localStorage加载保存的位置
+        const savedPosition = localStorage.getItem('dify-button-position');
+        if (savedPosition) {
+          try {
+            const position = JSON.parse(savedPosition);
+            element.style.top = position.top;
+            element.style.right = 'auto';
+            element.style.bottom = 'auto';
+            element.style.left = position.left;
+          } catch (e) {
+            console.error('Failed to parse saved position', e);
+          }
+        }
+        
+        element.addEventListener('mousedown', function(e) {
+          // 只有在左键点击时才启用拖动
+          if (e.button !== 0) return;
+          
+          initialClick = true;
+          
+          // 记录初始位置，但还不开始拖动
+          offsetX = e.clientX - element.getBoundingClientRect().left;
+          offsetY = e.clientY - element.getBoundingClientRect().top;
+          
+          // 防止拖动时选中文本
+          e.preventDefault();
+        });
+        
+        document.addEventListener('mousemove', function(e) {
+          // 只有当鼠标移动超过一定距离时才开始拖动
+          if (initialClick) {
+            const moveX = Math.abs(e.clientX - (element.getBoundingClientRect().left + offsetX));
+            const moveY = Math.abs(e.clientY - (element.getBoundingClientRect().top + offsetY));
+            
+            if (moveX > 5 || moveY > 5) {
+              isDragging = true;
+              initialClick = false;
+              element.style.transition = 'none';
+              
+              // 隐藏聊天窗口
+              const chatWindow = document.getElementById('dify-chatbot-bubble-window');
+              if (chatWindow) {
+                chatWindow.style.display = 'none';
+              }
+            }
+          }
+          
+          if (!isDragging) return;
+          
+          // 计算新位置
+          const left = e.clientX - offsetX;
+          const top = e.clientY - offsetY;
+          
+          // 限制在窗口内
+          const maxX = window.innerWidth - element.offsetWidth;
+          const maxY = window.innerHeight - element.offsetHeight;
+          
+          element.style.left = Math.max(0, Math.min(left, maxX)) + 'px';
+          element.style.top = Math.max(0, Math.min(top, maxY)) + 'px';
+          element.style.right = 'auto';
+          element.style.bottom = 'auto';
+        });
+        
+        document.addEventListener('mouseup', function() {
+          if (isDragging) {
+            isDragging = false;
+            element.style.transition = '';
+            
+            // 保存位置到localStorage
+            localStorage.setItem('dify-button-position', JSON.stringify({
+              left: element.style.left,
+              top: element.style.top
+            }));
+          }
+          
+          initialClick = false;
+        });
+        
+        // 防止拖动时触发点击事件
+        element.addEventListener('click', function(e) {
+          if (isDragging) {
+            e.stopPropagation();
+            isDragging = false;
+          }
+        });
+      }
+    });
+  </script>
+<!-- hexo injector body_end end --></body>
+</html>
