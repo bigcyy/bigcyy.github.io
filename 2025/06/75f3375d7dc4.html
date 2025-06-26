@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="编程, 技术, 博客, 生活, CYY, bigcyy, 陈阳, Yang Chen">
+    <meta name="description" content="这是一个关于编程、技术和生活的个人博客">
+    <meta name="author" content="CYY">
+    
+    <title>
+        
+            从ConcurrentHashMap到CopyOnWriteArrayList的深度解析 |
+        
+        CYY&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/favicon.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+        
+            
+        
+            
+                
+<link rel="stylesheet" href="/css/custom-side-tools.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"bigcyy.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"CYY's Blog","author":"CYY","avatar":"/images/avater.jpg","logo":"/images/logo.jpg","favicon":"/images/favicon.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","about":"/about"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated","post_datetime_format":"YYYY-MM-DD HH:mm:ss"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"pe9zdpj3qADCM9bxhbR3wKX2-MdYXbMMI","appkey":"TGTlSpRXoiB5xt2ezBqZYgJT","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null,"/css/custom-side-tools.css"],"js":[null]},"root":"","source_data":{},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.jpg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               CYY&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                标签
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        从ConcurrentHashMap到CopyOnWriteArrayList的深度解析
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avater.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">CYY</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-06-20 10:46:07</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Fri Jun 20 2025 02:46:07 GMT+0000">2025-06-20 10:46:07</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Java/">Java</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>在现代多核CPU架构下，并发编程已成为Java开发者的必备技能。构建高性能、线程安全的应用，关键在于正确选择和使用并发集合。本文旨在深入探讨Java并发包中的两个核心组件 <code>ConcurrentHashMap</code> 和 <code>CopyOnWriteArrayList</code>，并通过一个真实的SSE（Server-Sent Events）消息推送案例，详细剖析在“迭代时修改”这一典型并发场景下，不同集合的选择会导致何种结果，从而揭示<code>synchronizedList</code>等传统同步容器的常见陷阱。</p>
+<h3 id="第一部分：高性能的并发基石-ConcurrentHashMap"><a href="#第一部分：高性能的并发基石-ConcurrentHashMap" class="headerlink" title="第一部分：高性能的并发基石 - ConcurrentHashMap"></a>第一部分：高性能的并发基石 - <code>ConcurrentHashMap</code></h3><p><code>ConcurrentHashMap</code> 是Java并发包提供的线程安全且高性能的哈希表实现，是构建并发系统的首选键值存储。</p>
+<h4 id="1-1-为什么需要它？"><a href="#1-1-为什么需要它？" class="headerlink" title="1.1 为什么需要它？"></a>1.1 为什么需要它？</h4><ul>
+<li><strong><code>HashMap</code></strong>: 非线程安全，多线程下可能导致数据错乱甚至死循环。</li>
+<li><strong><code>Hashtable</code></strong>: 线程安全，但通过对几乎所有方法使用<code>synchronized</code>全局锁实现，性能极低，是典型的并发瓶颈。 <code>ConcurrentHashMap</code> 的设计目标就是在保证线程安全的同时，实现最大限度的并发读写。</li>
+</ul>
+<h4 id="1-2-核心思想：锁粒度的演进"><a href="#1-2-核心思想：锁粒度的演进" class="headerlink" title="1.2 核心思想：锁粒度的演进"></a>1.2 核心思想：锁粒度的演进</h4><p><code>ConcurrentHashMap</code> 的高性能秘诀在于其不断优化的“锁分离”思想，即减小锁的粒度，允许多个线程在不同数据段上并行操作。</p>
+<h4 id="1-3-Java-1-7-分段锁-Segmentation"><a href="#1-3-Java-1-7-分段锁-Segmentation" class="headerlink" title="1.3 Java 1.7: 分段锁 (Segmentation)"></a>1.3 Java 1.7: 分段锁 (Segmentation)</h4><p>在Java 1.7及更早版本中，<code>ConcurrentHashMap</code> 由一个 <code>Segment</code> 数组和多个 <code>HashEntry</code> 数组构成。</p>
+<ul>
+<li><strong>结构</strong>: <code>ConcurrentHashMap -&gt; Segment[] -&gt; HashEntry[]</code>。</li>
+<li><strong>Segment</strong>: 每个 <code>Segment</code> 本质上是一个自带锁（<code>ReentrantLock</code>）的小型哈希表。</li>
+<li><strong>工作方式</strong>: 对数据操作时，首先根据key的哈希值定位到某个<code>Segment</code>，然后只锁定该<code>Segment</code>进行操作。</li>
+<li><strong>优势</strong>: 只要线程操作的key不属于同一个<code>Segment</code>，它们就可以并行执行，并发度默认为16。</li>
+<li><strong>劣势</strong>: <code>size()</code> 计算复杂且开销大；锁的粒度仍然相对较粗。</li>
+</ul>
+<h4 id="1-4-Java-1-8-CAS-哈希桶锁"><a href="#1-4-Java-1-8-CAS-哈希桶锁" class="headerlink" title="1.4 Java 1.8+: CAS + 哈希桶锁"></a>1.4 Java 1.8+: CAS + 哈希桶锁</h4><p>从Java 1.8开始，<code>Segment</code> 的设计被废弃，转而采用更细粒度的锁机制。</p>
+<ul>
+<li><strong>结构</strong>: 内部结构与 <code>HashMap</code> 类似，为“数组 + 链表 &#x2F; 红黑树”。</li>
+<li><strong>工作方式</strong>:<ol>
+<li><strong>无锁操作</strong>: 在向哈希桶（数组的某个槽位）放入第一个节点时，使用无锁的CAS（Compare-And-Swap）操作，避免了无竞争情况下的加锁开销。</li>
+<li><strong>哈希桶锁</strong>: 当多个线程需要修改<strong>同一个哈希桶</strong>（即发生哈希冲突）时，使用 <code>synchronized</code> 关键字<strong>锁定该哈希桶的头节点</strong>。锁的粒度从“段”缩小到了“桶”，极大地提升了并发度。</li>
+<li><strong>无锁读取</strong>: <code>get</code> 操作完全不加锁，利用 <code>volatile</code> 保证内存可见性，性能极高。</li>
+<li><strong>红黑树优化</strong>: 当哈希桶内的链表过长时，会转换为红黑树，将严重冲突时的查询效率从 O(n) 优化到 O(logn)。</li>
+</ol>
+</li>
+</ul>
+<h3 id="第二部分：构建一个线程安全的SSE推送服务"><a href="#第二部分：构建一个线程安全的SSE推送服务" class="headerlink" title="第二部分：构建一个线程安全的SSE推送服务"></a>第二部分：构建一个线程安全的SSE推送服务</h3><p>理论结合实践，我们来看一个具体的并发问题。</p>
+<h4 id="2-1-业务场景"><a href="#2-1-业务场景" class="headerlink" title="2.1 业务场景"></a>2.1 业务场景</h4><p>我们需要实现一个SSE（Server-Sent Events）服务，用于向特定设备（<code>deviceId</code>）的多个客户端（如多个浏览器标签页）实时推送流式数据。</p>
+<h4 id="2-2-代码实现"><a href="#2-2-代码实现" class="headerlink" title="2.2 代码实现"></a><strong>2.2 代码实现</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SsePushService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用ConcurrentHashMap存储每个设备对应的Emitter列表</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Long, List&lt;SseEmitter&gt;&gt; deviceEmitterMap = <span class="keyword">new</span> <span class="title class_">ConcurrentHashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> SseEmitter <span class="title function_">register</span><span class="params">(Long deviceId)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (deviceId == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;deviceId cannot be null&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">SseEmitter</span> <span class="variable">emitter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SseEmitter</span>(<span class="number">0L</span>); <span class="comment">// 永不超时</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关键点1: 使用computeIfAbsent保证原子性地创建List</span></span><br><span class="line">        <span class="comment">// 关键点2: List的实现选择了CopyOnWriteArrayList</span></span><br><span class="line">        deviceEmitterMap.computeIfAbsent(deviceId, k -&gt; <span class="keyword">new</span> <span class="title class_">CopyOnWriteArrayList</span>&lt;&gt;()).add(emitter);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关键点3: 在连接终止时，从List中移除Emitter</span></span><br><span class="line">        <span class="type">Runnable</span> <span class="variable">removeEmitter</span> <span class="operator">=</span> () -&gt; &#123;</span><br><span class="line">            List&lt;SseEmitter&gt; emitters = deviceEmitterMap.get(deviceId);</span><br><span class="line">            <span class="keyword">if</span> (emitters != <span class="literal">null</span>) &#123;</span><br><span class="line">                emitters.remove(emitter);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        emitter.onCompletion(removeEmitter);</span><br><span class="line">        emitter.onTimeout(removeEmitter);</span><br><span class="line">        emitter.onError(e -&gt; removeEmitter.run());</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> emitter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">pushToDevice</span><span class="params">(Long deviceId, StreamDataShowDto data)</span> &#123;</span><br><span class="line">        List&lt;SseEmitter&gt; emitters = deviceEmitterMap.getOrDefault(deviceId, Collections.emptyList());</span><br><span class="line">        <span class="comment">// 关键点4: 遍历List进行推送</span></span><br><span class="line">        <span class="keyword">for</span> (SseEmitter emitter : emitters) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                emitter.send(data, MediaType.APPLICATION_JSON);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                emitter.completeWithError(e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-核心并发挑战：迭代时修改"><a href="#2-3-核心并发挑战：迭代时修改" class="headerlink" title="2.3 核心并发挑战：迭代时修改"></a><strong>2.3 核心并发挑战：迭代时修改</strong></h4><p>此代码存在一个典型的并发冲突：</p>
+<ul>
+<li><strong>迭代线程</strong>: <code>pushToDevice</code> 方法中的 <code>for</code> 循环会<strong>遍历</strong>某个 <code>deviceId</code> 对应的 List。</li>
+<li><strong>修改线程</strong>: 当客户端连接断开、超时或出错时，Web服务器的I&#x2F;O线程会执行 <code>onCompletion</code>&#x2F;<code>onTimeout</code>&#x2F;<code>onError</code> 回调，进而调用 <code>list.remove()</code> <strong>修改</strong>同一个 List。</li>
+</ul>
+<p>一个线程正在遍历集合，而另一个线程同时在修改它，这是并发编程中的经典难题。</p>
+<h3 id="第三部分：迭代安全的解决方案-CopyOnWriteArrayList"><a href="#第三部分：迭代安全的解决方案-CopyOnWriteArrayList" class="headerlink" title="第三部分：迭代安全的解决方案 - CopyOnWriteArrayList"></a>第三部分：迭代安全的解决方案 - <code>CopyOnWriteArrayList</code></h3><p>在上述代码中，<code>CopyOnWriteArrayList</code> 是解决问题的“银弹”。</p>
+<h4 id="3-1-工作原理：写时复制-Copy-on-Write"><a href="#3-1-工作原理：写时复制-Copy-on-Write" class="headerlink" title="3.1 工作原理：写时复制 (Copy-on-Write)"></a>3.1 工作原理：写时复制 (Copy-on-Write)</h4><ul>
+<li><strong>读操作（迭代）</strong>: 读取是<strong>无锁</strong>的。获取迭代器时，它会引用一个指向底层数组的<strong>快照</strong>。后续任何对列表的修改都不会影响这个快照，迭代器将安全地遍历完创建它那一刻的数据。</li>
+<li><strong>写操作（add&#x2F;remove）</strong>: 写入是<strong>加锁</strong>的。它会<strong>完整地复制一份</strong>底层数组，在新数组上进行修改，然后原子性地将内部指针指向新数组。</li>
+</ul>
+<h4 id="3-2-为什么它是最佳选择"><a href="#3-2-为什么它是最佳选择" class="headerlink" title="3.2 为什么它是最佳选择"></a><strong>3.2 为什么它是最佳选择</strong></h4><ol>
+<li><strong>迭代绝对安全</strong>: 由于读写分离，迭代器永远不会感知到后续的修改，因此**绝对不会抛出 <code>ConcurrentModificationException</code>**。</li>
+<li><strong>高并发读取</strong>: 读操作无锁，性能极高。多个线程可以同时、安全地遍历列表。</li>
+<li><strong>适用场景匹配</strong>: SSE场景是典型的“读多写少”。推送消息（读）非常频繁，而客户端连接&#x2F;断开（写）相对较少。这使得<code>CopyOnWriteArrayList</code>高昂的写成本可以被接受。</li>
+</ol>
+<hr>
+<h3 id="第四部分：为什么其他List不行？"><a href="#第四部分：为什么其他List不行？" class="headerlink" title="第四部分：为什么其他List不行？"></a>第四部分：为什么其他List不行？</h3><p>若不使用 <code>CopyOnWriteArrayList</code>，而使用其他<code>List</code>，将会导致严重问题。</p>
+<h4 id="4-1-ArrayList：非线程安全"><a href="#4-1-ArrayList：非线程安全" class="headerlink" title="4.1 ArrayList：非线程安全"></a>4.1 <code>ArrayList</code>：非线程安全</h4><p>直接使用 <code>ArrayList</code> 会在并发修改时立即抛出 <code>ConcurrentModificationException</code>，或造成数据不一致，是完全不可行的。</p>
+<h4 id="4-2-synchronizedList：方法级同步的局限性"><a href="#4-2-synchronizedList：方法级同步的局限性" class="headerlink" title="4.2 synchronizedList：方法级同步的局限性"></a>4.2 <code>synchronizedList</code>：方法级同步的局限性</h4><p><code>Collections.synchronizedList()</code> 提供了方法级别的同步，但这并不能解决“迭代时修改”的问题。</p>
+<h5 id="4-2-1-foreach-循环的陷阱"><a href="#4-2-1-foreach-循环的陷阱" class="headerlink" title="4.2.1 foreach 循环的陷阱"></a>4.2.1 <code>foreach</code> 循环的陷阱</h5><p><code>foreach</code> 循环在底层依赖 <code>Iterator</code>。它的 <code>hasNext()</code> 和 <code>next()</code> 方法调用之间存在<strong>执行间隙</strong>。</p>
+<ol>
+<li>遍历线程调用 <code>iterator.hasNext()</code> (加锁-&gt;检查-&gt;解锁)。</li>
+<li>修改线程乘虚而入，调用 <code>list.remove()</code> (加锁-&gt;修改-&gt;解锁)。</li>
+<li>遍历线程再调用 <code>iterator.next()</code> (加锁-&gt;检查发现modCount不一致-&gt;抛出<code>ConcurrentModificationException</code>!)。 <strong><code>synchronizedList</code> 保证了单步操作的安全，但无法保证复合操作（整个遍历过程）的安全。</strong></li>
+</ol>
+<h5 id="4-2-2-for-i-循环：更危险的深渊"><a href="#4-2-2-for-i-循环：更危险的深渊" class="headerlink" title="4.2.2 for-i 循环：更危险的深渊"></a>4.2.2 <code>for-i</code> 循环：更危险的深渊</h5><p>有人可能会尝试用 <code>for(int i = 0; i &lt; list.size(); i++)</code> 规避 <code>Iterator</code>。这种做法<strong>更危险</strong>，因为它用<strong>数据错乱</strong>代替了明确的异常。</p>
+<ul>
+<li><strong>跳过元素</strong>: 如果在遍历时，一个靠前的元素被移除，后面的元素索引会前移，而循环变量 <code>i</code> 正常递增，导致一个元素被永久跳过。</li>
+<li><strong><code>IndexOutOfBoundsException</code></strong>: 如果在循环即将结束时，末尾的元素被移除，<code>list.get(i)</code> 可能会访问一个不再存在的索引，导致异常。</li>
+</ul>
+<p><code>ConcurrentModificationException</code> 是一种“快速失败”<strong>机制，它是一个有益的警报。而 <code>for-i</code> 循环的“悄悄失败</strong>”则会将Bug隐藏起来，导致难以追踪的数据一致性问题。</p>
+<h3 id="总结与建议"><a href="#总结与建议" class="headerlink" title="总结与建议"></a>总结与建议</h3><p>选择正确的并发集合是构建健壮Java应用的基础。</p>
+<ol>
+<li><strong>默认使用 <code>ConcurrentHashMap</code></strong>: 在需要线程安全的Map时，它几乎永远是你的最佳选择。</li>
+<li><strong>理解<code>CopyOnWriteArrayList</code>的场景</strong>: 当你需要一个线程安全的List，且面临“高频读取&#x2F;遍历”和“低频写入&#x2F;修改”的场景时，<code>CopyOnWriteArrayList</code> 是完美的解决方案。</li>
+<li><strong>慎用 <code>synchronizedList</code></strong>: 它仅适用于保护简单的、非复合的单步操作。绝不能想当然地认为它能保证遍历等复杂操作的线程安全。</li>
+<li><strong>拥抱“快速失败”</strong>: <code>ConcurrentModificationException</code> 不是敌人，而是朋友。它在帮助你第一时间发现并发设计中的缺陷。</li>
+</ol>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Java/">Java</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到 QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="分享到微信"
+            data-tooltip-img-tip="微信扫一扫"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到微博"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/05/feb5283ab508.html"
+                                   title="GSOC 2025 AI-Powered Monitoring Assistant for Apache HertzBeat"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">GSOC 2025 AI-Powered Monitoring Assistant for Apache HertzBeat</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'pe9zdpj3qADCM9bxhbR3wKX2-MdYXbMMI',
+              appKey: 'TGTlSpRXoiB5xt2ezBqZYgJT',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%9A%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%9F%B3-ConcurrentHashMap"><span class="nav-text">第一部分：高性能的并发基石 - ConcurrentHashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%AE%83%EF%BC%9F"><span class="nav-text">1.1 为什么需要它？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%EF%BC%9A%E9%94%81%E7%B2%92%E5%BA%A6%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="nav-text">1.2 核心思想：锁粒度的演进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-Java-1-7-%E5%88%86%E6%AE%B5%E9%94%81-Segmentation"><span class="nav-text">1.3 Java 1.7: 分段锁 (Segmentation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-Java-1-8-CAS-%E5%93%88%E5%B8%8C%E6%A1%B6%E9%94%81"><span class="nav-text">1.4 Java 1.8+: CAS + 哈希桶锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%9A%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84SSE%E6%8E%A8%E9%80%81%E6%9C%8D%E5%8A%A1"><span class="nav-text">第二部分：构建一个线程安全的SSE推送服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF"><span class="nav-text">2.1 业务场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">2.2 代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E6%A0%B8%E5%BF%83%E5%B9%B6%E5%8F%91%E6%8C%91%E6%88%98%EF%BC%9A%E8%BF%AD%E4%BB%A3%E6%97%B6%E4%BF%AE%E6%94%B9"><span class="nav-text">2.3 核心并发挑战：迭代时修改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86%EF%BC%9A%E8%BF%AD%E4%BB%A3%E5%AE%89%E5%85%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-CopyOnWriteArrayList"><span class="nav-text">第三部分：迭代安全的解决方案 - CopyOnWriteArrayList</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9A%E5%86%99%E6%97%B6%E5%A4%8D%E5%88%B6-Copy-on-Write"><span class="nav-text">3.1 工作原理：写时复制 (Copy-on-Write)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%83%E6%98%AF%E6%9C%80%E4%BD%B3%E9%80%89%E6%8B%A9"><span class="nav-text">3.2 为什么它是最佳选择</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%85%B6%E4%BB%96List%E4%B8%8D%E8%A1%8C%EF%BC%9F"><span class="nav-text">第四部分：为什么其他List不行？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-ArrayList%EF%BC%9A%E9%9D%9E%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="nav-text">4.1 ArrayList：非线程安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-synchronizedList%EF%BC%9A%E6%96%B9%E6%B3%95%E7%BA%A7%E5%90%8C%E6%AD%A5%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-text">4.2 synchronizedList：方法级同步的局限性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-1-foreach-%E5%BE%AA%E7%8E%AF%E7%9A%84%E9%99%B7%E9%98%B1"><span class="nav-text">4.2.1 foreach 循环的陷阱</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-2-for-i-%E5%BE%AA%E7%8E%AF%EF%BC%9A%E6%9B%B4%E5%8D%B1%E9%99%A9%E7%9A%84%E6%B7%B1%E6%B8%8A"><span class="nav-text">4.2.2 for-i 循环：更危险的深渊</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%BB%BA%E8%AE%AE"><span class="nav-text">总结与建议</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">CYY</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%9A%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%9F%B3-ConcurrentHashMap"><span class="nav-text">第一部分：高性能的并发基石 - ConcurrentHashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%AE%83%EF%BC%9F"><span class="nav-text">1.1 为什么需要它？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%EF%BC%9A%E9%94%81%E7%B2%92%E5%BA%A6%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="nav-text">1.2 核心思想：锁粒度的演进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-Java-1-7-%E5%88%86%E6%AE%B5%E9%94%81-Segmentation"><span class="nav-text">1.3 Java 1.7: 分段锁 (Segmentation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-Java-1-8-CAS-%E5%93%88%E5%B8%8C%E6%A1%B6%E9%94%81"><span class="nav-text">1.4 Java 1.8+: CAS + 哈希桶锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%9A%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84SSE%E6%8E%A8%E9%80%81%E6%9C%8D%E5%8A%A1"><span class="nav-text">第二部分：构建一个线程安全的SSE推送服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF"><span class="nav-text">2.1 业务场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">2.2 代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E6%A0%B8%E5%BF%83%E5%B9%B6%E5%8F%91%E6%8C%91%E6%88%98%EF%BC%9A%E8%BF%AD%E4%BB%A3%E6%97%B6%E4%BF%AE%E6%94%B9"><span class="nav-text">2.3 核心并发挑战：迭代时修改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86%EF%BC%9A%E8%BF%AD%E4%BB%A3%E5%AE%89%E5%85%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-CopyOnWriteArrayList"><span class="nav-text">第三部分：迭代安全的解决方案 - CopyOnWriteArrayList</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9A%E5%86%99%E6%97%B6%E5%A4%8D%E5%88%B6-Copy-on-Write"><span class="nav-text">3.1 工作原理：写时复制 (Copy-on-Write)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%83%E6%98%AF%E6%9C%80%E4%BD%B3%E9%80%89%E6%8B%A9"><span class="nav-text">3.2 为什么它是最佳选择</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%85%B6%E4%BB%96List%E4%B8%8D%E8%A1%8C%EF%BC%9F"><span class="nav-text">第四部分：为什么其他List不行？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-ArrayList%EF%BC%9A%E9%9D%9E%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="nav-text">4.1 ArrayList：非线程安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-synchronizedList%EF%BC%9A%E6%96%B9%E6%B3%95%E7%BA%A7%E5%90%8C%E6%AD%A5%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-text">4.2 synchronizedList：方法级同步的局限性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-1-foreach-%E5%BE%AA%E7%8E%AF%E7%9A%84%E9%99%B7%E9%98%B1"><span class="nav-text">4.2.1 foreach 循环的陷阱</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-2-for-i-%E5%BE%AA%E7%8E%AF%EF%BC%9A%E6%9B%B4%E5%8D%B1%E9%99%A9%E7%9A%84%E6%B7%B1%E6%B8%8A"><span class="nav-text">4.2.2 for-i 循环：更危险的深渊</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%BB%BA%E8%AE%AE"><span class="nav-text">总结与建议</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+<!-- hexo injector body_end start -->
+  <script>
+    window.difyChatbotConfig = {
+      token: 's6zJ8mf6JK2mnrgf'
+    }
+  </script>
+  <script
+    src="https://udify.app/embed.min.js"
+    id="s6zJ8mf6JK2mnrgf"
+    defer>
+  </script>
+  <style>
+    #dify-chatbot-bubble-button {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 28px;
+      background-color: #2563EB !important;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 24px 0px;
+      cursor: pointer;
+      z-index: 2147483647;
+      transition: transform 0.2s ease;
+    }
+    
+    #dify-chatbot-bubble-button:hover {
+      transform: scale(1.05);
+    }
+
+    #dify-chatbot-bubble-window {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      left: unset;
+      right: 0;
+      bottom: 0;
+      width: 28rem;
+      max-width: calc(100vw - 1rem);
+      height: 40rem;
+      max-height: calc(100vh - 4rem);
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      z-index: 2147483640;
+      overflow: hidden;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+  </style>
+  <script>
+    // 等待DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 等待聊天按钮加载
+      const checkButton = setInterval(function() {
+        const button = document.getElementById('dify-chatbot-bubble-button');
+        if (button) {
+          clearInterval(checkButton);
+          
+          // 添加拖动功能
+          makeDraggable(button);
+          
+          // 监听ESC键关闭聊天窗口
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+              const chatWindow = document.getElementById('dify-chatbot-bubble-window');
+              if (chatWindow && chatWindow.style.display !== 'none') {
+                chatWindow.style.display = 'none';
+              }
+            }
+          });
+        }
+      }, 500);
+      
+      // 使元素可拖动的函数
+      function makeDraggable(element) {
+        let isDragging = false;
+        let offsetX, offsetY;
+        let initialClick = false;
+        
+        // 从localStorage加载保存的位置
+        const savedPosition = localStorage.getItem('dify-button-position');
+        if (savedPosition) {
+          try {
+            const position = JSON.parse(savedPosition);
+            element.style.top = position.top;
+            element.style.right = 'auto';
+            element.style.bottom = 'auto';
+            element.style.left = position.left;
+          } catch (e) {
+            console.error('Failed to parse saved position', e);
+          }
+        }
+        
+        element.addEventListener('mousedown', function(e) {
+          // 只有在左键点击时才启用拖动
+          if (e.button !== 0) return;
+          
+          initialClick = true;
+          
+          // 记录初始位置，但还不开始拖动
+          offsetX = e.clientX - element.getBoundingClientRect().left;
+          offsetY = e.clientY - element.getBoundingClientRect().top;
+          
+          // 防止拖动时选中文本
+          e.preventDefault();
+        });
+        
+        document.addEventListener('mousemove', function(e) {
+          // 只有当鼠标移动超过一定距离时才开始拖动
+          if (initialClick) {
+            const moveX = Math.abs(e.clientX - (element.getBoundingClientRect().left + offsetX));
+            const moveY = Math.abs(e.clientY - (element.getBoundingClientRect().top + offsetY));
+            
+            if (moveX > 5 || moveY > 5) {
+              isDragging = true;
+              initialClick = false;
+              element.style.transition = 'none';
+              
+              // 隐藏聊天窗口
+              const chatWindow = document.getElementById('dify-chatbot-bubble-window');
+              if (chatWindow) {
+                chatWindow.style.display = 'none';
+              }
+            }
+          }
+          
+          if (!isDragging) return;
+          
+          // 计算新位置
+          const left = e.clientX - offsetX;
+          const top = e.clientY - offsetY;
+          
+          // 限制在窗口内
+          const maxX = window.innerWidth - element.offsetWidth;
+          const maxY = window.innerHeight - element.offsetHeight;
+          
+          element.style.left = Math.max(0, Math.min(left, maxX)) + 'px';
+          element.style.top = Math.max(0, Math.min(top, maxY)) + 'px';
+          element.style.right = 'auto';
+          element.style.bottom = 'auto';
+        });
+        
+        document.addEventListener('mouseup', function() {
+          if (isDragging) {
+            isDragging = false;
+            element.style.transition = '';
+            
+            // 保存位置到localStorage
+            localStorage.setItem('dify-button-position', JSON.stringify({
+              left: element.style.left,
+              top: element.style.top
+            }));
+          }
+          
+          initialClick = false;
+        });
+        
+        // 防止拖动时触发点击事件
+        element.addEventListener('click', function(e) {
+          if (isDragging) {
+            e.stopPropagation();
+            isDragging = false;
+          }
+        });
+      }
+    });
+  </script>
+<!-- hexo injector body_end end --></body>
+</html>
